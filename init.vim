@@ -22,13 +22,14 @@
     Plug 'jacoborus/tender.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
+    Plug 'morhetz/gruvbox'
   call plug#end()
 
 " encoding
   set encoding=UTF-8
 
 " Colourscheme
-  colorscheme tender
+  colorscheme gruvbox
   set noshowmode
   set noshowcmd
   set shortmess+=F
