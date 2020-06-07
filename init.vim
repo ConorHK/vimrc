@@ -1,31 +1,15 @@
 " Cleanup
-"set undodir=$XDG_DATA_HOME/vim/undo
-"set directory=$XDG_DATA_HOME/vim/swap
-"set backupdir=$XDG_DATA_HOME/vim/backup
-"set viewdir=$XDG_DATA_HOME/vim/view
-"set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
-"set viminfo+=n$XDG_DATA_HOME/vim/viminfo
+  "set undodir=$XDG_DATA_HOME/vim/undo
+  "set directory=$XDG_DATA_HOME/vim/swap
+  "set backupdir=$XDG_DATA_HOME/vim/backup
+  "set viewdir=$XDG_DATA_HOME/vim/view
+  "set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+  "set viminfo+=n$XDG_DATA_HOME/vim/viminfo
 
-" Plugins
-  call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
-    Plug 'lervag/vimtex'
-    Plug 'junegunn/goyo.vim'
-    Plug 'tpope/vim-commentary'
-    Plug 'sbdchd/neoformat'
-    Plug 'xuhdev/vim-latex-live-preview',{'for':'tex'}
-    Plug 'junegunn/limelight.vim'
-    Plug 'takac/vim-hardtime'
-    Plug 'sirver/ultisnips'
-    Plug 'tpope/vim-surround'
-    Plug 'mhinz/vim-startify'
-    Plug 'tpope/vim-sensible'
-    Plug 'jacoborus/tender.vim'
-    Plug 'tpope/vim-fugitive'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'morhetz/gruvbox'
-  call plug#end()
+" Ensure compatible mode is disabled
+  set nocompatible
 
-" encoding
+" Encoding
   set encoding=UTF-8
 
 " Colourscheme
@@ -44,12 +28,6 @@
 " Enable autocompletion
   set wildmode=longest,list,full
 
-" Goyo macro
-  map <leader>f :Goyo \| set linebreak<CR>
-  autocmd! User GoyoEnter Limelight
-  autocmd! User GoyoLeave Limelight!
-  let g:limelight_conceal_ctermfg='gray'
-
 " Splits open at bottom and right
   set splitbelow splitright
 
@@ -57,6 +35,7 @@
   autocmd FileType text,markdown setlocal spell
   set spelllang=en_gb
   inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
 " Don't automatically collapse markdown
   set conceallevel=0
 
@@ -106,12 +85,6 @@
 " Turn on detection for filetypes, indentation files and plugin files
   filetype plugin indent on
 
-" Split window appears on the right hand side of the current one
-  set splitright
-
-" Ensure compatible mode is disabled
-  set nocompatible
-
 " Share yank buffer with system clipboard
   set clipboard=unnamedplus
 
@@ -149,16 +122,36 @@
 " Delete all trailing whitespace on save
   autocmd BufWritePre * %s/\s\+$//e
 
-" LaTeX Plug
-  let g:tex_flavor='latex'
-  let g:vimtex_view_method='zathura'
-  let g:vimtex_quickfix_mode=0
-  set conceallevel=1
-  let g:tex_conceal='abdmg'
-  let g:livepreview_previewer = 'zathura'
+" Command mapping :Q because I always end up doing that
+  command Q q
+
+" ------- Plugins ------
+  call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
+    Plug 'lervag/vimtex'                                  " Latex support
+    Plug 'junegunn/goyo.vim'                              " No distractions mode
+    Plug 'tpope/vim-commentary'                           " Commenting plugin: use gc
+    Plug 'sbdchd/neoformat'                               " Formats code
+    Plug 'xuhdev/vim-latex-live-preview',{'for':'tex'}    " Live preview for latex files
+    Plug 'junegunn/limelight.vim'                         " Highlights paragraph in Goyo mode
+    Plug 'takac/vim-hardtime'                             " Limits hjkl usage
+    Plug 'sirver/ultisnips'                               " Snippet tool
+    Plug 'tpope/vim-surround'                             " Changes surrounding tags: use cs/ds
+    Plug 'mhinz/vim-startify'                             " Adds start screen
+    Plug 'tpope/vim-sensible'                             " Tim Pope's sensible settings - probably overwritten
+    Plug 'jacoborus/tender.vim'                           " Tender theme
+    Plug 'tpope/vim-fugitive'                             " Git commands
+    Plug 'airblade/vim-gitgutter'                         " Shows whats changed in repo
+    Plug 'morhetz/gruvbox'                                " Gruvbox theme
+  call plug#end()
+
+" Goyo macro
+  map <leader>f :Goyo \| set linebreak<CR>
+  autocmd! User GoyoEnter Limelight
+  autocmd! User GoyoLeave Limelight!
+  let g:limelight_conceal_ctermfg='gray'
 
 " Hard-time
-"let g:hardtime_default_on = 1
+  let g:hardtime_default_on = 1
 
 " Ultisnips
   let g:UltiSnipsExpandTrigger = '<tab>'
@@ -169,5 +162,10 @@
       let g:UltiSnipsSnippetDirectories = ["UltiSnips", "ultisnips"]
   endif
 
-" Command mapping :Q because I always end up doing that
-  command Q q
+" LaTeX Plug
+  let g:tex_flavor='latex'
+  let g:vimtex_view_method='zathura'
+  let g:vimtex_quickfix_mode=0
+  set conceallevel=1
+  let g:tex_conceal='abdmg'
+  let g:livepreview_previewer = 'zathura'
