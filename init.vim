@@ -120,7 +120,7 @@
   command Q q
 
 " Source PEP8 defaults for c and python - may override some settings here
-  source src/pep8.vim
+  source $XDG_CONFIG_HOME/nvim/src/pep8.vim
 
 " ------- Plugins ------
   if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
