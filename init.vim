@@ -25,6 +25,12 @@
 " Splits open at bottom and right
   set splitbelow splitright
 
+" Split sane bindings
+  nnoremap <C-J> <C-W><C-J>
+  nnoremap <C-K> <C-W><C-K>
+  nnoremap <C-L> <C-W><C-L>
+  nnoremap <C-H> <C-W><C-H>
+
 " Spellcheck
   autocmd FileType text,markdown setlocal spell
   set spelllang=en_gb
@@ -92,7 +98,6 @@
     set sidescrolloff=5
   endif
 
-
 " Jump to last known position when reopening a file
   if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -143,6 +148,8 @@
     Plug 'tpope/vim-fugitive'                             " Git commands
     Plug 'airblade/vim-gitgutter'                         " Shows whats changed in repo
     Plug 'morhetz/gruvbox'                                " Gruvbox theme
+    Plug 'tpope/vim-obsession'                            " Sane session defaults
+    Plug 'yuttie/comfortable-motion.vim'                  " Smooth scroll
   call plug#end()
 
 " Goyo macro
