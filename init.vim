@@ -121,6 +121,9 @@
 " Delete all trailing whitespace on save
   autocmd BufWritePre * %s/\s\+$//e
 
+" Clear highlight
+  nnoremap <esc><esc> :noh<return>
+
 " Command mapping :Q because I always end up doing that
   command Q q
 
