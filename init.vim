@@ -127,6 +127,16 @@
 " Command mapping :Q because I always end up doing that
   command Q q
 
+" Lower updatetime
+  set updatetime=50
+
+" netrw settings
+  let g:netrw_browse_split=2
+  let g:vrfr_rg = 'true'
+  let g:netrw_banner = 0
+  let g:netrw_winsize = 25
+  nnoremap <leader>t :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+
 " Source PEP8 defaults for c and python - may override some settings here
   source $XDG_CONFIG_HOME/nvim/src/pep8.vim
 
@@ -137,6 +147,8 @@
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
   call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
+    Plug 'junegunn/fzf', {'do': { -> fzf#install() } }    " Fuzzy search
+    Plug 'junegunn/fzf.vim'
     Plug 'lervag/vimtex'                                  " Latex support
     Plug 'junegunn/goyo.vim'                              " No distractions mode
     Plug 'tpope/vim-commentary'                           " Commenting plugin: use gc
