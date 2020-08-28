@@ -138,7 +138,7 @@
   nnoremap <leader>t :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 " Source PEP8 defaults for c and python - may override some settings here
-  source $XDG_CONFIG_HOME/nvim/src/pep8.vim
+  " source $XDG_CONFIG_HOME/nvim/src/pep8.vim
 
 " ------- Plugins ------
   if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
@@ -165,6 +165,7 @@
     Plug 'morhetz/gruvbox'                                " Gruvbox theme
     Plug 'tpope/vim-obsession'                            " Sane session defaults
     Plug 'yuttie/comfortable-motion.vim'                  " Smooth scroll
+    Plug 'unblevable/quick-scope'                         " f&t highlighting
   call plug#end()
 
 " Goyo macro
@@ -174,7 +175,7 @@
   let g:limelight_conceal_ctermfg='gray'
 
 " Hard-time
-  let g:hardtime_default_on = 1
+  " let g:hardtime_default_on = 1
 
 " Ultisnips
   let g:UltiSnipsExpandTrigger = '<tab>'
@@ -193,6 +194,16 @@
   let g:tex_conceal='abdmg'
   let g:livepreview_previewer = 'zathura'
 
+" Quickscope
+  let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+  augroup qs_colors
+    autocmd!
+    autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+    autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+  augroup END
+
+" Obsess
+  command -nargs=1 Obs :Obsess $SESSIONS/<args>.vim
 " Colourscheme
   colorscheme gruvbox
   set noshowmode
