@@ -130,6 +130,8 @@
 " Lower updatetime
   set updatetime=50
 
+" Enable column position with Ctrl-G
+  set noruler
 " netrw settings
   let g:netrw_browse_split=2
   let g:vrfr_rg = 'true'
@@ -147,8 +149,6 @@
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   endif
   call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
-    Plug 'junegunn/fzf', {'do': { -> fzf#install() } }    " Fuzzy search
-    Plug 'junegunn/fzf.vim'
     Plug 'lervag/vimtex'                                  " Latex support
     Plug 'junegunn/goyo.vim'                              " No distractions mode
     Plug 'tpope/vim-commentary'                           " Commenting plugin: use gc
@@ -166,6 +166,8 @@
     Plug 'tpope/vim-obsession'                            " Sane session defaults
     Plug 'yuttie/comfortable-motion.vim'                  " Smooth scroll
     Plug 'unblevable/quick-scope'                         " f&t highlighting
+    Plug 'dense-analysis/ale'                             " linting
+    Plug 'vim-ruby/vim-ruby'                              " ruby
   call plug#end()
 
 " Goyo macro
@@ -204,8 +206,17 @@
 
 " Obsess
   command -nargs=1 Obs :Obsess $SESSIONS/<args>.vim
+
 " Colourscheme
   colorscheme gruvbox
   set noshowmode
   set noshowcmd
   set shortmess+=F
+
+" ALE settings
+let g:ale_sign_info= "•"
+let g:ale_sign_error = "•"
+let g:ale_sign_warning = "•"
+let g:ale_sign_style_error = "•"
+let g:ale_sign_style_warning = "•"
+let g:ale_linters = { 'ruby': ['rubocop'],}
