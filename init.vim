@@ -56,6 +56,13 @@
   set statusline+=%F
   set cmdheight=1
 
+" Ensure lines break on whole words
+  set linebreak
+
+" Ensure cursor stays away from screen edge
+  set scrolloff=3
+  set foldcolumn=1
+
 " Tab settings
   set expandtab
   set tabstop=2
@@ -132,6 +139,7 @@
 
 " Enable column position with Ctrl-G
   set noruler
+
 " netrw settings
   let g:netrw_browse_split=2
   let g:vrfr_rg = 'true'
@@ -141,6 +149,13 @@
 
 " Source PEP8 defaults for c and python - may override some settings here
   " source $XDG_CONFIG_HOME/nvim/src/pep8.vim
+
+" Persistent undo
+try
+  set undodir=$HOME/.cache/undodir
+  set undofile
+catch
+endtry
 
 " ------- Plugins ------
   if empty(glob('$XDG_CONFIG_HOME/nvim/autoload/plug.vim'))
