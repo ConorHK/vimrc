@@ -133,8 +133,8 @@ nnoremap <leader>t :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 " Persistent undo
 try
-  set undodir=$HOME/.cache/undodir
-  set undofile
+set undodir=$HOME/.cache/undodir
+set undofile
 catch
 endtry
 
