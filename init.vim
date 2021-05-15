@@ -176,13 +176,6 @@ if &t_Co > 2 || has("gui_running")
 endif
 " }}}
 
-" make p in Visual mode replace the selected text with the yank register
-vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
-
-" Remap j and k to act as expected when used on long, wrapped, lines
-nnoremap j gj
-nnoremap k gk
-
 " Quick yanking to the end of the line
 nnoremap Y y$
 
@@ -251,7 +244,6 @@ call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
   Plug 'airblade/vim-gitgutter'                           " Shows whats changed in repo
   Plug 'morhetz/gruvbox'                                  " Gruvbox theme
   Plug 'tpope/vim-obsession'                              " Sane session defaults
-  Plug 'yuttie/comfortable-motion.vim'                    " Smooth scroll
   Plug 'unblevable/quick-scope'                           " f&t highlighting
   Plug 'dense-analysis/ale'                               " linting
   Plug 'numirias/semshi', { 'do': ':UpdateRemovePlugins'} " python syntax highlighting
