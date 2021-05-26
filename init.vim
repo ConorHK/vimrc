@@ -5,6 +5,7 @@ set nocompatible
 nnoremap / /\v
 vnoremap / /\v
 
+
 " Encoding
 set encoding=UTF-8
 
@@ -168,20 +169,13 @@ endfunction
 " Highlighting {{{
 
 if (has("termguicolors"))
-   set termguicolors
+   " set termguicolors
 endif
 
 if &t_Co > 2 || has("gui_running")
    syntax on    " switch syntax highlighting on, when the terminal has colors
 endif
 " }}}
-
-" make p in Visual mode replace the selected text with the yank register
-vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
-
-" Remap j and k to act as expected when used on long, wrapped, lines
-nnoremap j gj
-nnoremap k gk
 
 " Quick yanking to the end of the line
 nnoremap Y y$
@@ -251,7 +245,6 @@ call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
   Plug 'airblade/vim-gitgutter'                           " Shows whats changed in repo
   Plug 'morhetz/gruvbox'                                  " Gruvbox theme
   Plug 'tpope/vim-obsession'                              " Sane session defaults
-  Plug 'yuttie/comfortable-motion.vim'                    " Smooth scroll
   Plug 'unblevable/quick-scope'                           " f&t highlighting
   Plug 'dense-analysis/ale'                               " linting
   Plug 'numirias/semshi', { 'do': ':UpdateRemovePlugins'} " python syntax highlighting
@@ -261,7 +254,45 @@ call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
   Plug 'Yggdroot/indentline'                              " indent indicator
   Plug 'tpope/vim-repeat'                                 " sane repeat
   Plug 'Vimjas/vim-python-pep8-indent'                    " pep8 indenting
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
 call plug#end()
+
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> K <plug>(lsp-hover)
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+endfunction
+
+" disable diagnostics support
+let g:lsp_diagnostics_enabled = 0         
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
 
 " Goyo macro
 map <leader>f :Goyo \| set linebreak<CR>
@@ -309,3 +340,11 @@ let g:ale_lint_on_enter = 1
 
 " fzf settings
 nnoremap <leader>f :Files<CR>
+
+" Move lines
+nnoremap <leader><Down> :m .+1<CR>==
+nnoremap <leader><Up> :m .-2<CR>==
+inoremap <leader><Down> <Esc>:m .+1<CR>==gi
+inoremap <leader><Up> <Esc>:m .-2<CR>==gi
+vnoremap <leader><Down> :m '>+1<CR>gv=gv
+vnoremap <leader><Up> :m '<-2<CR>gv=gv
