@@ -1,10 +1,6 @@
 " Ensure compatible mode is disabled
 set nocompatible
 
-" Sane regex
-nnoremap / /\v
-vnoremap / /\v
-
 
 " Encoding
 set encoding=UTF-8
@@ -434,5 +430,3 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics.
 
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-
-
