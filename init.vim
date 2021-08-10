@@ -164,10 +164,6 @@ endfunction
 
 " Highlighting {{{
 
-if (has("termguicolors"))
-   " set termguicolors
-endif
-
 if &t_Co > 2 || has("gui_running")
    syntax on    " switch syntax highlighting on, when the terminal has colors
 endif
@@ -283,7 +279,7 @@ augroup END
 command -nargs=1 Obs :Obsess $SESSIONS/<args>.vim
  
 " Colourscheme
-colorscheme gruvbox-material
+colorscheme alduin
 set noshowmode
 set noshowcmd
 set shortmess+=F
