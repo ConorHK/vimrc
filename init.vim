@@ -235,11 +235,10 @@ call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
   Plug 'mhinz/vim-startify'                               " Adds start screen
   Plug 'tpope/vim-fugitive'                               " Git commands
   Plug 'airblade/vim-gitgutter'                           " Shows whats changed in repo
-  Plug 'morhetz/gruvbox'                                  " Gruvbox theme
   Plug 'tpope/vim-obsession'                              " Sane session defaults
   Plug 'unblevable/quick-scope'                           " f&t highlighting
   Plug 'dense-analysis/ale'                               " linting
-  Plug 'numirias/semshi', { 'do': ':UpdateRemovePlugins'} " python syntax highlighting
+  Plug 'nvim-treesitter/nvim-treesitter', {'dp': ':TSUpdate'} " highlighting
   Plug 'christoomey/vim-tmux-navigator'                   " tmux split integration
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf
   Plug 'junegunn/fzf.vim'                                 " fzf
@@ -247,7 +246,6 @@ call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
   Plug 'tpope/vim-repeat'                                 " sane repeat
   Plug 'Vimjas/vim-python-pep8-indent'                    " pep8 indenting
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'sainnhe/gruvbox-material',                        " gruvbox material
 call plug#end()
  
 " Goyo macro
@@ -293,18 +291,11 @@ let g:ale_sign_style_warning = "•"
 let g:ale_set_quickfix = 1
 let g:ale_set_loclist = 0
 let g:ale_lint_on_enter = 1
+let g:ale_set_highlights = 0
  
 " fzf settings
 nnoremap <leader>f :Files<CR>
  
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
  
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -426,3 +417,29 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics.
 
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+
+" gitgutter config
+let g:gitgutter_set_sign_backgrounds = 0
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+set signcolumn=auto
+
+" treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["foo.bar"] = "Identifier",
+    },
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
