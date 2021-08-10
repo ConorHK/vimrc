@@ -1,10 +1,6 @@
 " Ensure compatible mode is disabled
 set nocompatible
 
-" Sane regex
-nnoremap / /\v
-vnoremap / /\v
-
 
 " Encoding
 set encoding=UTF-8
