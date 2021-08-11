@@ -46,9 +46,8 @@ let g:ale_sign_error = "•"
 let g:ale_sign_warning = "•"
 let g:ale_sign_style_error = "•"
 let g:ale_sign_style_warning = "•"
-let g:ale_set_quickfix = 1
-let g:ale_set_loclist = 0
-let g:ale_lint_on_enter = 1
+let g:ale_set_quickfix = 0
+let g:ale_set_loclist = 1
 let g:ale_set_highlights = 0
  
 " fzf settings
@@ -142,6 +141,7 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+" college ----
 " goyo
 map <leader>g :Goyo \| set linebreak<CR>
 autocmd! User GoyoEnter Limelight

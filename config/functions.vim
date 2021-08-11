@@ -1,5 +1,5 @@
-" Toggle the quickfix window
-" From Steve Losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
+" toggle the quickfix window
+" from steve losh, http://learnvimscriptthehardway.stevelosh.com/chapters/38.html
 nnoremap <leader>q :call <SID>QuickfixToggle()<cr>
 
 let g:quickfix_is_open = 0
@@ -15,7 +15,7 @@ function! s:QuickfixToggle()
     endif
 endfunction
 
-" Keep search matches in the middle of the window and pulse the line when moving
+" keep search matches in the middle of the window and pulse the line when moving
 " to them.
 function! PulseCursorLine()
     setlocal cursorline
