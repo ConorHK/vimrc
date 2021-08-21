@@ -1,4 +1,4 @@
 require("options")
 require("functions")
 require("bindings")
-require("plugins")
+require("plugin_list")

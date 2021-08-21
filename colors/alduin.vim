@@ -59,7 +59,7 @@ if !exists( "g:alduin_Shout_Fire_Breath" )
 endif
 
 if !exists("g:alduin_Shout_Animal_Allegiance")
-	let g:alduin_Shout_Animal_Allegiance = 0
+	let g:alduin_Shout_Animal_Allegiance = 1
 endif
 
 if !exists("g:alduin_Shout_Dragon_Aspect" )
@@ -100,6 +100,10 @@ highlight Float guifg=#af5f00 guibg=NONE gui=NONE ctermfg=130 ctermbg=NONE cterm
 highlight Include guifg=#dfaf87 guibg=NONE gui=NONE ctermfg=180 ctermbg=NONE cterm=NONE
 highlight Define guifg=#dfaf87 guibg=NONE gui=NONE ctermfg=180 ctermbg=NONE cterm=NONE
 highlight Comment guifg=#87875f guibg=NONE gui=NONE ctermfg=101 ctermbg=NONE cterm=NONE
+highlight LspDiagnosticsVirtualTextError guifg=red gui=bold,italic,underline
+highlight LspDiagnosticsVirtualTextWarning guifg=orange gui=bold,italic,underline
+highlight LspDiagnosticsVirtualTextInformation guifg=yellow gui=bold,italic,underline
+highlight LspDiagnosticsVirtualTextHint guifg=green gui=bold,italic,underline
 
 " VIMSCRIPT
 highlight link vimAutoCmdSfxList Type

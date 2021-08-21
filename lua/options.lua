@@ -1,9 +1,7 @@
 local utils = require("utils")
 local cmd = vim.cmd
 local indent = 4
-
--- enable autocompletion
-utils.opt("o", "wildmode", "list:longest")
+-- enable autocompletion utils.opt("o", "wildmode", "list:longest")
 
 -- splits open at bottom and right
 utils.opt("o", "splitbelow", true)
@@ -61,10 +59,42 @@ cmd "syntax on"
 -- colourscheme
 cmd "colorscheme alduin"
 
+-- don't write to the ShaDa file on startup
+utils.opt("o", "shadafile", "NONE")
+
+-- updatetime for cursorhold
+utils.opt("o", "updatetime", 200)
+
 -- Packer Commands
 cmd "command! WhatHighlight :call util#syntax_stack()"
-cmd "command! PackerInstall packadd packer.nvim | lua require('plugins').install()"
-cmd "command! PackerUpdate packadd packer.nvim | lua require('plugins').update()"
-cmd "command! PackerSync packadd packer.nvim | lua require('plugins').sync()"
-cmd "command! PackerClean packadd packer.nvim | lua require('plugins').clean()"
-cmd "command! PackerCompile packadd packer.nvim | lua require('plugins').compile()"
+cmd "command! PackerInstall packadd packer.nvim | lua require('plugin_list').install()"
+cmd "command! PackerUpdate packadd packer.nvim | lua require('plugin_list').update()"
+cmd "command! PackerSync packadd packer.nvim | lua require('plugin_list').sync()"
+cmd "command! PackerClean packadd packer.nvim | lua require('plugin_list').clean()"
+cmd "command! PackerCompile packadd packer.nvim | lua require('plugin_list').compile()"
+
+-- disable builtin vim plugins
+local disabled_built_ins = {
+   "netrw",
+   "netrwPlugin",
+   "netrwSettings",
+   "netrwFileHandlers",
+   "gzip",
+   "zip",
+   "zipPlugin",
+   "tar",
+   "tarPlugin",
+   "getscript",
+   "getscriptPlugin",
+   "vimball",
+   "vimballPlugin",
+   "2html_plugin",
+   "logipat",
+   "rrhelper",
+   "spellfile_plugin",
+   "matchit",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+    vim.g["loaded_" .. plugin] = 1
+end
