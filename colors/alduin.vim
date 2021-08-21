@@ -59,7 +59,7 @@ if !exists( "g:alduin_Shout_Fire_Breath" )
 endif
 
 if !exists("g:alduin_Shout_Animal_Allegiance")
-	let g:alduin_Shout_Animal_Allegiance = 0
+	let g:alduin_Shout_Animal_Allegiance = 1
 endif
 
 if !exists("g:alduin_Shout_Dragon_Aspect" )
