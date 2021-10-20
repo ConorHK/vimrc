@@ -72,6 +72,7 @@ _G.packer_plugins = {
   ["lspkind-nvim"] = {
     loaded = false,
     needs_bufread = false,
+    only_cond = false,
     path = "/home/conor/.local/share/nvim/site/pack/packer/opt/lspkind-nvim"
   },
   ["nvim-lspconfig"] = {
@@ -87,95 +88,31 @@ _G.packer_plugins = {
     after = { "nvim-lspconfig" },
     loaded = false,
     needs_bufread = false,
+    only_cond = false,
     path = "/home/conor/.local/share/nvim/site/pack/packer/opt/nvim-lspinstall"
   },
   ["nvim-treesitter"] = {
     config = { "require('plugins.treesitter')" },
     loaded = false,
     needs_bufread = true,
+    only_cond = false,
     path = "/home/conor/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
   ["packer.nvim"] = {
     loaded = false,
     needs_bufread = false,
+    only_cond = false,
     path = "/home/conor/.local/share/nvim/site/pack/packer/opt/packer.nvim"
-  },
-  ["plenary.nvim"] = {
-    loaded = true,
-    path = "/home/conor/.local/share/nvim/site/pack/packer/start/plenary.nvim"
-  },
-  ["popup.nvim"] = {
-    loaded = true,
-    path = "/home/conor/.local/share/nvim/site/pack/packer/start/popup.nvim"
-  },
-  ["sql.nvim"] = {
-    loaded = true,
-    path = "/home/conor/.local/share/nvim/site/pack/packer/start/sql.nvim"
-  },
-  ["telescope-frecency.nvim"] = {
-    load_after = {
-      ["telescope.nvim"] = true
-    },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/conor/.local/share/nvim/site/pack/packer/opt/telescope-frecency.nvim"
-  },
-  ["telescope-fzy-native.nvim"] = {
-    loaded = true,
-    path = "/home/conor/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
-  },
-  ["telescope.nvim"] = {
-    after = { "telescope-frecency.nvim" },
-    commands = { "Telescope" },
-    config = { "require('plugins.telescope')" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/conor/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
-    wants = { "popup.nvim", "plenary.nvim", "telescope-frecency.nvim", "telescope-fzy-native.nvim" }
   }
 }
 
 time([[Defining packer_plugins]], false)
-local module_lazy_loads = {
-  ["^telescope"] = "telescope.nvim"
-}
-local lazy_load_called = {['packer.load'] = true}
-local function lazy_load_module(module_name)
-  local to_load = {}
-  if lazy_load_called[module_name] then return nil end
-  lazy_load_called[module_name] = true
-  for module_pat, plugin_name in pairs(module_lazy_loads) do
-    if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat) then
-      to_load[#to_load + 1] = plugin_name
-    end
-  end
-
-  if #to_load > 0 then
-    require('packer.load')(to_load, {module = module_name}, _G.packer_plugins)
-    local loaded_mod = package.loaded[module_name]
-    if loaded_mod then
-      return function(modname) return loaded_mod end
-    end
-  end
-end
-
-if not vim.g.packer_custom_loader_enabled then
-  table.insert(package.loaders, 1, lazy_load_module)
-  vim.g.packer_custom_loader_enabled = true
-end
-
-
--- Command lazy-loads
-time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command! -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
-time([[Defining lazy-load commands]], false)
-
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'packer.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-lspinstall', 'lspkind-nvim', 'nvim-treesitter'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'lspkind-nvim', 'nvim-treesitter', 'nvim-lspinstall'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
