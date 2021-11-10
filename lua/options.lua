@@ -46,7 +46,6 @@ cmd "filetype plugin indent on"
 -- share yank buffer with system clipboard
 utils.opt("o", "clipboard","unnamed,unnamedplus")
 
-
 -- enable column position with ctrl-g
 utils.opt("o", "ruler", false)
 
@@ -58,6 +57,7 @@ cmd "syntax on"
 
 -- colourscheme
 cmd "colorscheme alduin"
+utils.opt("o", "termguicolors", true)
 
 -- don't write to the ShaDa file on startup
 utils.opt("o", "shadafile", "NONE")
@@ -67,11 +67,11 @@ utils.opt("o", "updatetime", 200)
 
 -- Packer Commands
 cmd "command! WhatHighlight :call util#syntax_stack()"
-cmd "command! PackerInstall packadd packer.nvim | lua require('plugin_list').install()"
-cmd "command! PackerUpdate packadd packer.nvim | lua require('plugin_list').update()"
-cmd "command! PackerSync packadd packer.nvim | lua require('plugin_list').sync()"
-cmd "command! PackerClean packadd packer.nvim | lua require('plugin_list').clean()"
-cmd "command! PackerCompile packadd packer.nvim | lua require('plugin_list').compile()"
+cmd "command! PackerInstall packadd packer.nvim | lua require('plugins').install()"
+cmd "command! PackerUpdate packadd packer.nvim | lua require('plugins').update()"
+cmd "command! PackerSync packadd packer.nvim | lua require('plugins').sync()"
+cmd "command! PackerClean packadd packer.nvim | lua require('plugins').clean()"
+cmd "command! PackerCompile packadd packer.nvim | lua require('plugins').compile()"
 
 -- disable builtin vim plugins
 local disabled_built_ins = {
