@@ -182,6 +182,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/conor/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/home/conor/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
   }
 }
 
