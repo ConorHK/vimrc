@@ -83,14 +83,33 @@ return require('packer').startup(function(use)
     end
   }
 
-
   use {
     "tpope/vim-fugitive",
+  }
+
+  use {
+    "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup()
+    end
+  }
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      {
+      "nvim-telescope/telescope-fzf-native.nvim",
+            run = "make",
+      },
+    },
+    config = function()
+      require("plugin_settings.telescope")
+    end
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
-    require('packer').sync()
+    require("packer").sync()
   end
 end)

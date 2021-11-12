@@ -15,5 +15,13 @@ filetype = {
           }
         end
     },
+lua = {
+      function()
+        return {
+          exe = "stylua",
+          stdin = true,
+        }
+      end,
+    },
   }
 })
