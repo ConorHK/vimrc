@@ -4,11 +4,7 @@ local utils = require('utils')
 local nnoremap = utils.nnoremap
 local inoremap = utils.inoremap
 local vnoremap = utils.vnoremap
-local xnoremap = utils.xnoremap
-local cnoremap = utils.cnoremap
 local nmap = utils.nmap
-local imap = utils.imap
-local vmap = utils.vmap
 
 -- Helper functions to write create abbreveations
 local function cnoreabbrev(command)
@@ -52,9 +48,6 @@ vnoremap("<tab>", "%")
 
 -- clear highlight
 nmap("<esc><esc>", ":noh<return>")
-
--- toggle quickfixlist
-nnoremap("<leader>q", [[<cmd>lua require('functions'); toggle_quickfix()<cr>]])
 
 -- mappings to move lines
 nnoremap("<A-j>", ":m .+1<CR>==")
