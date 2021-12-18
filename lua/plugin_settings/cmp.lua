@@ -1,15 +1,6 @@
 local cmp = require "cmp"
-local tabnine = require "cmp_tabnine.config"
 local lspkind = require "lspkind"
 lspkind.init()
-
-tabnine:setup({
-  max_lines = 1000;
-  max_num_results = 20;
-  sort = true;
-	run_on_every_keystroke = true;
-	snippet_placeholder = '..';
-})
 
 cmp.setup {
   mapping = {
@@ -73,7 +64,6 @@ cmp.setup {
   sources = {
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
-    { name = "cmp_tabnine"},
     { name = "zsh" },
     { name = "path" },
     { name = "luasnip" },
@@ -125,7 +115,6 @@ cmp.setup {
         nvim_lua = "[api]",
         path = "[path]",
         luasnip = "[snip]",
-        cmp_tabnine = "[TN]",
       },
     },
   },

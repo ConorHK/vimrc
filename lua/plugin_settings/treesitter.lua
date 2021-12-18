@@ -5,7 +5,10 @@ end
 
 ts_config.setup {
    ensure_installed = "maintained",
-   indent = { enable = true },
+   indent = { 
+    enable = true,
+    disable = { "python" },
+  },
    highlight = {
       enable = true,
       use_languagetree = true,

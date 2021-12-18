@@ -54,12 +54,6 @@ return require('packer').startup(function(use)
     end,
   }
   use {
-    "tzachar/cmp-tabnine",
-    run="./install.sh",
-    requires = "hrsh7th/nvim-cmp"
-  }
-
-  use {
     "lewis6991/gitsigns.nvim",
     requires = {
       "nvim-lua/plenary.nvim"
