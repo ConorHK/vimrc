@@ -1,3 +1,4 @@
 ## nvim configuration file
 
-Using vim-plug
+Uses Packer.nvim to lazy-load plugins.
+100% lua.
