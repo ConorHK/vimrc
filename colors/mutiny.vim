@@ -71,3 +71,8 @@ hi! link StatusLineNC    StatusLine
 hi! link Title           Normal
 hi! link MoreMsg         Normal
 hi! link Question        DiffChange
+
+highlight LspDiagnosticsVirtualTextError guifg=red gui=bold,italic,underline
+highlight LspDiagnosticsVirtualTextWarning guifg=orange gui=bold,italic,underline
+highlight LspDiagnosticsVirtualTextInformation guifg=yellow gui=bold,italic,underline
+highlight LspDiagnosticsVirtualTextHint guifg=green gui=bold,italic,underline
