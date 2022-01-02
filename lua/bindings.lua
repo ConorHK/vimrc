@@ -46,10 +46,6 @@ cnoreabbrev("W! w!")
 -- quick yanking to the end of the line
 nmap("Y", "y$")
 
--- jump to matching pairs easily, with tab
-nmap("<tab>", "%")
-vnoremap("<tab>", "%")
-
 -- clear highlight
 nmap("<esc><esc>", ":noh<return>")
 

@@ -1,7 +1,6 @@
 local utils = require("utils")
 local cmd = vim.cmd
 local indent = 4
--- enable autocompletion utils.opt("o", "wildmode", "list:longest")
 
 -- splits open at bottom and right
 utils.opt("o", "splitbelow", true)

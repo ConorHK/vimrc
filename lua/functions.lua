@@ -9,9 +9,6 @@ local autocmds = {
 	spellcheck = {
 		{ "FileType", "text,markdown", "setlocal spell" },
 	},
-	disableAutoComment = {
-		{ "FileType", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
-	},
 	restore_cursor = {
 		{ "BufRead", "*", [[call setpos(".", getpos("'\""))]] },
 	},
