@@ -1,4 +1,4 @@
-local utils = require('utils')
+local utils = require("utils")
 
 -- dereference all functions
 local nnoremap = utils.nnoremap
@@ -8,12 +8,11 @@ local nmap = utils.nmap
 
 -- Helper functions to write create abbreveations
 local function cnoreabbrev(command)
-    vim.api.nvim_command("cnoreabbrev " .. command)
+	vim.api.nvim_command("cnoreabbrev " .. command)
 end
 
-
 -- set leader key
-vim.g.mapleader=" "
+vim.g.mapleader = " "
 
 -- split sane bindings
 nmap("<c-h>", "<c-w>h")
@@ -22,22 +21,22 @@ nmap("<c-k>", "<c-w>k")
 nmap("<c-l>", "<c-w>l")
 
 -- misspellings
-cnoreabbrev "Qa qa"
-cnoreabbrev "Q q"
-cnoreabbrev "Qall qall"
-cnoreabbrev "Q! q!"
-cnoreabbrev "Qall! qall!"
-cnoreabbrev "qQ q@"
-cnoreabbrev "Bd bd"
-cnoreabbrev "bD bd"
-cnoreabbrev "qw wq"
-cnoreabbrev "Wq wq"
-cnoreabbrev "WQ wq"
-cnoreabbrev "Wq wq"
-cnoreabbrev "Wa wa"
-cnoreabbrev "wQ wq"
-cnoreabbrev "W w"
-cnoreabbrev "W! w!"
+cnoreabbrev("Qa qa")
+cnoreabbrev("Q q")
+cnoreabbrev("Qall qall")
+cnoreabbrev("Q! q!")
+cnoreabbrev("Qall! qall!")
+cnoreabbrev("qQ q@")
+cnoreabbrev("Bd bd")
+cnoreabbrev("bD bd")
+cnoreabbrev("qw wq")
+cnoreabbrev("Wq wq")
+cnoreabbrev("WQ wq")
+cnoreabbrev("Wq wq")
+cnoreabbrev("Wa wa")
+cnoreabbrev("wQ wq")
+cnoreabbrev("W w")
+cnoreabbrev("W! w!")
 
 -- quick yanking to the end of the line
 nmap("Y", "y$")
