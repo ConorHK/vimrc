@@ -65,6 +65,9 @@ utils.opt("o", "shadafile", "NONE")
 -- updatetime for cursorhold
 utils.opt("o", "updatetime", 200)
 
+-- relative line numbers
+utils.opt("o", "number", true)
+
 -- Packer Commands
 cmd("command! WhatHighlight :call util#syntax_stack()")
 cmd("command! PackerInstall packadd packer.nvim | lua require('plugins').install()")
@@ -75,10 +78,6 @@ cmd("command! PackerCompile packadd packer.nvim | lua require('plugins').compile
 
 -- disable builtin vim plugins
 local disabled_built_ins = {
-	"netrw",
-	"netrwPlugin",
-	"netrwSettings",
-	"netrwFileHandlers",
 	"gzip",
 	"zip",
 	"zipPlugin",
