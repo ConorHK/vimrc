@@ -15,6 +15,11 @@ end
 vim.g.mapleader = " "
 
 -- split sane bindings
+nmap("<c-Left>", "<c-w>h")
+nmap("<c-Down>", "<c-w>j")
+nmap("<c-Up>", "<c-w>k")
+nmap("<c-Right>", "<c-w>l")
+
 nmap("<c-h>", "<c-w>h")
 nmap("<c-j>", "<c-w>j")
 nmap("<c-k>", "<c-w>k")
