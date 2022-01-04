@@ -87,6 +87,12 @@ return require("packer").startup(function(use)
 	use({
 		"tpope/vim-fugitive",
 	})
+	use({
+		"tpope/vim-eunuch",
+	})
+	use({
+		"junegunn/gv.vim",
+	})
 
 	use({
 		"kyazdani42/nvim-web-devicons",
