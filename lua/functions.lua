@@ -11,7 +11,7 @@ local autocmds = {
 	},
 	restore_cursor = {
 		{ "BufWinLeave", "*.*", "mkview"},
-		{ "BufWinEnter", "*.*", "silent loadview"},
+		{ "BufWinEnter", "*.*", "silent! loadview"},
 	},
 }
 utils.augroups(autocmds)
