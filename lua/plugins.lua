@@ -27,6 +27,16 @@ return require("packer").startup(function(use)
 			require("plugin_settings.lspconfig")
 		end,
 	})
+	use({
+		"onsails/diaglist.nvim",
+		requires = {
+			"neovim/lsp-config",
+		},
+		config = function()
+			require("diaglist").init({})
+		end,
+	})
+  use {'kevinhwang91/nvim-bqf'}
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
