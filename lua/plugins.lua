@@ -114,12 +114,19 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-  use({
-    'ThePrimeagen/harpoon',
-    config = function()
-      require("plugin_settings.harpoon")
-    end,
-  })
+	use({
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("plugin_settings.harpoon")
+		end,
+	})
+
+	use({
+		"sunjon/shade.nvim",
+		config = function()
+			require("shade").setup()
+		end,
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
