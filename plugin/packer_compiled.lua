@@ -231,7 +231,7 @@ _G.packer_plugins = {
   ["vim-eunuch"] = {
     loaded = true,
     path = "/home/conor/.local/share/nvim/site/pack/packer/start/vim-eunuch",
-    url = "https://github.com/tpope/vim-eunuch"
+    url = "https://github.com/conorhk/vim-eunuch"
   },
   ["vim-fugitive"] = {
     loaded = true,

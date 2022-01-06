@@ -98,7 +98,7 @@ return require("packer").startup(function(use)
 		"tpope/vim-fugitive",
 	})
 	use({
-		"tpope/vim-eunuch",
+		"conorhk/vim-eunuch",
 	})
 	use({
 		"junegunn/gv.vim",
