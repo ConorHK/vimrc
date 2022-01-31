@@ -1,73 +1,82 @@
-local utils = require("utils")
 local opt = vim.opt
 local cmd = vim.cmd
 local indent = 4
 
 -- splits open at bottom and right
 --
-utils.opt("o", "splitbelow", true)
-utils.opt("o", "splitright", true)
+opt.splitbelow = true
+opt.splitright = true
+
+-- window 
+opt.hidden = true
+opt.fillchars.vert = "│"
+
+-- remove intro
+opt.shortmess:append "sI"
+
+opt.cmdheight = 1
+opt.showmode = false
 
 -- spellcheck
-utils.opt("b", "spelllang", "en_gb")
+opt.spelllang = "en_gb"
 
 -- no case-sensitive search unless uppercase is present
-utils.opt("o", "ignorecase", true)
-utils.opt("o", "smartcase", true)
+opt.ignorecase = true
+opt.smartcase = true
 
 -- enable mouse scroll
-utils.opt("o", "mouse", "a")
+opt.mouse = "a"
 
 -- statusline config
-utils.opt("o", "statusline", "%F")
+opt.statusline = "%F"
 
 -- ensure lines break on whole words
-utils.opt("o", "linebreak", true)
+opt.linebreak = true
 
 -- ensure cursor stays away from screen edge
-utils.opt("o", "scrolloff", 3)
--- utils.opt("o", "foldcolumn", "1")
+opt.scrolloff = 3
+opt.foldcolumn = "1"
 
 -- tab settings
-utils.opt("o", "expandtab", true)
-utils.opt("o", "tabstop", 2)
-utils.opt("o", "softtabstop", 2)
-utils.opt("o", "shiftwidth", 2)
-utils.opt("o", "smarttab", true)
-utils.opt("o", "autoindent", true)
-utils.opt("o", "smartindent", true)
-utils.opt("o", "shiftround", true)
+opt.expandtab = true
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
+opt.smarttab = true
+opt.autoindent = true
+opt.smartindent = true
+opt.shiftround = true
 
 -- matching braces/tags
-utils.opt("o", "showmatch", true)
+opt.showmatch = true
 
 -- turn on detection for filetypes, indentation files and plugin files
 cmd("filetype plugin indent on")
 
 -- share yank buffer with system clipboard
-utils.opt("o", "clipboard", "unnamed,unnamedplus")
+opt.clipboard = "unnamed,unnamedplus"
 
 -- enable column position with ctrl-g
-utils.opt("o", "ruler", false)
+opt.ruler = false
 
 -- persistent undo
-utils.opt("o", "undofile", true)
+opt.undofile = true
 
 -- switch syntax highlighting on
 cmd("syntax on")
 
 -- colourscheme
 cmd("colorscheme alduin")
-utils.opt("o", "termguicolors", true)
+opt.termguicolors = true
 
 -- don't write to the ShaDa file on startup
-utils.opt("o", "shadafile", "NONE")
+opt.shadafile = "NONE"
 
 -- updatetime for cursorhold
-utils.opt("o", "updatetime", 200)
+opt.updatetime = 200
 
 -- relative line numbers
-utils.opt("o", "number", true)
+opt.number = true
 
 opt.formatoptions = 'tcrqnj'
 -- o.formatoptions = o.formatoptions

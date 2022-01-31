@@ -30,7 +30,7 @@ return require("packer").startup(function(use)
 	use({
 		"onsails/diaglist.nvim",
 		requires = {
-			"neovim/lsp-config",
+			"neovim/nvim-lspconfig",
 		},
 		config = function()
 			require("diaglist").init({})
