@@ -33,7 +33,7 @@
 "colorscheme alduin
 "
 "REMOVE SUBTLE BACKGROUND HIGHLIGHTING FROM STRINGS:
-"let g:alduin_Shout_Animal_Allegiance = 1
+let g:alduin_Shout_Animal_Allegiance = 1
 "colorscheme alduin
 "
 "REMOVES BLOCK MATCHPARENS ADDS UNDERLINE:
@@ -104,9 +104,9 @@ highlight LspDiagnosticsVirtualTextError guifg=red gui=bold,italic,underline
 highlight LspDiagnosticsVirtualTextWarning guifg=orange gui=bold,italic,underline
 highlight LspDiagnosticsVirtualTextInformation guifg=yellow gui=bold,italic,underline
 highlight LspDiagnosticsVirtualTextHint guifg=green gui=bold,italic,underline
-highlight GitSignsAdd guifg=#87875f guibg=NONE gui=NONE ctermfg=101 ctermbg=NONE cterm=NONE 
-highlight GitSignsChange guifg=#af5f00 guibg=NONE gui=NONE ctermfg=130 ctermbg=NONE cterm=NONE
-highlight GitSignsDelete guifg=#af5f5f gui=NONE ctermfg=131 ctermbg=NONE cterm=NONE
+highlight GitSignsAdd guifg=#87875f guibg=#080808
+highlight GitSignsChange guifg=#af5f00 guibg=#080808
+highlight GitSignsDelete guifg=#af5f5f guibg=#080808
 
 " VIMSCRIPT
 highlight link vimAutoCmdSfxList Type
@@ -139,6 +139,10 @@ highlight Macro guifg=#dfaf87 guibg=NONE gui=NONE ctermfg=180 ctermbg=NONE cterm
 highlight PreCondit guifg=#dfaf87 guibg=NONE gui=NONE ctermfg=180 ctermbg=NONE cterm=NONE
 highlight IncSearch guifg=#af5f5f guibg=NONE gui=reverse ctermfg=131 ctermbg=NONE cterm=reverse
 highlight VisualNOS guifg=NONE guibg=NONE gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
+
+hi StatusReplace guifg=background guibg=#af5f5f
+hi StatusInsert guifg=background guibg=#af5f00
+hi StatusVisual guifg=background guibg=#afdfaf
 
 "DIFF
 highlight DiffAdd guifg=#008787 guibg=NONE gui=reverse ctermfg=30 ctermbg=NONE cterm=reverse
