@@ -38,11 +38,19 @@ formatter.setup({
 			function()
 				return {
 					exe = "gjf",
-					-- Formatter uses '-' as stdin
 					args = { "-" },
 					stdin = true,
 				}
 			end,
 		},
+    html = {
+      function()
+        return {
+          exe = "tidy",
+					args = {"--indent", "yes", "-" },
+          stdin = true
+        }
+      end
+    },
 	},
 })

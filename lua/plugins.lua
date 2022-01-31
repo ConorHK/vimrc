@@ -36,7 +36,7 @@ return require("packer").startup(function(use)
 			require("diaglist").init({})
 		end,
 	})
-  use {'kevinhwang91/nvim-bqf'}
+	use({ "kevinhwang91/nvim-bqf" })
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -70,6 +70,14 @@ return require("packer").startup(function(use)
 			require("plugin_settings.cmp")
 		end,
 	})
+
+	use({
+		"rafamadriz/friendly-snippets",
+		requires = {
+			"L3MON4D3/LuaSnip",
+		},
+	})
+
 	use({
 		"lewis6991/gitsigns.nvim",
 		requires = {
