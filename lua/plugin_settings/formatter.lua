@@ -43,14 +43,32 @@ formatter.setup({
 				}
 			end,
 		},
-    html = {
-      function()
-        return {
-          exe = "tidy",
-					args = {"--indent", "yes", "-" },
-          stdin = true
-        }
-      end
-    },
+		html = {
+			function()
+				return {
+					exe = "tidy",
+					args = { "--indent", "yes", "-" },
+					stdin = true,
+				}
+			end,
+		},
+		tex = {
+			function()
+				return {
+					exe = "latexindent",
+					args = { "-" },
+					stdin = true,
+				}
+			end,
+		},
+		sh = {
+			function()
+				return {
+					exe = "shfmt",
+					args = { "-" },
+					stdin = true,
+				}
+			end,
+		},
 	},
 })
