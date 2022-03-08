@@ -1,13 +1,13 @@
-local utils = require("utils")
-local nnoremap = utils.nnoremap
+local map = vim.api.nvim_set_keymap
+local default_opts = { noremap = true, silent = true }
 
 local present, telescope = pcall(require, "telescope")
 if not present then
 	return
 end
 
-nnoremap("<leader>t", [[<cmd>lua require('telescope.builtin').find_files()<cr>]])
-nnoremap("<leader>g", [[<cmd>lua require('telescope.builtin').live_grep()<cr>]])
+map("n", "<leader>t", "<cmd>lua require('telescope.builtin').find_files()<CR>", default_opts)
+map("n", "<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<CR>", default_opts)
 
 telescope.setup({
 	defaults = {

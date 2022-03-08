@@ -1,29 +1,28 @@
-local utils = require("utils")
+local map = vim.api.nvim_set_keymap
+local default_opts = { noremap = true, silent = true }
 
--- dereference all functions
-local nnoremap = utils.nnoremap
-local inoremap = utils.inoremap
-local vnoremap = utils.vnoremap
-local nmap = utils.nmap
-
--- Helper functions to write create abbreveations
 local function cnoreabbrev(command)
 	vim.api.nvim_command("cnoreabbrev " .. command)
 end
 
--- set leader key
 vim.g.mapleader = " "
 
 -- split sane bindings
-nmap("<c-Left>", "<c-w>h")
-nmap("<c-Down>", "<c-w>j")
-nmap("<c-Up>", "<c-w>k")
-nmap("<c-Right>", "<c-w>l")
+map("n", "<c-Left>", "<c-w>h", default_opts)
+map("n", "<c-Down>", "<c-w>j", default_opts)
+map("n", "<c-Up>", "<c-w>k", default_opts)
+map("n", "<c-Right>", "<c-w>l", default_opts)
 
-nmap("<c-h>", "<c-w>h")
-nmap("<c-j>", "<c-w>j")
-nmap("<c-k>", "<c-w>k")
-nmap("<c-l>", "<c-w>l")
+map("n", "<c-h>", "<c-w>h", default_opts)
+map("n", "<c-j>", "<c-w>j", default_opts)
+map("n", "<c-k>", "<c-w>k", default_opts)
+map("n", "<c-l>", "<c-w>l", default_opts)
+
+-- quick yanking to the end of the line
+map("n", "Y", "y$", default_opts)
+
+-- clear highlight
+map("n", "<esc><esc>", ":noh<return>", default_opts)
 
 -- misspellings
 cnoreabbrev("Qa qa")
@@ -42,17 +41,3 @@ cnoreabbrev("Wa wa")
 cnoreabbrev("wQ wq")
 cnoreabbrev("W w")
 cnoreabbrev("W! w!")
-
--- quick yanking to the end of the line
-nmap("Y", "y$")
-
--- clear highlight
-nmap("<esc><esc>", ":noh<return>")
-
--- mappings to move lines
-nnoremap("<A-j>", ":m .+1<CR>==")
-nnoremap("<A-k>", ":m .-2<CR>==")
-inoremap("<A-j>", "<esc>:m .+1<CR>==")
-inoremap("<A-v>", "<esc>:m .-2<CR>==")
-vnoremap("<A-j>", ":m '>+1<CR>gv=gv")
-vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
