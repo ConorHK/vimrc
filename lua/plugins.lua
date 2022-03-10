@@ -18,6 +18,9 @@ return require("packer").startup(function(use)
 		event = "VimEnter",
 	})
 
+  use("nathom/filetype.nvim")
+  use("lewis6991/impatient.nvim")
+
 	use({
 		"neovim/nvim-lspconfig",
 		requires = {
@@ -35,8 +38,12 @@ return require("packer").startup(function(use)
 		config = function()
 			require("diaglist").init({})
 		end,
+    cmd = {"lopen"}
 	})
-	use({ "kevinhwang91/nvim-bqf" })
+	use({
+    "kevinhwang91/nvim-bqf",
+    cmd = {"copen"}
+  })
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -72,11 +79,15 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"rafamadriz/friendly-snippets",
-		requires = {
-			"L3MON4D3/LuaSnip",
+    "L3MON4D3/LuaSnip",
+		wants = {
+      "rafamadriz/friendly-snippets",
 		},
+    config = function()
+      require("luasnip.loaders.from_vscode").load()
+    end,
 	})
+	use({ "rafamadriz/friendly-snippets" })
 
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -104,20 +115,17 @@ return require("packer").startup(function(use)
 
 	use({
 		"tpope/vim-fugitive",
+    cmd = {"Git"}
 	})
 	use({
 		"conorhk/vim-eunuch",
+    cmd = {"Cfd", "Lfd", "Move", "Rename","Cfind", "Chmod", "Clocate", "Lfind", "Llocate", "Mkdir", "Delete", "Unlink", "Wall", "SudoWrite", "SudoEdit"}
 	})
 	use({
 		"junegunn/gv.vim",
+    cmd = {"GV"}
 	})
 
-	use({
-		"kyazdani42/nvim-web-devicons",
-		config = function()
-			require("nvim-web-devicons").setup()
-		end,
-	})
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = {
@@ -126,6 +134,7 @@ return require("packer").startup(function(use)
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "make",
 			},
+      "kyazdani42/nvim-web-devicons",
 		},
 		config = function()
 			require("plugin_settings.telescope")
