@@ -144,6 +144,8 @@ hi StatusReplace guifg=background guibg=#af5f5f
 hi StatusInsert guifg=background guibg=#af5f00
 hi StatusVisual guifg=background guibg=#afdfaf
 
+hi EndOfBuffer guifg=bg
+
 "DIFF
 highlight DiffAdd guifg=#008787 guibg=NONE gui=reverse ctermfg=30 ctermbg=NONE cterm=reverse
 highlight DiffText guifg=#008787 guibg=NONE gui=reverse ctermfg=30 ctermbg=NONE cterm=reverse

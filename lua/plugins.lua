@@ -80,14 +80,14 @@ return require("packer").startup(function(use)
 
 	use({
     "L3MON4D3/LuaSnip",
-		wants = {
-      "rafamadriz/friendly-snippets",
-		},
+		-- wants = {
+		--       "rafamadriz/friendly-snippets",
+		-- },
     config = function()
       require("plugin_settings/luasnip")
     end,
 	})
-	use({ "rafamadriz/friendly-snippets" })
+	-- use({ "rafamadriz/friendly-snippets" })
 
 	use({
 		"lewis6991/gitsigns.nvim",
