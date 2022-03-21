@@ -18,8 +18,8 @@ return require("packer").startup(function(use)
 		event = "VimEnter",
 	})
 
-  use("nathom/filetype.nvim")
-  use("lewis6991/impatient.nvim")
+	use("nathom/filetype.nvim")
+	use("lewis6991/impatient.nvim")
 
 	use({
 		"neovim/nvim-lspconfig",
@@ -38,12 +38,12 @@ return require("packer").startup(function(use)
 		config = function()
 			require("diaglist").init({})
 		end,
-    cmd = {"lopen"}
+		cmd = { "lopen" },
 	})
 	use({
-    "kevinhwang91/nvim-bqf",
-    cmd = {"copen"}
-  })
+		"kevinhwang91/nvim-bqf",
+		cmd = { "copen" },
+	})
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -79,13 +79,13 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-    "L3MON4D3/LuaSnip",
+		"L3MON4D3/LuaSnip",
 		-- wants = {
 		--       "rafamadriz/friendly-snippets",
 		-- },
-    config = function()
-      require("plugin_settings/luasnip")
-    end,
+		config = function()
+			require("plugin_settings/luasnip")
+		end,
 	})
 	-- use({ "rafamadriz/friendly-snippets" })
 
@@ -115,15 +115,31 @@ return require("packer").startup(function(use)
 
 	use({
 		"tpope/vim-fugitive",
-    cmd = {"Git"}
+		cmd = { "Git" },
 	})
 	use({
 		"conorhk/vim-eunuch",
-    cmd = {"Cfd", "Lfd", "Move", "Rename","Cfind", "Chmod", "Clocate", "Lfind", "Llocate", "Mkdir", "Delete", "Unlink", "Wall", "SudoWrite", "SudoEdit"}
+		cmd = {
+			"Cfd",
+			"Lfd",
+			"Move",
+			"Rename",
+			"Cfind",
+			"Chmod",
+			"Clocate",
+			"Lfind",
+			"Llocate",
+			"Mkdir",
+			"Delete",
+			"Unlink",
+			"Wall",
+			"SudoWrite",
+			"SudoEdit",
+		},
 	})
 	use({
 		"junegunn/gv.vim",
-    cmd = {"GV"}
+		cmd = { "GV" },
 	})
 
 	use({
@@ -134,7 +150,7 @@ return require("packer").startup(function(use)
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "make",
 			},
-      "kyazdani42/nvim-web-devicons",
+			"kyazdani42/nvim-web-devicons",
 		},
 		config = function()
 			require("plugin_settings.telescope")
@@ -154,6 +170,8 @@ return require("packer").startup(function(use)
 			require("mkdir")
 		end,
 	})
+
+	use("christoomey/vim-tmux-navigator")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
