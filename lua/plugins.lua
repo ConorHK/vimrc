@@ -38,7 +38,6 @@ return require("packer").startup(function(use)
 		config = function()
 			require("diaglist").init({})
 		end,
-		cmd = { "lopen" },
 	})
 	use({
 		"kevinhwang91/nvim-bqf",
@@ -90,7 +89,7 @@ return require("packer").startup(function(use)
 		--       "rafamadriz/friendly-snippets",
 		-- },
 		config = function()
-			require("plugin_settings/luasnip")
+			require("plugin_settings.luasnip")
 		end,
 	})
 	-- use({ "rafamadriz/friendly-snippets" })
