@@ -22,7 +22,6 @@ local on_attach = function(_, bufnr)
 	map("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	map("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	map("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	map("n", "[d", "<cmd>lua vim.lsp.diagnostic.show()<CR>", opts)
 	map("n", "]d", "<cmd>lua vim.lsp.diagnostic.show()<CR>", opts)
 end

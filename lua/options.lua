@@ -37,16 +37,6 @@ opt.linebreak = true
 opt.scrolloff = 3
 opt.foldcolumn = "1"
 
--- tab settings
-opt.expandtab = true
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.shiftwidth = 2
-opt.smarttab = true
-opt.autoindent = true
-opt.smartindent = true
-opt.shiftround = true
-
 -- matching braces/tags
 opt.showmatch = true
 
