@@ -51,6 +51,12 @@ return require("packer").startup(function(use)
 			require("plugin_settings.treesitter")
 		end,
 	})
+	use({
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		config = function()
+			require("plugin_settings.textobjects")
+		end,
+	})
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
@@ -173,7 +179,7 @@ return require("packer").startup(function(use)
 
 	use("christoomey/vim-tmux-navigator")
 
-  use("tpope/vim-sleuth")
+	use("tpope/vim-sleuth")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

@@ -1,7 +1,6 @@
-local present1, lspconfig = pcall(require, "lspconfig")
-local present2, lsp_installer = pcall(require, "nvim-lsp-installer")
+local present, lsp_installer = pcall(require, "nvim-lsp-installer")
 
-if not (present1 or present2) then
+if not (present) then
 	return
 end
 
@@ -15,15 +14,9 @@ local on_attach = function(_, bufnr)
 	map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	map("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-	map("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-	map("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-	map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	map("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	map("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+	map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	map("n", "[d", "<cmd>lua vim.lsp.diagnostic.show()<CR>", opts)
-	map("n", "]d", "<cmd>lua vim.lsp.diagnostic.show()<CR>", opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
