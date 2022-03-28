@@ -6,7 +6,7 @@ local insertnode = ls.insert_node
 local snippetnode = ls.snippet_node
 local indent_snippetnode = ls.indent_snippet_node
 local choicenode = ls.choice_node
-local fmt = require('luasnip.extras.fmt').fmt
+local fmt = require("luasnip.extras.fmt").fmt
 local events = require("luasnip.util.events")
 
 local snippet = ls.s

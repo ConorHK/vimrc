@@ -1,12 +1,12 @@
 local present, lsp_installer = pcall(require, "nvim-lsp-installer")
 
-if not (present) then
+if not present then
 	return
 end
 
 local on_attach = function(_, bufnr)
 	-- Mappings
-  local map = vim.api.nvim_set_keymap
+	local map = vim.api.nvim_set_keymap
 	local opts = { noremap = true, silent = true }
 
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -47,8 +47,8 @@ end)
 
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl })
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl })
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -56,7 +56,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 	signs = true,
 	underline = true,
 	update_in_insert = false, -- update diagnostics insert mode
-  severity_sort = true
+	severity_sort = true,
 })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {

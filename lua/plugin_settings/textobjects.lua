@@ -28,6 +28,5 @@ ts_config.setup({
 				["<leader>F"] = "@parameter.inner",
 			},
 		},
-
 	},
 })

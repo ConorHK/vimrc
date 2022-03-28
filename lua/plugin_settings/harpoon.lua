@@ -10,5 +10,5 @@ map("n", "<leader>i", ":lua require('harpoon.ui').nav_file(3)<CR>", default_opts
 map("n", "<leader>o", ":lua require('harpoon.ui').nav_file(4)<CR>", default_opts)
 
 require("harpoon").setup({
-    nav_first_in_list = true,
+	nav_first_in_list = true,
 })

@@ -7,12 +7,12 @@ local indent = 4
 opt.splitbelow = true
 opt.splitright = true
 
--- window 
+-- window
 opt.hidden = true
 opt.fillchars.vert = "│"
 
 -- remove intro
-opt.shortmess:append "sI"
+opt.shortmess:append("sI")
 
 opt.cmdheight = 1
 opt.showmode = false
@@ -68,7 +68,7 @@ opt.updatetime = 200
 -- relative line numbers
 opt.number = true
 
-opt.formatoptions = 'tcrqnj'
+opt.formatoptions = "tcrqnj"
 -- o.formatoptions = o.formatoptions
 --                    + 't'    -- auto-wrap text using textwidth
 --                    + 'c'    -- auto-wrap comments using textwidth

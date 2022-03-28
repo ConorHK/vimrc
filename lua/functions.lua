@@ -10,8 +10,8 @@ local autocmds = {
 		{ "FileType", "text,markdown", "setlocal spell" },
 	},
 	restore_cursor = {
-		{ "BufWinLeave", "*.*", "mkview"},
-		{ "BufWinEnter", "*.*", "silent! loadview"},
+		{ "BufWinLeave", "*.*", "mkview" },
+		{ "BufWinEnter", "*.*", "silent! loadview" },
 	},
 }
 utils.augroups(autocmds)

@@ -1,84 +1,85 @@
 local api = vim.api
 
 local modes = {
-  ["n"] = "NORMAL",
-  ["no"] = "NORMAL",
-  ["v"] = "VISUAL",
-  ["V"] = "VISUAL LINE",
-  [""] = "VISUAL BLOCK",
-  ["s"] = "SELECT",
-  ["S"] = "SELECT LINE",
-  [""] = "SELECT BLOCK",
-  ["i"] = "INSERT",
-  ["ic"] = "INSERT",
-  ["R"] = "REPLACE",
-  ["Rv"] = "VISUAL REPLACE",
-  ["c"] = "COMMAND",
-  ["cv"] = "VIM EX",
-  ["ce"] = "EX",
-  ["r"] = "PROMPT",
-  ["rm"] = "MOAR",
-  ["r?"] = "CONFIRM",
-  ["!"] = "SHELL",
-  ["t"] = "TERMINAL",
+	["n"] = "NORMAL",
+	["no"] = "NORMAL",
+	["v"] = "VISUAL",
+	["V"] = "VISUAL LINE",
+	[""] = "VISUAL BLOCK",
+	["s"] = "SELECT",
+	["S"] = "SELECT LINE",
+	[""] = "SELECT BLOCK",
+	["i"] = "INSERT",
+	["ic"] = "INSERT",
+	["R"] = "REPLACE",
+	["Rv"] = "VISUAL REPLACE",
+	["c"] = "COMMAND",
+	["cv"] = "VIM EX",
+	["ce"] = "EX",
+	["r"] = "PROMPT",
+	["rm"] = "MOAR",
+	["r?"] = "CONFIRM",
+	["!"] = "SHELL",
+	["t"] = "TERMINAL",
 }
 
 local function color()
-  local mode = api.nvim_get_mode().mode
-  local mode_color = "%#Normal#"
-  if mode == "n" then
-    mode_color = "%#StatusNormal#"
-  elseif mode == "i" or mode == "ic" then
-    mode_color = "%#StatusInsert#"
-  elseif mode == "v" or mode == "V" or mode == "" then
-    mode_color = "%#StatusVisual#"
-  elseif mode == "R" then
-    mode_color = "%#StatusReplace#"
-  elseif mode == "c" then
-    mode_color = "%#StatusCommand#"
-  elseif mode == "t" then
-    mode_color = "%#StatusTerminal#"
-  end
-  return mode_color
+	local mode = api.nvim_get_mode().mode
+	local mode_color = "%#Normal#"
+	if mode == "n" then
+		mode_color = "%#StatusNormal#"
+	elseif mode == "i" or mode == "ic" then
+		mode_color = "%#StatusInsert#"
+	elseif mode == "v" or mode == "V" or mode == "" then
+		mode_color = "%#StatusVisual#"
+	elseif mode == "R" then
+		mode_color = "%#StatusReplace#"
+	elseif mode == "c" then
+		mode_color = "%#StatusCommand#"
+	elseif mode == "t" then
+		mode_color = "%#StatusTerminal#"
+	end
+	return mode_color
 end
 
 -- StatusLine Modes
 Statusline = {}
 
 Statusline.active = function()
-  return table.concat {
-    color(), -- mode colors
-    string.format(" %s ", modes[api.nvim_get_mode().mode]):upper(), -- mode
-    "%#StatusLine#", -- middle color
-    " %f ", -- file name
-    "%=", -- right align
-    " %Y ", -- file type
-    color(), -- mode colors
-    " %c " -- line, column 
-  }
+	return table.concat({
+		color(), -- mode colors
+		string.format(" %s ", modes[api.nvim_get_mode().mode]):upper(), -- mode
+		"%#StatusLine#", -- middle color
+		" %f ", -- file name
+		"%=", -- right align
+		" %Y ", -- file type
+		color(), -- mode colors
+		" %c ", -- line, column 
+	})
 end
 
 function Statusline.inactive()
-  return "%#StatusInactive# %f "
+	return "%#StatusInactive# %f "
 end
 
 function Statusline.short()
-  return "%#Normal#"
+	return "%#Normal#"
 end
 
 vim.opt.laststatus = 3
 vim.opt.fillchars = {
-  horiz = '━',
-  horizup = '┻',
-  horizdown = '┳',
-  vert = '┃',
-  vertleft  = '┫',
-  vertright = '┣',
-  verthoriz = '╋',
+	horiz = "━",
+	horizup = "┻",
+	horizdown = "┳",
+	vert = "┃",
+	vertleft = "┫",
+	vertright = "┣",
+	verthoriz = "╋",
 }
 
 -- Execute statusline
-vim.cmd([[
+vim.cmd(
+	[[
   augroup Statusline
   au!
     au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
@@ -86,4 +87,6 @@ vim.cmd([[
     au WinEnter,BufEnter,FileType NvimTree,terminal setlocal statusline=%!v:lua.Statusline.short()
     au WinLeave,BufLeave,FileType NvimTree,terminal setlocal statusline=%!v:lua.Statusline.short()
   augroup END
-]], false)
+]],
+	false
+)
