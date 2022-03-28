@@ -7,4 +7,5 @@ vim.opt.list = true
 
 indent.setup({
   show_current_context = true,
+  filetype_exclude={"alpha"},
 })

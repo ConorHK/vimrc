@@ -161,11 +161,28 @@ return require("packer").startup(function(use)
 			require("plugin_settings.telescope")
 		end,
 	})
+	use({
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			require("telescope").load_extension("frecency")
+		end,
+		requires = { "tami5/sqlite.lua" },
+	})
 
 	use({
 		"ThePrimeagen/harpoon",
 		config = function()
 			require("plugin_settings.harpoon")
+		end,
+	})
+	use({
+		"ThePrimeagen/refactoring.nvim",
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+		config = function()
+			require("plugin_settings.refactoring")
 		end,
 	})
 
@@ -179,6 +196,13 @@ return require("packer").startup(function(use)
 	use("christoomey/vim-tmux-navigator")
 
 	use("tpope/vim-sleuth")
+
+	use({
+		"goolord/alpha-nvim",
+		config = function()
+			require("plugin_settings.alpha")
+		end,
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
