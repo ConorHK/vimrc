@@ -6,8 +6,12 @@ if not present then
 	return
 end
 
+local actions = require("telescope.actions")
+
 map("n", "<leader>t", "<cmd>lua require('telescope.builtin').find_files()<CR>", default_opts)
 map("n", "<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<CR>", default_opts)
+
+telescope.load_extension("harpoon")
 
 telescope.setup({
 	defaults = {
@@ -20,7 +24,7 @@ telescope.setup({
 			"--column",
 			"--smart-case",
 		},
-		prompt_prefix = " λ ",
+		prompt_prefix = "➜  ",
 		selection_caret = " > ",
 		entry_prefix = "  ",
 		initial_mode = "insert",
@@ -55,6 +59,19 @@ telescope.setup({
 		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 		-- Developer configurations: Not meant for general override
 		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+		mappings = {
+			i = {
+				["<esc>"] = actions.close,
+			},
+		},
+	},
+	pickers = {
+		find_files = {
+			theme = "ivy",
+		},
+		live_grep = {
+			theme = "ivy",
+		},
 	},
 	extensions = {
 		fzf = {
