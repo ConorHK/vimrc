@@ -65,8 +65,9 @@ opt.shadafile = "NONE"
 -- updatetime for cursorhold
 opt.updatetime = 200
 
--- relative line numbers
+-- hybrid relative line numbers
 opt.number = true
+opt.relativenumber = true
 
 opt.formatoptions = "tcrqnj"
 -- o.formatoptions = o.formatoptions
@@ -79,6 +80,8 @@ opt.formatoptions = "tcrqnj"
 --                    + 'n'    -- autoformat numbered list
 --                    - '2'    -- I am a programmer and not a writer
 --                    + 'j'    -- Join comments smartly
+
+opt.cursorline = true
 
 -- disable builtin vim plugins
 local disabled_built_ins = {
