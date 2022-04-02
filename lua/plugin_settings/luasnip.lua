@@ -48,15 +48,15 @@ end, { silent = true })
 
 local snippets = {}
 
-snippets.all = {
+ls.add_snippets("all", {
 	snippet({ trig = "date" }, {
 		funcnode(function()
 			return string.format(string.gsub(vim.bo.commentstring, "%%s", " %%s"), os.date())
 		end, {}),
 	}),
-}
+})
 
-snippets.python = {
+ls.add_snippets("python", {
 	snippet({ trig = "#!" }, {
 		textnode("#!/usr/bin/env python"),
 	}),
@@ -76,12 +76,12 @@ snippets.python = {
 		insertnode(1, "<function>"),
 		textnode("("),
 	}),
-}
+})
 
-snippets.sh = {
+ls.add_snippets("sh", {
 	snippet({ trig = "#!" }, {
 		textnode("#!/usr/bin/env sh"),
 	}),
-}
+})
 
 ls.snippets = snippets
