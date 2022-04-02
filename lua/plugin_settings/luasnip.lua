@@ -2,13 +2,6 @@ local ls = require("luasnip")
 local types = require("luasnip.util.types")
 local textnode = ls.text_node
 local funcnode = ls.function_node
-local insertnode = ls.insert_node
-local snippetnode = ls.snippet_node
-local indent_snippetnode = ls.indent_snippet_node
-local choicenode = ls.choice_node
-local fmt = require("luasnip.extras.fmt").fmt
-local events = require("luasnip.util.events")
-
 local snippet = ls.s
 
 ls.config.set_config({
@@ -46,8 +39,6 @@ vim.keymap.set({ "i", "s" }, "<c-l>", function()
 	end
 end, { silent = true })
 
-local snippets = {}
-
 ls.add_snippets("all", {
 	snippet({ trig = "date" }, {
 		funcnode(function()
@@ -56,32 +47,8 @@ ls.add_snippets("all", {
 	}),
 })
 
-ls.add_snippets("python", {
-	snippet({ trig = "#!" }, {
-		textnode("#!/usr/bin/env python"),
-	}),
-	snippet({ trig = "fim" }, {
-		textnode("from "),
-		insertnode(1, "<module>"),
-		textnode(" import "),
-		insertnode(0, "<object>"),
-	}),
-	snippet({ trig = "im" }, {
-		textnode("import "),
-		insertnode(0, "<object>"),
-	}),
-
-	snippet({ trig = "def" }, {
-		textnode("def "),
-		insertnode(1, "<function>"),
-		textnode("("),
-	}),
-})
-
 ls.add_snippets("sh", {
 	snippet({ trig = "#!" }, {
 		textnode("#!/usr/bin/env sh"),
 	}),
 })
-
-ls.snippets = snippets
