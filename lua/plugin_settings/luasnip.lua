@@ -46,9 +46,3 @@ ls.add_snippets("all", {
 		end, {}),
 	}),
 })
-
-ls.add_snippets("sh", {
-	snippet({ trig = "#!" }, {
-		textnode("#!/usr/bin/env sh"),
-	}),
-})

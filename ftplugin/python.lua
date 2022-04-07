@@ -8,18 +8,18 @@ ls.add_snippets("python", {
 	snippet({ trig = "#!" }, {
 		textnode("#!/usr/bin/env python"),
 	}),
-	snippet({ trig = "fim" }, {
+	snippet({ trig = "mfi" , name= "module: from import"}, {
 		textnode("from "),
 		insertnode(1, "<module>"),
 		textnode(" import "),
 		insertnode(0, "<object>"),
 	}),
-	snippet({ trig = "im" }, {
+	snippet({ trig = "mi", name= "module: import" }, {
 		textnode("import "),
 		insertnode(0, "<object>"),
 	}),
 	snippet(
-		{ trig = "doc", name = "docstring" },
+		{ trig = "cd", name = "comment: docstring" },
 		fmt(
 			[[
 				"""
@@ -55,7 +55,11 @@ ls.add_snippets("python", {
 		fmt("def {}({}):\n    {}\n\n{}", { insertnode(1), insertnode(2), insertnode(3), insertnode(0) })
 	),
 	snippet({
-		trig = "dbg",
-		name = "ipdb breakpoint",
+		trig = "dbp",
+		name = "debug: ipdb breakpoint",
 	}, textnode("import ipdb; ipdb.set_trace() # TODO: Remove")),
+	snippet(
+		{ trig = "tc", name = "type class" },
+		fmt("class {}:\n    {}\n\n{}", { insertnode(1), insertnode(2), insertnode(0) })
+	),
 })
