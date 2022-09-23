@@ -23,13 +23,40 @@ return require("packer").startup(function(use)
 
 	use({
 		"neovim/nvim-lspconfig",
-		requires = {
-			"williamboman/nvim-lsp-installer",
-		},
 		config = function()
 			require("plugin_settings.lspconfig")
 		end,
 	})
+
+	use({
+		"williamboman/mason.nvim",
+		requires = {
+			"neovim/nvim-lspconfig",
+			"williamboman/mason-lspconfig.nvim",
+			"jose-elias-alvarez/null-ls.nvim",
+			"jayp0521/mason-null-ls.nvim",
+		},
+		config = function()
+			require("mason").setup()
+			require("mason-lspconfig").setup()
+			require("mason-lspconfig").setup_handlers {
+			        -- The first entry (without a key) will be the default handler
+				-- and willbe called for each installed server that doesn't have
+			        -- a dedicated handler.
+			        function (server_name) -- default handler (optional)
+			            require("lspconfig")[server_name].setup {}
+			        end,
+			    }
+			require("mason-null-ls").setup()
+			require("mason-null-ls").setup_handlers {
+				function(source_name)
+					-- all sources with no handler get passed here
+				end,
+			}
+			require("plugin_settings.null-ls")
+		end,
+	})
+
 	use({
 		"onsails/diaglist.nvim",
 		requires = {
@@ -101,13 +128,6 @@ return require("packer").startup(function(use)
 		},
 		config = function()
 			require("plugin_settings.gitsigns")
-		end,
-	})
-
-	use({
-		"mhartington/formatter.nvim",
-		config = function()
-			require("plugin_settings.formatter")
 		end,
 	})
 
@@ -203,8 +223,6 @@ return require("packer").startup(function(use)
 			require("plugin_settings.alpha")
 		end,
 	})
-
-	use("Pocco81/TrueZen.nvim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

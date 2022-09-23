@@ -1,9 +1,3 @@
-local present, lsp_installer = pcall(require, "nvim-lsp-installer")
-
-if not present then
-	return
-end
-
 local on_attach = function(_, bufnr)
 	-- Mappings
 	local map = vim.api.nvim_set_keymap
@@ -35,15 +29,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 		"additionalTextEdits",
 	},
 }
-
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	}
-	server:setup(opts)
-	vim.cmd([[ do User LspAttachBuffers ]])
-end)
 
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
