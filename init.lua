@@ -1,2 +1,2 @@
 require("config")
-require("plugins")
+require("plugins").setup()
