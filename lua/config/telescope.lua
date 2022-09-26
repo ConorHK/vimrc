@@ -1,4 +1,4 @@
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
 
 local present, telescope = pcall(require, "telescope")

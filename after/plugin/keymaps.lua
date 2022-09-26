@@ -5,10 +5,6 @@ local function cnoreabbrev(command)
 	vim.api.nvim_command("cnoreabbrev " .. command)
 end
 
-map("", "<Space>", "<Nop>", { noremap = true, silent = true })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- split sane bindings
 map("n", "<c-Left>", "<c-w>h", default_opts)
 map("n", "<c-Down>", "<c-w>j", default_opts)

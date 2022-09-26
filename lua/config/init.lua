@@ -1,3 +1,10 @@
+local map = vim.keymap.set
+local default_opts = { noremap = true, silent = true }
+
+map("", "<Space>", "<Nop>", default_opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- disable builtin vim plugins
 local disabled_built_ins = {
 	"gzip",
