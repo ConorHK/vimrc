@@ -27,7 +27,7 @@ return require("packer").startup(function(use)
 			"williamboman/nvim-lsp-installer",
 		},
 		config = function()
-			require("plugin_settings.lspconfig")
+			require("config.lspconfig")
 		end,
 	})
 	use({
@@ -47,20 +47,20 @@ return require("packer").startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
-			require("plugin_settings.treesitter")
+			require("config.treesitter")
 		end,
 	})
 	use({
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		config = function()
-			require("plugin_settings.textobjects")
+			require("config.textobjects")
 		end,
 	})
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
-			require("plugin_settings.indent")
+			require("config.indent")
 		end,
 	})
 
@@ -79,7 +79,7 @@ return require("packer").startup(function(use)
 			"onsails/lspkind-nvim",
 		},
 		config = function()
-			require("plugin_settings.cmp")
+			require("config.cmp")
 		end,
 	})
 
@@ -89,7 +89,7 @@ return require("packer").startup(function(use)
 		--       "rafamadriz/friendly-snippets",
 		-- },
 		config = function()
-			require("plugin_settings.luasnip")
+			require("config.luasnip")
 		end,
 	})
 	-- use({ "rafamadriz/friendly-snippets" })
@@ -100,14 +100,14 @@ return require("packer").startup(function(use)
 			"nvim-lua/plenary.nvim",
 		},
 		config = function()
-			require("plugin_settings.gitsigns")
+			require("config.gitsigns")
 		end,
 	})
 
 	use({
 		"mhartington/formatter.nvim",
 		config = function()
-			require("plugin_settings.formatter")
+			require("config.formatter")
 		end,
 	})
 
@@ -158,7 +158,7 @@ return require("packer").startup(function(use)
 			"kyazdani42/nvim-web-devicons",
 		},
 		config = function()
-			require("plugin_settings.telescope")
+			require("config.telescope")
 		end,
 	})
 	use({
@@ -172,7 +172,7 @@ return require("packer").startup(function(use)
 	use({
 		"ThePrimeagen/harpoon",
 		config = function()
-			require("plugin_settings.harpoon")
+			require("config.harpoon")
 		end,
 	})
 	use({
@@ -182,7 +182,7 @@ return require("packer").startup(function(use)
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 		config = function()
-			require("plugin_settings.refactoring")
+			require("config.refactoring")
 		end,
 	})
 
@@ -200,7 +200,7 @@ return require("packer").startup(function(use)
 	use({
 		"goolord/alpha-nvim",
 		config = function()
-			require("plugin_settings.alpha")
+			require("config.alpha")
 		end,
 	})
 
