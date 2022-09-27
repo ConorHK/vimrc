@@ -161,14 +161,6 @@ function M.setup()
 			end,
 		})
 
-		-- Formatter TODO: swap for null-ls
-		use({
-			"mhartington/formatter.nvim",
-			config = function()
-				require("config.formatter")
-			end,
-		})
-
 		-- Commenting
 		use({
 			"numToStr/Comment.nvim",
