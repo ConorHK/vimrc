@@ -213,7 +213,7 @@ function M.setup()
 				"kyazdani42/nvim-web-devicons",
 			},
 			config = function()
-				require("config.telescope")
+				require("config.telescope").setup()
 			end,
 		})
 
