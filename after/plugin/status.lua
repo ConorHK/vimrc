@@ -54,7 +54,7 @@ Statusline.active = function()
 		"%=", -- right align
 		" %Y ", -- file type
 		color(), -- mode colors
-		" %c ", -- line, column 
+		" %c ", -- line, column
 	})
 end
 
@@ -66,7 +66,6 @@ function Statusline.short()
 	return "%#Normal#"
 end
 
-vim.opt.laststatus = 3
 vim.opt.fillchars = {
 	horiz = "━",
 	horizup = "┻",
@@ -90,3 +89,4 @@ vim.cmd(
 ]],
 	false
 )
+vim.g.tpipeline_restore = 1

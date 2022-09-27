@@ -13,7 +13,7 @@ opt.fillchars.vert = "│"
 -- remove intro
 opt.shortmess:append("sI")
 
-opt.cmdheight = 1
+opt.cmdheight = 0
 opt.showmode = false
 
 -- spellcheck
@@ -28,6 +28,7 @@ opt.mouse = "a"
 
 -- statusline config
 opt.statusline = "%F"
+opt.laststatus = 0
 
 -- ensure lines break on whole words
 opt.linebreak = true
@@ -79,7 +80,6 @@ opt.formatoptions = "tcrqnj"
 --                    + 'n'    -- autoformat numbered list
 --                    - '2'    -- I am a programmer and not a writer
 --                    + 'j'    -- Join comments smartly
-
 
 -- highlight line with cursor
 opt.cursorline = true
