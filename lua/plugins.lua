@@ -58,11 +58,61 @@ function M.setup()
 		-- LSP
 		use({
 			"neovim/nvim-lspconfig",
+			opt = true,
+			event = { "BufReadPre" },
+			wants = {
+				"mason.nvim",
+				"mason-lspconfig.nvim",
+				"mason-tool-installer.nvim",
+				"cmp-nvim-lsp",
+				"lua-dev.nvim",
+				"vim-illuminate",
+				"null-ls.nvim",
+				"schemastore.nvim",
+				"inlay-hints.nvim",
+			},
 			requires = {
-				"williamboman/nvim-lsp-installer",
+				"williamboman/mason.nvim",
+				"williamboman/mason-lspconfig.nvim",
+				"WhoIsSethDaniel/mason-tool-installer.nvim",
+				"folke/lua-dev.nvim",
+				"RRethy/vim-illuminate",
+				"jose-elias-alvarez/null-ls.nvim",
+				"b0o/schemastore.nvim",
+				{
+					"j-hui/fidget.nvim",
+					config = function()
+						require("fidget").setup {}
+					end,
+				},
+				{
+					"simrat39/inlay-hints.nvim",
+					config = function()
+						require("inlay-hints").setup()
+					end,
+				},
+				{
+					"zbirenbaum/neodim",
+					event = "LspAttach",
+					config = function()
+						require("config.lsp.neodim").setup()
+					end,
+					disable = true,
+				},
+				{
+					"theHamsta/nvim-semantic-tokens",
+					config = function()
+						require("config.lsp.semantictokens").setup()
+					end,
+					disable = false,
+				},
+				{
+					"David-Kunz/markid",
+					disable = false,
+				},
 			},
 			config = function()
-				require("config.lspconfig")
+				require("config.lsp").setup()
 			end,
 		})
 
