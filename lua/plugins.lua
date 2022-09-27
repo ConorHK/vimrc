@@ -114,7 +114,7 @@ function M.setup()
 				{ "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPre" },
 			},
 			config = function()
-				require("config.treesitter")
+				require("config.treesitter").setup()
 			end,
 		})
 
