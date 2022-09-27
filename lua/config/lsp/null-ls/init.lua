@@ -27,6 +27,7 @@ local sources = {
   b.formatting.shellharden,
   b.formatting.fixjson,
   b.formatting.google_java_format,
+  b.formatting.stylua,
   -- -- with_root_file(b.formatting.stylua, "stylua.toml"),
 
   -- diagnostics
