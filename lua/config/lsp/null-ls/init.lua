@@ -20,12 +20,12 @@ end
 
 local sources = {
   -- formatting
+  b.formatting.black.with { extra_args = { "--fast" } },
+  b.formatting.isort.with { extra_args = { "--profile black"} },
   b.formatting.prettierd,
   b.formatting.shfmt,
   b.formatting.shellharden,
   b.formatting.fixjson,
-  b.formatting.black.with { extra_args = { "--fast" } },
-  b.formatting.isort,
   b.formatting.google_java_format,
   -- -- with_root_file(b.formatting.stylua, "stylua.toml"),
 
@@ -40,15 +40,12 @@ local sources = {
   -- with_root_file(b.diagnostics.selene, "selene.toml"),
   with_diagnostics_code(b.diagnostics.shellcheck),
   b.diagnostics.zsh,
-  -- b.diagnostics.cspell.with {
-  --   filetypes = { "python", "rust", "typescript" },
-  -- },
   b.diagnostics.stylelint,
 
   -- code actions
   -- b.code_actions.eslint_d,
   -- b.code_actions.gitrebase,
-  -- b.code_actions.refactoring,
+  b.code_actions.refactoring,
   b.code_actions.proselint,
   b.code_actions.shellcheck,
 
@@ -57,13 +54,14 @@ local sources = {
 }
 
 function M.setup(opts)
-  require("null-ls").setup({
-    sources = {
-      require("null-ls").builtins.formatting.stylua,
-      require("null-ls").builtins.diagnostics.eslint,
-      require("null-ls").builtins.completion.spell,
-    },
-  })
+  nls.setup {
+    -- debug = true,
+    debounce = 150,
+    save_after_format = false,
+    sources = sources,
+    on_attach = opts.on_attach,
+    root_dir = nls_utils.root_pattern ".git",
+  }
 end
 
 return M
