@@ -145,7 +145,7 @@ function M.setup()
 				"onsails/lspkind-nvim",
 			},
 			config = function()
-				require("config.cmp")
+				require("config.cmp").setup()
 			end,
 		})
 
