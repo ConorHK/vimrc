@@ -237,7 +237,12 @@ function M.setup()
 		})
 
 		-- Seamless pane swapping
-		use("christoomey/vim-tmux-navigator")
+		use({
+			"aserowy/tmux.nvim",
+			config = function()
+				require("tmux").setup()
+			end,
+		})
 
 		-- Heuristically set buffer options
 		use("tpope/vim-sleuth")

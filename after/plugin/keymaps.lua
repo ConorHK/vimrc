@@ -5,16 +5,19 @@ local function cnoreabbrev(command)
 	vim.api.nvim_command("cnoreabbrev " .. command)
 end
 
--- split sane bindings
-map("n", "<c-Left>", "<c-w>h", default_opts)
-map("n", "<c-Down>", "<c-w>j", default_opts)
-map("n", "<c-Up>", "<c-w>k", default_opts)
-map("n", "<c-Right>", "<c-w>l", default_opts)
+local present, _ = pcall(require, "tmux")
+if not present then
+	-- split sane bindings
+	map("n", "<c-Left>", "<c-w>h", default_opts)
+	map("n", "<c-Down>", "<c-w>j", default_opts)
+	map("n", "<c-Up>", "<c-w>k", default_opts)
+	map("n", "<c-Right>", "<c-w>l", default_opts)
 
-map("n", "<c-h>", "<c-w>h", default_opts)
-map("n", "<c-j>", "<c-w>j", default_opts)
-map("n", "<c-k>", "<c-w>k", default_opts)
-map("n", "<c-l>", "<c-w>l", default_opts)
+	map("n", "<c-h>", "<c-w>h", default_opts)
+	map("n", "<c-j>", "<c-w>j", default_opts)
+	map("n", "<c-k>", "<c-w>k", default_opts)
+	map("n", "<c-l>", "<c-w>l", default_opts)
+end
 
 -- quick yanking to the end of the line
 map("n", "Y", "y$", default_opts)
