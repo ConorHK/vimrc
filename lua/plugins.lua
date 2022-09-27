@@ -232,7 +232,7 @@ function M.setup()
 		use({
 			"aserowy/tmux.nvim",
 			config = function()
-				require("tmux").setup()
+				require("config.tmux").setup()
 			end,
 		})
 
