@@ -76,6 +76,7 @@ function M.setup()
 				"RRethy/vim-illuminate",
 				"jose-elias-alvarez/null-ls.nvim",
 				"b0o/schemastore.nvim",
+				"David-Kunz/markid",
 				{
 					"j-hui/fidget.nvim",
 					config = function()
@@ -83,23 +84,10 @@ function M.setup()
 					end,
 				},
 				{
-					"zbirenbaum/neodim",
-					event = "LspAttach",
-					config = function()
-						require("config.lsp.neodim").setup()
-					end,
-					disable = true,
-				},
-				{
 					"theHamsta/nvim-semantic-tokens",
 					config = function()
 						require("config.lsp.semantictokens").setup()
 					end,
-					disable = false,
-				},
-				{
-					"David-Kunz/markid",
-					disable = false,
 				},
 			},
 			config = function()
