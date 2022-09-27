@@ -224,7 +224,7 @@ function M.setup()
 			wants = { "telescope.nvim" },
 			requires = { "nvim-lua/plenary.nvim" },
 			config = function()
-				require("config.harpoon")
+				require("config.harpoon").setup()
 			end,
 		})
 
