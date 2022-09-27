@@ -12,7 +12,7 @@ function M.setup()
 
 		display = {
 			open_fn = function()
-				return require("packer.util").float { border = "rounded" }
+				return require("packer.util").float({ border = "rounded" })
 			end,
 		},
 	}
@@ -21,17 +21,17 @@ function M.setup()
 	-- Run PackerCompile if there are changes in this file
 	local function packer_init()
 		local fn = vim.fn
-		local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+		local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 		if fn.empty(fn.glob(install_path)) > 0 then
-			packer_bootstrap = fn.system {
+			packer_bootstrap = fn.system({
 				"git",
 				"clone",
 				"--depth",
 				"1",
 				"https://github.com/wbthomason/packer.nvim",
 				install_path,
-			}
-			vim.cmd [[packadd packer.nvim]]
+			})
+			vim.cmd([[packadd packer.nvim]])
 		end
 
 		-- Run PackerCompile if there are changes in this file
@@ -43,17 +43,15 @@ function M.setup()
 		)
 	end
 
-
 	local function plugins(use)
-		use{"wbthomason/packer.nvim"}
+		use({ "wbthomason/packer.nvim" })
 
 		-- Performance
 		use("lewis6991/impatient.nvim")
 		use("nathom/filetype.nvim")
 
-
 		-- Load only when require
-		use { "nvim-lua/plenary.nvim", module = "plenary" }
+		use({ "nvim-lua/plenary.nvim", module = "plenary" })
 
 		-- LSP
 		use({
@@ -81,7 +79,7 @@ function M.setup()
 				{
 					"j-hui/fidget.nvim",
 					config = function()
-						require("fidget").setup {}
+						require("fidget").setup({})
 					end,
 				},
 				{
@@ -172,14 +170,14 @@ function M.setup()
 		})
 
 		-- Commenting
-		use {
+		use({
 			"numToStr/Comment.nvim",
 			keys = { "gc", "gcc", "gbc" },
 			config = function()
 				require("Comment").setup()
 			end,
 			disable = false,
-		}
+		})
 
 		-- Git integration
 		use({
@@ -215,11 +213,11 @@ function M.setup()
 			opt = true,
 			cmd = { "Telescope" },
 			module = { "telescope", "telescope.builtin" },
-			keys = { "<leader>t", "<leader>g",},
-			wants = {"harpoon",},
+			keys = { "<leader>t", "<leader>g" },
+			wants = { "harpoon" },
 			requires = {
 				"nvim-lua/plenary.nvim",
-				{"nvim-telescope/telescope-fzf-native.nvim", run = "make", },
+				{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 				"kyazdani42/nvim-web-devicons",
 			},
 			config = function()
@@ -254,14 +252,14 @@ function M.setup()
 
 		-- Bootstrap Neovim
 		if packer_bootstrap then
-			print "Neovim restart is required after installation!"
+			print("Neovim restart is required after installation!")
 			require("packer").sync()
 		end
 	end
 
 	-- Init and start packer
 	packer_init()
-	local packer = require "packer"
+	local packer = require("packer")
 
 	-- Performance
 	pcall(require, "impatient")

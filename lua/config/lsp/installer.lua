@@ -15,7 +15,7 @@ function M.setup(servers, server_options)
   }
 
   require("mason-tool-installer").setup {
-    ensure_installed = { "pyright", "stylua", "shfmt", "shellcheck", "prettierd" },
+    ensure_installed = { "pyright", "black", "isort", "stylua", "lua-language-server"},
     auto_update = false,
     run_on_start = true,
   }
