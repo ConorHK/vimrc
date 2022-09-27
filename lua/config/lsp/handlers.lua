@@ -22,13 +22,7 @@ function M.setup()
     },
 
     diagnostic = {
-      -- virtual_text = false,
-      -- virtual_text = { spacing = 4, prefix = "●" },
-      virtual_text = {
-        severity = {
-          min = vim.diagnostic.severity.ERROR,
-        },
-      },
+      virtual_text = false,
       signs = {
         active = signs,
       },
@@ -43,7 +37,6 @@ function M.setup()
         header = "",
         prefix = "",
       },
-      -- virtual_lines = true,
     },
   }
 
@@ -55,6 +48,7 @@ function M.setup()
 
   -- Signature help configuration
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, config.float)
+  vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float({focusable=false})]])
 end
 
 return M

@@ -78,7 +78,7 @@ function M.on_attach(client, bufnr)
 	require("config.lsp.highlighter").setup(client, bufnr)
 
 	-- Configure formatting
-	-- require("config.lsp.null-ls.formatters").setup(client, bufnr)
+	require("config.lsp.null-ls.formatters").setup(client, bufnr)
 
 	-- tagfunc
 	if caps.definitionProvider then
@@ -89,12 +89,8 @@ function M.on_attach(client, bufnr)
 	if client.name == "sqls" then
 		require("sqls").on_attach(client, bufnr)
 	end
-
+	--
 	if client.name ~= "null-ls" then
-		-- inlay-hints
-		local ih = require("inlay-hints")
-		ih.on_attach(client, bufnr)
-
 		-- semantic highlighting
 		if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
 			local augroup = vim.api.nvim_create_augroup("SemanticTokens", {})
@@ -136,9 +132,9 @@ M.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities) -- fo
 local opts = {
 	on_attach = M.on_attach,
 	capabilities = M.capabilities,
-	-- flags = {
-	--   debounce_text_changes = 150,
-	-- },
+	flags = {
+	  debounce_text_changes = 150,
+	},
 }
 
 -- Setup LSP handlers
@@ -150,21 +146,8 @@ function M.setup()
 
 	-- Installer
 	require("config.lsp.installer").setup(servers, opts)
-
-	-- Inlay hints
-	require("config.lsp.inlay-hints").setup()
 end
 
-local diagnostics_active = true
-
-function M.toggle_diagnostics()
-	diagnostics_active = not diagnostics_active
-	if diagnostics_active then
-		vim.diagnostic.show()
-	else
-		vim.diagnostic.hide()
-	end
-end
 
 function M.remove_unused_imports()
 	vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.WARN })

@@ -69,7 +69,6 @@ function M.setup()
 				"vim-illuminate",
 				"null-ls.nvim",
 				"schemastore.nvim",
-				"inlay-hints.nvim",
 			},
 			requires = {
 				"williamboman/mason.nvim",
@@ -83,12 +82,6 @@ function M.setup()
 					"j-hui/fidget.nvim",
 					config = function()
 						require("fidget").setup {}
-					end,
-				},
-				{
-					"simrat39/inlay-hints.nvim",
-					config = function()
-						require("inlay-hints").setup()
 					end,
 				},
 				{
