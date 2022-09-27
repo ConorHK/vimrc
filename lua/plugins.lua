@@ -251,7 +251,7 @@ function M.setup()
 		use({
 			"goolord/alpha-nvim",
 			config = function()
-				require("config.alpha")
+				require("config.alpha").setup()
 			end,
 		})
 

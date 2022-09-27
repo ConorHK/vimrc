@@ -40,7 +40,6 @@ function M.setup(client, bufnr)
 	local filetype = api.nvim_buf_get_option(bufnr, "filetype")
 
 	local enable = false
-	utils.info("filetype " .. filetype)
 	if M.has_formatter(filetype) then
 		enable = client.name == "null-ls"
 	else
