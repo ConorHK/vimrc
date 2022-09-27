@@ -122,7 +122,7 @@ function M.setup()
 			"lukas-reineke/indent-blankline.nvim",
 			wants = { "nvim-treesitter" },
 			config = function()
-				require("config.indent")
+				require("config.indent").setup()
 			end,
 		})
 
