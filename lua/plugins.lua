@@ -245,6 +245,14 @@ function M.setup()
 			end,
 		})
 
+		-- quickscope
+		use({
+			"jinh0/eyeliner.nvim",
+			config = function()
+				require("config.eyeliner")
+			end,
+		})
+
 		-- Bootstrap Neovim
 		if packer_bootstrap then
 			print("Neovim restart is required after installation!")
