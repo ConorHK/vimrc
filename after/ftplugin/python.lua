@@ -8,13 +8,13 @@ ls.add_snippets("python", {
 	snippet({ trig = "#!" }, {
 		textnode("#!/usr/bin/env python"),
 	}),
-	snippet({ trig = "mfi" , name= "module: from import"}, {
+	snippet({ trig = "mfi", name = "module: from import" }, {
 		textnode("from "),
 		insertnode(1, "<module>"),
 		textnode(" import "),
 		insertnode(0, "<object>"),
 	}),
-	snippet({ trig = "mi", name= "module: import" }, {
+	snippet({ trig = "mi", name = "module: import" }, {
 		textnode("import "),
 		insertnode(0, "<object>"),
 	}),

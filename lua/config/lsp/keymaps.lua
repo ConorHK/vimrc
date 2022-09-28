@@ -5,21 +5,20 @@ local M = {}
 local map = vim.keymap.set
 
 local function keymappings(client, bufnr)
-  local opts = { noremap = true, silent = true }
+	local opts = { noremap = true, silent = true }
 
-  map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+	map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+	map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 end
 
-
 function M.setup(client, bufnr)
-  keymappings(client, bufnr)
-  -- signature_help(client, bufnr) -- use cmp-nvim-lsp-signature-help
+	keymappings(client, bufnr)
+	-- signature_help(client, bufnr) -- use cmp-nvim-lsp-signature-help
 end
 
 return M

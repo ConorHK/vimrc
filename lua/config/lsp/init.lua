@@ -133,7 +133,7 @@ local opts = {
 	on_attach = M.on_attach,
 	capabilities = M.capabilities,
 	flags = {
-	  debounce_text_changes = 150,
+		debounce_text_changes = 150,
 	},
 }
 
@@ -147,7 +147,6 @@ function M.setup()
 	-- Installer
 	require("config.lsp.installer").setup(servers, opts)
 end
-
 
 function M.remove_unused_imports()
 	vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.WARN })
