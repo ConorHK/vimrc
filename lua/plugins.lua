@@ -48,7 +48,6 @@ function M.setup()
 
 		-- Performance
 		use("lewis6991/impatient.nvim")
-		use("nathom/filetype.nvim")
 
 		-- Load only when require
 		use({ "nvim-lua/plenary.nvim", module = "plenary" })
@@ -193,7 +192,6 @@ function M.setup()
 			opt = true,
 			cmd = { "Telescope" },
 			module = { "telescope", "telescope.builtin" },
-			keys = { "<leader>t", "<leader>g" },
 			wants = { "harpoon" },
 			requires = {
 				"nvim-lua/plenary.nvim",
@@ -237,6 +235,15 @@ function M.setup()
 
 		-- tmux statusline
 		use("vimpostor/vim-tpipeline")
+
+		-- WhichKey
+		use({
+			"folke/which-key.nvim",
+			event = "VimEnter",
+			config = function()
+				require("config.whichkey").setup()
+			end,
+		})
 
 		-- Bootstrap Neovim
 		if packer_bootstrap then

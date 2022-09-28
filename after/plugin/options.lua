@@ -1,8 +1,8 @@
 local opt = vim.opt
 local cmd = vim.cmd
+local g = vim.g
 
 -- splits open at bottom and right
---
 opt.splitbelow = true
 opt.splitright = true
 
@@ -65,6 +65,9 @@ opt.shadafile = "NONE"
 -- updatetime for cursorhold
 opt.updatetime = 200
 
+-- time in milliseconds to wait for a mapped sequence to complete.
+opt.timeoutlen = 500
+
 -- hybrid relative line numbers
 opt.number = true
 opt.relativenumber = true
@@ -83,3 +86,10 @@ opt.formatoptions = "tcrqnj"
 
 -- highlight line with cursor
 opt.cursorline = true
+
+-- better netrw
+g.netrw_banner = 0 -- Hide banner
+g.netrw_browse_split = 4 -- Open in previous window
+g.netrw_altv = 1 -- Open with right splitting
+g.netrw_liststyle = 3 -- Tree-style view
+g.netrw_list_hide = (vim.fn["netrw_gitignore#Hide"]()) .. [[,\(^\|\s\s\)\zs\.\S\+]] -- use .gitignore
