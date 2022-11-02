@@ -57,13 +57,12 @@ function M.setup()
 		use({
 			"neovim/nvim-lspconfig",
 			opt = true,
-			event = { "BufReadPre" },
 			wants = {
 				"mason.nvim",
 				"mason-lspconfig.nvim",
 				"mason-tool-installer.nvim",
 				"cmp-nvim-lsp",
-				"lua-dev.nvim",
+				"neodev.nvim",
 				"vim-illuminate",
 				"null-ls.nvim",
 				"schemastore.nvim",
@@ -72,7 +71,7 @@ function M.setup()
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
-				"folke/lua-dev.nvim",
+				"folke/neodev.nvim",
 				"RRethy/vim-illuminate",
 				"jose-elias-alvarez/null-ls.nvim",
 				"b0o/schemastore.nvim",
@@ -218,7 +217,7 @@ function M.setup()
 
 		-- Seamless pane swapping
 		use({
-			"aserowy/tmux.nvim",
+			"numToStr/Navigator.nvim",
 			config = function()
 				require("config.tmux").setup()
 			end,
