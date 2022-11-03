@@ -10,7 +10,7 @@ local servers = {
 	},
 	pyright = {
 		analysis = {
-			typeCheckingMode = "off",
+			typeCheckingMode = "on",
 		},
 	},
 	sumneko_lua = {

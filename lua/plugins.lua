@@ -48,7 +48,6 @@ function M.setup()
 
 		-- Performance
 		use("lewis6991/impatient.nvim")
-		use("nathom/filetype.nvim")
 
 		-- Load only when require
 		use({ "nvim-lua/plenary.nvim", module = "plenary" })
@@ -56,7 +55,7 @@ function M.setup()
 		-- LSP
 		use({
 			"neovim/nvim-lspconfig",
-			opt = true,
+			event = { "BufReadPre" },
 			wants = {
 				"mason.nvim",
 				"mason-lspconfig.nvim",
