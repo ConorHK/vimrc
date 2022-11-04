@@ -236,6 +236,13 @@ function M.setup()
 		-- tmux statusline
 		use("vimpostor/vim-tpipeline")
 
+		use({
+			"vimwiki/vimwiki",
+			config = function()
+				require("config.vimwiki").setup()
+			end,
+		})
+
 		-- Bootstrap Neovim
 		if packer_bootstrap then
 			print("Neovim restart is required after installation!")
