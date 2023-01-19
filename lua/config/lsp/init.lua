@@ -140,12 +140,35 @@ local opts = {
 -- Setup LSP handlers
 require("config.lsp.handlers").setup()
 
+function M.bemol()
+	local root_dir = require("lspconfig").util.root_pattern("packageInfo")(vim.fn.expand("%:p"))
+
+	local ws_folders_lsp = {}
+	if root_dir then
+		local file = io.open(root_dir .. "/.bemol/ws_root_folders", "r")
+		if file then
+			for line in file:lines() do
+				table.insert(ws_folders_lsp, line)
+			end
+			file:close()
+		end
+	end
+
+	for _, line in ipairs(ws_folders_lsp) do
+		vim.lsp.buf.add_workspace_folder(line)
+	end
+
+end
+
 function M.setup()
 	-- null-ls
 	require("config.lsp.null-ls").setup(opts)
 
 	-- Installer
 	require("config.lsp.installer").setup(servers, opts)
+
+	-- bemol
+	M.bemol()
 end
 
 function M.remove_unused_imports()
