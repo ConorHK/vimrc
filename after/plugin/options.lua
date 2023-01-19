@@ -13,7 +13,7 @@ opt.fillchars.vert = "│"
 -- remove intro
 opt.shortmess:append("sI")
 
-opt.cmdheight = 0
+opt.cmdheight = 1
 opt.showmode = false
 
 -- spellcheck
@@ -28,7 +28,7 @@ opt.mouse = "a"
 
 -- statusline config
 opt.statusline = "%F"
-opt.laststatus = 0
+opt.laststatus = 2
 
 -- ensure lines break on whole words
 opt.linebreak = true

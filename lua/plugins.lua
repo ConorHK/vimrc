@@ -233,9 +233,6 @@ function M.setup()
 			end,
 		})
 
-		-- tmux statusline
-		use("vimpostor/vim-tpipeline")
-
 		use({
 			"vimwiki/vimwiki",
 			config = function()

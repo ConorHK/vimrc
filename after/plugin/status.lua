@@ -89,4 +89,3 @@ vim.cmd(
 ]],
 	false
 )
-vim.g.tpipeline_restore = 1
