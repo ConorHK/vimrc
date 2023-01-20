@@ -4,14 +4,14 @@ function M.setup()
 	local function lazy_init()
 		local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 		if not vim.loop.fs_stat(lazypath) then
-		  vim.fn.system({
-		    "git",
-		    "clone",
-		    "--filter=blob:none",
-		    "https://github.com/folke/lazy.nvim.git",
-		    "--branch=stable", -- latest stable release
-		    lazypath,
-		  })
+			vim.fn.system({
+				"git",
+				"clone",
+				"--filter=blob:none",
+				"https://github.com/folke/lazy.nvim.git",
+				"--branch=stable", -- latest stable release
+				lazypath,
+			})
 		end
 		vim.opt.rtp:prepend(lazypath)
 	end
@@ -116,7 +116,7 @@ function M.setup()
 		-- Git integration
 		{
 			"tpope/vim-fugitive",
-			cmd = "Git" ,
+			cmd = "Git",
 		},
 
 		-- Shell commands
@@ -175,7 +175,7 @@ function M.setup()
 
 		-- Heuristically set buffer options
 		{
-			"tpope/vim-sleuth"
+			"tpope/vim-sleuth",
 		},
 
 		-- Startup screen
@@ -197,19 +197,18 @@ function M.setup()
 	-- Init and start lazy
 	lazy_init()
 	local lazy = require("lazy")
-
-	local opts = {
+	local opts =
+	{
 		defaults = {
-			lazy = true
+			lazy = true,
 		},
-		 performance = {
-		    cache = {
-		      enabled = true,
-		    },
+		performance = {
+			cache = {
+				enabled = true,
+			},
 		},
 	},
-
-	lazy.setup(plugins, opts)
+	    lazy.setup(plugins, opts)
 end
 
 return M

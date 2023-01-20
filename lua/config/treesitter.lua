@@ -30,15 +30,6 @@ function M.setup()
 					["io"] = "@loop.inner",
 				},
 			},
-			swap = {
-				enable = true,
-				swap_next = {
-					["<leader>f"] = "@parameter.inner",
-				},
-				swap_previous = {
-					["<leader>F"] = "@parameter.inner",
-				},
-			},
 		},
 	})
 end
