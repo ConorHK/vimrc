@@ -2,7 +2,7 @@
 
 Intended for use with the latest nightly release of neovim.
 
-* Uses Packer.nvim to lazy-load plugins.
+* Uses lazy.nvim to lazy-load plugins.
 * 100% lua (except for the colourschemes).
 * lspconfig, Mason and null-ls for LSP, linter, formatter integration.
 

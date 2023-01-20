@@ -47,16 +47,13 @@ function M.setup()
 		dashboard.button("<Ldr> g", "   Grep Word", ":Telescope grep_string<CR>"),
 		dashboard.button("s", "♆   Harpoon", [[:Telescope harpoon marks theme=ivy<CR>]]),
 		dashboard.button("n", "   New file", ":ene <BAR> startinsert <CR>"),
-		dashboard.button("up", "   Update Plugins", ":PackerSync <CR>"),
+		dashboard.button("up", "   Update Plugins", ":Lazy update <CR>"),
 	}
 
 	local function footer()
 		-- Number of plugins
-		local total_plugins = #vim.tbl_keys(packer_plugins)
 		local datetime = os.date("%d-%m-%Y %H:%M:%S")
 		local plugins_text = "   "
-			.. total_plugins
-			.. " plugins"
 			.. "   v"
 			.. vim.version().major
 			.. "."

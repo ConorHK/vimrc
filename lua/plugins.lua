@@ -1,72 +1,32 @@
 local M = {}
 function M.setup()
-	-- Indicate first time installation
-	local packer_bootstrap = false
-
-	-- packer.nvim configuration
-	local conf = {
-		profile = {
-			enable = true,
-			threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
-		},
-
-		display = {
-			open_fn = function()
-				return require("packer.util").float({ border = "rounded" })
-			end,
-		},
-	}
-
-	-- Check if packer.nvim is installed
-	-- Run PackerCompile if there are changes in this file
-	local function packer_init()
-		local fn = vim.fn
-		local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-		if fn.empty(fn.glob(install_path)) > 0 then
-			packer_bootstrap = fn.system({
-				"git",
-				"clone",
-				"--depth",
-				"1",
-				"https://github.com/wbthomason/packer.nvim",
-				install_path,
-			})
-			vim.cmd([[packadd packer.nvim]])
+	-- Check if lazy.nvim is installed
+	local function lazy_init()
+		local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+		if not vim.loop.fs_stat(lazypath) then
+		  vim.fn.system({
+		    "git",
+		    "clone",
+		    "--filter=blob:none",
+		    "https://github.com/folke/lazy.nvim.git",
+		    "--branch=stable", -- latest stable release
+		    lazypath,
+		  })
 		end
-
-		-- Run PackerCompile if there are changes in this file
-		-- vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
-		local packer_grp = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
-		vim.api.nvim_create_autocmd(
-			{ "BufWritePost" },
-			{ pattern = "init.lua", command = "source <afile> | PackerCompile", group = packer_grp }
-		)
+		vim.opt.rtp:prepend(lazypath)
 	end
 
-	local function plugins(use)
-		use({ "wbthomason/packer.nvim" })
-
-		-- Performance
-		use("lewis6991/impatient.nvim")
+	local plugins = {
 
 		-- Load only when require
-		use({ "nvim-lua/plenary.nvim", module = "plenary" })
+		{
+			"nvim-lua/plenary.nvim",
+		},
 
 		-- LSP
-		use({
+		{
 			"neovim/nvim-lspconfig",
-			event = { "BufReadPre" },
-			wants = {
-				"mason.nvim",
-				"mason-lspconfig.nvim",
-				"mason-tool-installer.nvim",
-				"cmp-nvim-lsp",
-				"neodev.nvim",
-				"vim-illuminate",
-				"null-ls.nvim",
-				"schemastore.nvim",
-			},
-			requires = {
+			dependencies = {
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -75,50 +35,50 @@ function M.setup()
 				"jose-elias-alvarez/null-ls.nvim",
 				"b0o/schemastore.nvim",
 				"David-Kunz/markid",
-				{
-					"j-hui/fidget.nvim",
-					config = function()
-						require("fidget").setup({})
-					end,
-				},
-				{
-					"theHamsta/nvim-semantic-tokens",
-					config = function()
-						require("config.lsp.semantictokens").setup()
-					end,
-				},
+				"j-hui/fidget.nvim",
+				"theHamsta/nvim-semantic-tokens",
 			},
 			config = function()
 				require("config.lsp").setup()
 			end,
-		})
+		},
+		{
+			"j-hui/fidget.nvim",
+			config = true,
+		},
+		{
+			"theHamsta/nvim-semantic-tokens",
+			config = function()
+				require("config.lsp.semantictokens").setup()
+			end,
+		},
 
 		-- Treesitter
-		use({
+		{
 			"nvim-treesitter/nvim-treesitter",
-			requires = {
-				{ "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPre" },
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter-textobjects",
 			},
 			config = function()
 				require("config.treesitter").setup()
 			end,
-		})
+		},
 
-		use({
+		{
 			"lukas-reineke/indent-blankline.nvim",
-			wants = { "nvim-treesitter" },
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+			},
 			config = function()
 				require("config.indent").setup()
 			end,
-		})
+		},
 
 		-- Completion
-		use({
+		{
 			"hrsh7th/nvim-cmp",
 			event = "InsertEnter",
-			opt = true,
-			wants = { "LuaSnip", "lspkind-nvim" },
-			requires = {
+			dependencies = {
 				"hrsh7th/cmp-cmdline",
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-path",
@@ -133,38 +93,34 @@ function M.setup()
 			config = function()
 				require("config.cmp").setup()
 			end,
-		})
+		},
 
 		-- Gutter git signs
-		use({
+		{
 			"lewis6991/gitsigns.nvim",
-			event = "BufReadPre",
-			requires = {
+			dependencies = {
 				"nvim-lua/plenary.nvim",
 			},
 			config = function()
 				require("config.gitsigns").setup()
 			end,
-		})
+		},
 
 		-- Commenting
-		use({
+		{
 			"numToStr/Comment.nvim",
 			keys = { "gc", "gcc", "gbc" },
-			config = function()
-				require("Comment").setup()
-			end,
-			disable = false,
-		})
+			config = true,
+		},
 
 		-- Git integration
-		use({
+		{
 			"tpope/vim-fugitive",
-			cmd = { "Git" },
-		})
+			cmd = "Git" ,
+		},
 
 		-- Shell commands
-		use({
+		{
 			"conorhk/vim-eunuch",
 			cmd = {
 				"Cfd",
@@ -183,80 +139,66 @@ function M.setup()
 				"SudoWrite",
 				"SudoEdit",
 			},
-		})
+		},
 
 		-- Telescope
-		use({
+		{
 			"nvim-telescope/telescope.nvim",
-			opt = true,
-			cmd = { "Telescope" },
-			module = { "telescope", "telescope.builtin" },
+			cmd = "Telescope",
 			keys = { "<leader>t", "<leader>g" },
-			wants = { "harpoon" },
 			requires = {
 				"nvim-lua/plenary.nvim",
-				{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+				{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 				"kyazdani42/nvim-web-devicons",
 			},
 			config = function()
 				require("config.telescope").setup()
 			end,
-		})
+		},
 
 		-- Harpoon file pinning
-		use({
+		{
 			"ThePrimeagen/harpoon",
-			module = { "harpoon", "harpoon.cmd-ui", "harpoon.mark", "harpoon.ui", "harpoon.term" },
-			wants = { "telescope.nvim" },
 			requires = { "nvim-lua/plenary.nvim" },
 			config = function()
 				require("config.harpoon").setup()
 			end,
-		})
+		},
 
 		-- Seamless pane swapping
-		use({
+		{
 			"numToStr/Navigator.nvim",
 			config = function()
 				require("config.tmux").setup()
 			end,
-		})
+		},
 
 		-- Heuristically set buffer options
-		use("tpope/vim-sleuth")
+		{
+			"tpope/vim-sleuth"
+		},
 
 		-- Startup screen
-		use({
+		{
 			"goolord/alpha-nvim",
 			config = function()
 				require("config.alpha").setup()
 			end,
-		})
+		},
 
-		use({
+		{
 			"vimwiki/vimwiki",
 			config = function()
 				require("config.vimwiki").setup()
 			end,
-		})
+		},
+	}
 
-		-- Bootstrap Neovim
-		if packer_bootstrap then
-			print("Neovim restart is required after installation!")
-			require("packer").sync()
-		end
-	end
+	-- Init and start lazy
+	lazy_init()
+	local lazy = require("lazy")
 
-	-- Init and start packer
-	packer_init()
-	local packer = require("packer")
-
-	-- Performance
-	pcall(require, "impatient")
-	-- pcall(require, "packer_compiled")
-
-	packer.init(conf)
-	packer.startup(plugins)
+	lazy.setup(plugins)
 end
 
 return M
