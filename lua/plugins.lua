@@ -146,7 +146,7 @@ function M.setup()
 			"nvim-telescope/telescope.nvim",
 			cmd = "Telescope",
 			keys = { "<leader>t", "<leader>g" },
-			requires = {
+			dependencies = {
 				"nvim-lua/plenary.nvim",
 				{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 				"kyazdani42/nvim-web-devicons",
@@ -159,7 +159,7 @@ function M.setup()
 		-- Harpoon file pinning
 		{
 			"ThePrimeagen/harpoon",
-			requires = { "nvim-lua/plenary.nvim" },
+			dependencies = { "nvim-lua/plenary.nvim" },
 			config = function()
 				require("config.harpoon").setup()
 			end,
@@ -198,7 +198,18 @@ function M.setup()
 	lazy_init()
 	local lazy = require("lazy")
 
-	lazy.setup(plugins)
+	local opts = {
+		defaults = {
+			lazy = true
+		},
+		 performance = {
+		    cache = {
+		      enabled = true,
+		    },
+		},
+	},
+
+	lazy.setup(plugins, opts)
 end
 
 return M

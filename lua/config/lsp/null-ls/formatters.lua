@@ -38,6 +38,9 @@ end
 
 function M.setup(client, bufnr)
 	local filetype = api.nvim_buf_get_option(bufnr, "filetype")
+	local map = vim.keymap.set
+	local opts = { noremap = true, silent = true }
+	map("n", "<leader>f", "<cmd>luavim.lsp.buf.format()<CR>", opts)
 
 	local enable = false
 	if M.has_formatter(filetype) then
