@@ -35,7 +35,7 @@ opt.linebreak = true
 
 -- ensure cursor stays away from screen edge
 opt.scrolloff = 3
-opt.foldcolumn = "1"
+opt.foldcolumn = "0"
 
 -- matching braces/tags
 opt.showmatch = true
@@ -83,3 +83,6 @@ opt.formatoptions = "tcrqnj"
 
 -- highlight line with cursor
 opt.cursorline = true
+
+-- LSP signs in number column
+opt.signcolumn = "number"

@@ -100,13 +100,13 @@ highlight Float guifg=#af5f00 guibg=NONE gui=NONE ctermfg=130 ctermbg=NONE cterm
 highlight Include guifg=#dfaf87 guibg=NONE gui=NONE ctermfg=180 ctermbg=NONE cterm=NONE
 highlight Define guifg=#dfaf87 guibg=NONE gui=NONE ctermfg=180 ctermbg=NONE cterm=NONE
 highlight Comment guifg=#87875f guibg=NONE gui=NONE ctermfg=101 ctermbg=NONE cterm=NONE
-highlight DiagnosticSignError guifg=red guibg=#080808
-highlight DiagnosticSignWarning guifg=orange guibg=#080808 
-highlight DiagnosticSignInfo guifg=lightblue guibg=#080808 
-highlight DiagnosticSignHint guifg=lightgrey guibg=#080808 
-highlight GitSignsAdd guifg=#87875f guibg=#080808
-highlight GitSignsChange guifg=#af5f00 guibg=#080808
-highlight GitSignsDelete guifg=#af5f5f guibg=#080808
+highlight DiagnosticSignError guifg=red guibg=#121212
+highlight DiagnosticSignWarning guifg=orange guibg=#121212 
+highlight DiagnosticSignInfo guifg=lightblue guibg=#121212 
+highlight DiagnosticSignHint guifg=lightgrey guibg=#121212 
+highlight GitSignsAdd guifg=#87875f guibg=#121212
+highlight GitSignsChange guifg=#af5f00 guibg=#121212
+highlight GitSignsDelete guifg=#af5f5f guibg=#121212
 
 " VIMSCRIPT
 highlight link vimAutoCmdSfxList Type
