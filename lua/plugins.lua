@@ -186,6 +186,7 @@ function M.setup()
 			end,
 		},
 
+		-- vimwiki
 		{
 			"vimwiki/vimwiki",
 			config = function()
