@@ -193,6 +193,12 @@ function M.setup()
 				require("config.vimwiki").setup()
 			end,
 		},
+
+		-- surround
+		{
+			"kylechui/nvim-surround",
+			config = true,
+		},
 	}
 
 	-- Init and start lazy
