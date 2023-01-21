@@ -56,12 +56,21 @@ function M.setup()
 		-- Treesitter
 		{
 			"nvim-treesitter/nvim-treesitter",
-			dependencies = {
-				"nvim-treesitter/nvim-treesitter-textobjects",
-			},
 			config = function()
 				require("config.treesitter").setup()
 			end,
+		},
+		{
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+			},
+		},
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+			},
 		},
 
 		{
