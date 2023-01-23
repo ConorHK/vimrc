@@ -43,9 +43,6 @@ opt.showmatch = true
 -- turn on detection for filetypes, indentation files and plugin files
 cmd("filetype plugin indent on")
 
--- share yank buffer with system clipboard
-opt.clipboard = "unnamed,unnamedplus"
-
 -- enable column position with ctrl-g
 opt.ruler = false
 

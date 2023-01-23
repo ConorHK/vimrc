@@ -208,6 +208,12 @@ function M.setup()
 			"kylechui/nvim-surround",
 			config = true,
 		},
+
+		-- Smartyank
+		{
+			"ibhagwan/smartyank.nvim",
+			config = true,
+		},
 	}
 
 	-- Init and start lazy
