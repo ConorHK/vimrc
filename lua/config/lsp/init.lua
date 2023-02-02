@@ -141,11 +141,10 @@ local opts = {
 require("config.lsp.handlers").setup()
 
 function M.bemol()
-	local root_dir = require("lspconfig").util.root_pattern("packageInfo")(vim.fn.expand("%:p"))
-
+	local bemol_dir = vim.fs.find({ '.bemol' }, { upward = true, type = 'directory'})[1]
 	local ws_folders_lsp = {}
-	if root_dir then
-		local file = io.open(root_dir .. "/.bemol/ws_root_folders", "r")
+	if bemol_dir then
+		local file = io.open(bemol_dir .. '/ws_root_folders', 'r')
 		if file then
 			for line in file:lines() do
 				table.insert(ws_folders_lsp, line)
