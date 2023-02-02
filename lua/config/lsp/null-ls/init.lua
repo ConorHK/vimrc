@@ -20,7 +20,7 @@ end
 
 local sources = {
 	-- formatting
-	b.formatting.black.with({ extra_args = { "--fast" } }),
+	b.formatting.black.with({ extra_args = { "--fast --line-length=120" } }),
 	b.formatting.isort.with({ extra_args = { "--profile black" } }),
 	b.formatting.prettierd,
 	b.formatting.shfmt,
@@ -34,7 +34,7 @@ local sources = {
 	-- b.diagnostics.write_good,
 	-- b.diagnostics.markdownlint,
 	-- b.diagnostics.eslint_d,
-	-- b.diagnostics.flake8.with { extra_args = { "--max-line-length=120" } },
+	b.diagnostics.flake8.with { extra_args = { "--max-line-length=120" } },
 	-- b.diagnostics.tsc,
 	-- b.diagnostics.selene,
 	-- b.diagnostics.codespell,
