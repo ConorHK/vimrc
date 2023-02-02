@@ -30,11 +30,11 @@ return {
 		Telescope = " ",
 	},
 	diagnostics = {
-		Error = " ",
-		Hint = " ",
-		Information = " ",
-		Question = " ",
-		Warning = " ",
+		Error = " X",
+		Hint = " ?",
+		Information = " I",
+		Question = " ?",
+		Warning = " !",
 	},
 	lsp = {
 		server_installed = "✓",
