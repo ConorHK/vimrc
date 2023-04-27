@@ -118,7 +118,6 @@ function M.setup()
 		-- Commenting
 		{
 			"numToStr/Comment.nvim",
-			keys = { "gc", "gcc", "gbc" },
 			config = true,
 		},
 
