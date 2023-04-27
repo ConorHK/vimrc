@@ -13,7 +13,7 @@ local servers = {
 			typeCheckingMode = "on",
 		},
 	},
-	sumneko_lua = {
+	lua_ls = {
 		settings = {
 			Lua = {
 				runtime = {
