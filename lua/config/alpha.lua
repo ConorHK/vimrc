@@ -43,11 +43,11 @@ function M.setup()
 	dashboard.section.header.val = header()
 
 	dashboard.section.buttons.val = {
-		dashboard.button("<Ldr> t", "   Find File ", ":Telescope find_files<CR>"),
-		dashboard.button("<Ldr> g", "   Grep Word", ":Telescope grep_string<CR>"),
-		dashboard.button("s", "♆   Harpoon", [[:Telescope harpoon marks theme=ivy<CR>]]),
-		dashboard.button("n", "   New file", ":ene <BAR> startinsert <CR>"),
-		dashboard.button("up", "   Update Plugins", ":Lazy update <CR>"),
+		dashboard.button("<Ldr> t", "   Find File ", ":Telescope find_files<CR>"),
+		dashboard.button("<Ldr> g", "   Grep Word", ":Telescope grep_string<CR>"),
+		dashboard.button("s", "   Harpoon", [[:Telescope harpoon marks theme=ivy<CR>]]),
+		dashboard.button("n", "   New file", ":ene <BAR> startinsert <CR>"),
+		dashboard.button("up", "   Update Plugins", ":Lazy update <CR>"),
 	}
 
 	local function footer()
