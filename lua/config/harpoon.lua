@@ -10,7 +10,7 @@ function M.setup()
 	local default_opts = { noremap = true, silent = true }
 
 	map("n", "<leader>a", ":lua require('harpoon.mark').add_file()<CR>", default_opts)
-	map("n", "<leader>s", ":Telescope harpoon marks<CR>", default_opts)
+	map("n", "<leader>s", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_opts)
 	map("n", "<leader>n", ":lua require('harpoon.ui').nav_file(1)<CR>", default_opts)
 	map("n", "<leader>e", ":lua require('harpoon.ui').nav_file(2)<CR>", default_opts)
 	map("n", "<leader>i", ":lua require('harpoon.ui').nav_file(3)<CR>", default_opts)
