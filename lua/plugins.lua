@@ -45,6 +45,7 @@ function M.setup()
 		{
 			"j-hui/fidget.nvim",
 			config = true,
+			tag = "legacy",
 		},
 		{
 			"theHamsta/nvim-semantic-tokens",
