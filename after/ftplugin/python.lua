@@ -1,3 +1,4 @@
+local opt = vim.opt
 local ls = require("luasnip")
 local fmt = require("luasnip.extras.fmt").fmt
 local textnode = ls.text_node
@@ -63,3 +64,6 @@ ls.add_snippets("python", {
 		fmt("class {}:\n    {}\n\n{}", { insertnode(1), insertnode(2), insertnode(0) })
 	),
 })
+
+-- colourcolumn for black formatting
+opt.colorcolumn = "120"
