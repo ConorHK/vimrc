@@ -3,24 +3,25 @@ local ls = require("luasnip")
 local fmt = require("luasnip.extras.fmt").fmt
 local textnode = ls.text_node
 local insertnode = ls.insert_node
+local functionnode = ls.function_node
 local snippet = ls.s
 
 ls.add_snippets("python", {
 	snippet({ trig = "#!" }, {
 		textnode("#!/usr/bin/env python"),
 	}),
-	snippet({ trig = "mfi", name = "module: from import" }, {
+	snippet({ trig = "importf", name = "module: from import" }, {
 		textnode("from "),
 		insertnode(1, "<module>"),
 		textnode(" import "),
 		insertnode(0, "<object>"),
 	}),
-	snippet({ trig = "mi", name = "module: import" }, {
+	snippet({ trig = "import", name = "module: import" }, {
 		textnode("import "),
 		insertnode(0, "<object>"),
 	}),
 	snippet(
-		{ trig = "cd", name = "comment: docstring" },
+		{ trig = "doc", name = "comment: docstring" },
 		fmt(
 			[[
 				"""
@@ -32,7 +33,7 @@ ls.add_snippets("python", {
 		)
 	),
 	snippet(
-		{ trig = "mainf", name = "python (main) file" },
+		{ trig = "main", name = "python (main) file" },
 		fmt(
 			[[
 				"""
@@ -45,6 +46,7 @@ ls.add_snippets("python", {
 				  {}
 				  """
 				  {}
+
 				if __name__ == "__main__":
 				    main()
 			]],
@@ -52,15 +54,19 @@ ls.add_snippets("python", {
 		)
 	),
 	snippet(
-		{ trig = "fd", name = "function definition" },
-		fmt("def {}({}):\n    {}\n\n{}", { insertnode(1), insertnode(2), insertnode(3), insertnode(0) })
+		{ trig = "func", name = "function definition" },
+		fmt("def {}({}) -> {}:\n    pass", { insertnode(1), insertnode(2), insertnode(0)})
 	),
 	snippet({
-		trig = "dbp",
+		trig = "ipdb",
 		name = "debug: ipdb breakpoint",
-	}, textnode("import ipdb; ipdb.set_trace() # TODO: Remove")),
+	}, textnode("import ipdb; ipdb.set_trace()  # TODO: remove")),
+	snippet({
+		trig = "pdb",
+		name = "debug: pdb breakpoint",
+	}, textnode("import pdb; pdb.set_trace()  # TODO: remove")),
 	snippet(
-		{ trig = "tc", name = "type class" },
+		{ trig = "class", name = "type class" },
 		fmt("class {}:\n    {}\n\n{}", { insertnode(1), insertnode(2), insertnode(0) })
 	),
 })
