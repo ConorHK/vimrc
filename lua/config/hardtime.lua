@@ -46,7 +46,12 @@ M.config = {
       ["<C-N>"] = { "n", "x" },
       ["<C-P>"] = { "n", "x" },
    },
-   disabled_keys = {},
+   disabled_keys = {
+      ["<Up>"] = {},
+      ["<Down>"] = {},
+      ["<Left>"] = {},
+      ["<Right>"] = {},
+   },
    disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason" },
    hints = {
       ["[kj]%^"] = {
@@ -312,7 +317,7 @@ function M.set_defaults(user_config)
 end
 
 function M.setup()
-	return M.config()
+   require("hardtime").setup(M.config)
 end
 
 return M
