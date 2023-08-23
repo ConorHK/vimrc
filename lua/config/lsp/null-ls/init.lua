@@ -20,14 +20,14 @@ end
 
 local sources = {
 	-- formatting
-	b.formatting.black.with({ extra_args = { "--fast --line-length=120" } }),
+	b.formatting.black.with({ extra_args = { "--line-length=120", "--fast" } }),
 	b.formatting.isort.with({ extra_args = { "--profile black" } }),
-	b.formatting.prettierd,
-	b.formatting.shfmt,
-	b.formatting.shellharden,
-	b.formatting.fixjson,
-	b.formatting.google_java_format,
-	b.formatting.stylua,
+	-- b.formatting.prettierd,
+	-- b.formatting.shfmt,
+	-- b.formatting.shellharden,
+	-- b.formatting.fixjson,
+	-- b.formatting.google_java_format,
+	-- b.formatting.stylua,
 	-- -- with_root_file(b.formatting.stylua, "stylua.toml"),
 
 	-- diagnostics
@@ -41,14 +41,14 @@ local sources = {
 	-- with_root_file(b.diagnostics.selene, "selene.toml"),
 	with_diagnostics_code(b.diagnostics.shellcheck),
 	b.diagnostics.zsh,
-	b.diagnostics.stylelint,
+	-- b.diagnostics.stylelint,
 
 	-- code actions
 	-- b.code_actions.eslint_d,
 	-- b.code_actions.gitrebase,
-	b.code_actions.refactoring,
-	b.code_actions.proselint,
-	b.code_actions.shellcheck,
+	-- b.code_actions.refactoring,
+	-- b.code_actions.proselint,
+	-- b.code_actions.shellcheck,
 
 	-- hover
 	b.hover.dictionary,
@@ -56,7 +56,7 @@ local sources = {
 
 function M.setup(opts)
 	nls.setup({
-		-- debug = true,
+		debug = true,
 		debounce = 150,
 		save_after_format = false,
 		sources = sources,

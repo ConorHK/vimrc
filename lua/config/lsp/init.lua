@@ -11,7 +11,9 @@ local servers = {
 	pyright = {
 		analysis = {
 			typeCheckingMode = "on",
+			diagnosticMode = "openFilesOnly",
 		},
+		disableLanguageServices = true,
 	},
 	lua_ls = {
 		settings = {

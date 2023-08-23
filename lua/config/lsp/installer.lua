@@ -15,18 +15,15 @@ function M.setup(servers, server_options)
 	})
 
 	require("mason-tool-installer").setup({
-		ensure_installed = { "pyright", "black", "isort", "stylua", "lua-language-server" },
+		ensure_installed = { "pyright", "black", "stylua", "lua-language-server" },
 		auto_update = false,
-		run_on_start = true,
+		run_on_start = false,
 	})
 
 	require("mason-lspconfig").setup({
 		ensure_installed = vim.tbl_keys(servers),
 		automatic_installation = false,
 	})
-
-	-- Package installation folder
-	local install_root_dir = vim.fn.stdpath("data") .. "/mason"
 
 	require("mason-lspconfig").setup_handlers({
 		function(server_name)

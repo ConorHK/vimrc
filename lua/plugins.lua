@@ -105,6 +105,14 @@ function M.setup()
 			end,
 		},
 
+		{
+			"danymat/neogen",
+			dependencies = "nvim-treesitter/nvim-treesitter",
+			config = function()
+				require("config.neogen").setup()
+			end,
+			version = "*"
+		},
 		-- Gutter git signs
 		{
 			"lewis6991/gitsigns.nvim",
@@ -179,7 +187,7 @@ function M.setup()
 			"numToStr/Navigator.nvim",
 			config = function()
 				require("config.tmux").setup()
-			end,
+			end
 		},
 
 		-- Heuristically set buffer options
@@ -195,14 +203,6 @@ function M.setup()
 			end,
 		},
 
-		-- vimwiki
-		{
-			"vimwiki/vimwiki",
-			config = function()
-				require("config.vimwiki").setup()
-			end,
-		},
-
 		-- surround
 		{
 			"kylechui/nvim-surround",
@@ -214,6 +214,25 @@ function M.setup()
 			"ibhagwan/smartyank.nvim",
 			config = true,
 		},
+
+		-- gitlinker
+		{
+			"ruifm/gitlinker.nvim",
+			dependencies = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require("config.gitlinker").setup()
+			end
+		},
+
+		-- hardtime
+		{
+			"m4xshen/hardtime.nvim",
+			dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+			config = function()
+				require("config.hardtime")
+			end
+		},
+		
 	}
 
 	-- Init and start lazy
