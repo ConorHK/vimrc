@@ -223,16 +223,6 @@ function M.setup()
 				require("config.gitlinker").setup()
 			end
 		},
-
-		-- hardtime
-		{
-			"m4xshen/hardtime.nvim",
-			dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-			config = function()
-				require("config.hardtime").setup()
-			end
-		},
-		
 	}
 
 	-- Init and start lazy
