@@ -20,8 +20,8 @@ end
 
 local sources = {
 	-- formatting
-	b.formatting.black.with({ extra_args = { "--line-length=120", "--fast" } }),
-	b.formatting.isort.with({ extra_args = { "--profile black" } }),
+	-- b.formatting.black.with({ extra_args = { "--line-length=120", "--fast" } }),
+	-- b.formatting.isort.with({ extra_args = { "--profile black" } }),
 	-- b.formatting.prettierd,
 	-- b.formatting.shfmt,
 	-- b.formatting.shellharden,
@@ -34,7 +34,7 @@ local sources = {
 	-- b.diagnostics.write_good,
 	-- b.diagnostics.markdownlint,
 	-- b.diagnostics.eslint_d,
-	b.diagnostics.flake8.with { extra_args = { "--max-line-length=120" } },
+	-- b.diagnostics.flake8.with { extra_args = { "--max-line-length=120" } },
 	-- b.diagnostics.tsc,
 	-- b.diagnostics.selene,
 	-- b.diagnostics.codespell,
@@ -52,6 +52,9 @@ local sources = {
 
 	-- hover
 	b.hover.dictionary,
+
+	b.diagnostics.ruff,
+	b.formatting.ruff.with({ extra_args = { "--config /home/knoconor/pyproject.toml"}})
 }
 
 function M.setup(opts)
