@@ -54,7 +54,7 @@ local sources = {
 	b.hover.dictionary,
 
 	b.diagnostics.ruff,
-	b.formatting.ruff.with({ extra_args = { "--config /home/knoconor/pyproject.toml"}})
+	b.formatting.ruff.with({ extra_args = { "--config /home/knoconor/pyproject.toml"}}),
 }
 
 function M.setup(opts)

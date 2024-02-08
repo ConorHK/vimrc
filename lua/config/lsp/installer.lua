@@ -26,9 +26,17 @@ function M.setup(servers, server_options)
 	})
 
 	require("mason-lspconfig").setup_handlers({
-		function(server_name)
-			local opts = vim.tbl_deep_extend("force", server_options, servers[server_name] or {})
-			lspconfig[server_name].setup(opts)
+		-- function(server_name)
+		-- 	local opts = vim.tbl_deep_extend("force", server_options, servers[server_name] or {})
+		-- 	lspconfig[server_name].setup(opts)
+		-- end,
+		["pyright"] = function()
+			local opts = vim.tbl_deep_extend("force", server_options, servers["pyright"] or {})
+			lspconfig["pyright"].setup(opts)
+		end,
+		["ruff_lsp"] = function()
+			local opts = vim.tbl_deep_extend("force", server_options, servers["ruff_lsp"] or {})
+			lspconfig["ruff_lsp"].setup(opts)
 		end,
 		["lua_ls"] = function()
 			local opts = vim.tbl_deep_extend("force", server_options, servers["lua_ls"] or {})

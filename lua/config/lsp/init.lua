@@ -15,6 +15,13 @@ local servers = {
 		},
 		disableLanguageServices = true,
 	},
+	ruff_lsp = {
+		init_options = {
+			settings = {
+				args = {"--config=/home/knoconor/pyproject.toml"}
+			},
+		},
+	},
 	lua_ls = {
 		settings = {
 			Lua = {
