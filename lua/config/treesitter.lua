@@ -9,7 +9,6 @@ function M.setup()
 		ensure_installed = "all",
 		indent = {
 			enable = true,
-			disable = { "python" },
 		},
 		highlight = {
 			enable = true,

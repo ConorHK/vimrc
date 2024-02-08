@@ -83,3 +83,6 @@ opt.cursorline = true
 
 -- LSP signs in number column
 opt.signcolumn = "number"
+
+-- Disable smartindent
+opt.smartindent = false
