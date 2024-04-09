@@ -215,12 +215,11 @@ function M.setup()
 			config = true,
 		},
 
-		-- gitlinker
+		-- Project working directory discovery
 		{
-			"ruifm/gitlinker.nvim",
-			dependencies = { "nvim-lua/plenary.nvim" },
+			"ahmedkhalf/project.nvim",
 			config = function()
-				require("config.gitlinker").setup()
+				require("project_nvim").setup {}
 			end
 		},
 	}
@@ -228,8 +227,7 @@ function M.setup()
 	-- Init and start lazy
 	lazy_init()
 	local lazy = require("lazy")
-	local opts =
-	{
+	local opts = {
 		defaults = {
 			lazy = true,
 		},
@@ -239,7 +237,7 @@ function M.setup()
 			},
 		},
 	},
-	    lazy.setup(plugins, opts)
+        lazy.setup(plugins, opts)
 end
 
 return M
