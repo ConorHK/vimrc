@@ -206,7 +206,12 @@ function M.setup()
 			config = function()
 				require("config.trouble").setup()
 			end
-		}
+		},
+
+		-- Git
+		{
+			"tpope/vim-fugitive",
+		},
 	}
 
 	-- Init and start lazy
