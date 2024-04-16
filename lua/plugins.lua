@@ -105,14 +105,6 @@ function M.setup()
 			end,
 		},
 
-		{
-			"danymat/neogen",
-			dependencies = "nvim-treesitter/nvim-treesitter",
-			config = function()
-				require("config.neogen").setup()
-			end,
-			version = "*"
-		},
 		-- Gutter git signs
 		{
 			"lewis6991/gitsigns.nvim",

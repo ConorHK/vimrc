@@ -15,8 +15,8 @@ local b = nls.builtins
 
 local sources = {
 	-- formatting
-	-- b.formatting.black.with({ extra_args = { "--line-length=120", "--fast" } }),
-	-- b.formatting.isort.with({ extra_args = { "--profile black" } }),
+	b.formatting.black,
+	b.formatting.isort,
 	-- b.formatting.prettierd,
 	-- b.formatting.shfmt,
 	-- b.formatting.shellharden,
