@@ -35,6 +35,7 @@ local sources = {
 	-- b.diagnostics.codespell,
 	-- with_root_file(b.diagnostics.selene, "selene.toml"),
 	b.diagnostics.zsh,
+	b.diagnostics.mypy,
 	-- b.diagnostics.stylelint,
 
 	-- code actions

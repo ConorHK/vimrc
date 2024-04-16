@@ -8,13 +8,13 @@ local servers = {
 			},
 		},
 	},
-	pyright = {
-		analysis = {
-			typeCheckingMode = "on",
-			diagnosticMode = "openFilesOnly",
-		},
-		disableLanguageServices = true,
-	},
+	-- pyright = {
+	-- 	analysis = {
+	-- 		typeCheckingMode = "on",
+	-- 		diagnosticMode = "openFilesOnly",
+	-- 	},
+	-- 	disableLanguageServices = true,
+	-- },
 	ruff_lsp = {
 		init_options = {
 			settings = {
