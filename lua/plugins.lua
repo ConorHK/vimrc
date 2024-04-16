@@ -130,34 +130,6 @@ function M.setup()
 			config = true,
 		},
 
-		-- Git integration
-		{
-			"tpope/vim-fugitive",
-			cmd = "Git",
-		},
-
-		-- Shell commands
-		{
-			"conorhk/vim-eunuch",
-			cmd = {
-				"Cfd",
-				"Lfd",
-				"Move",
-				"Rename",
-				"Cfind",
-				"Chmod",
-				"Clocate",
-				"Lfind",
-				"Llocate",
-				"Mkdir",
-				"Delete",
-				"Unlink",
-				"Wall",
-				"SudoWrite",
-				"SudoEdit",
-			},
-		},
-
 		-- Telescope
 		{
 			"nvim-telescope/telescope.nvim",
