@@ -205,6 +205,16 @@ function M.setup()
 				require("oil").setup()
 			end
 		},
+
+		-- Trouble diagnostics
+		{
+			"folke/trouble.nvim",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			opts = {},
+			config = function()
+				require("config.trouble").setup()
+			end
+		}
 	}
 
 	-- Init and start lazy
