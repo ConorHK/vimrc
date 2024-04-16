@@ -32,7 +32,7 @@ function M.setup()
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
 				"folke/neodev.nvim",
 				"RRethy/vim-illuminate",
-				"jose-elias-alvarez/null-ls.nvim",
+				"nvimtools/none-ls.nvim",
 				"b0o/schemastore.nvim",
 				"David-Kunz/markid",
 				"j-hui/fidget.nvim",

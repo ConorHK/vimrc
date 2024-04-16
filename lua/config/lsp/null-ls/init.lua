@@ -4,11 +4,6 @@ local nls = require("null-ls")
 local nls_utils = require("null-ls.utils")
 local b = nls.builtins
 
-local with_diagnostics_code = function(builtin)
-	return builtin.with({
-		diagnostics_format = "#{m} [#{c}]",
-	})
-end
 
 -- local with_root_file = function(builtin, file)
 --   return builtin.with {
@@ -39,7 +34,6 @@ local sources = {
 	-- b.diagnostics.selene,
 	-- b.diagnostics.codespell,
 	-- with_root_file(b.diagnostics.selene, "selene.toml"),
-	with_diagnostics_code(b.diagnostics.shellcheck),
 	b.diagnostics.zsh,
 	-- b.diagnostics.stylelint,
 
@@ -52,9 +46,6 @@ local sources = {
 
 	-- hover
 	b.hover.dictionary,
-
-	b.diagnostics.ruff,
-	b.formatting.ruff.with({ extra_args = { "--config /home/knoconor/pyproject.toml"}}),
 }
 
 function M.setup(opts)
