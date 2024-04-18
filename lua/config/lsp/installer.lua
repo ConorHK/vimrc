@@ -15,7 +15,7 @@ function M.setup(servers, server_options)
 	})
 
 	require("mason-tool-installer").setup({
-		ensure_installed = { "mypy", "black", "stylua", "lua-language-server" },
+		ensure_installed = { "pyright", "black", "stylua", "lua-language-server" },
 		auto_update = false,
 		run_on_start = false,
 	})
@@ -30,10 +30,10 @@ function M.setup(servers, server_options)
 		-- 	local opts = vim.tbl_deep_extend("force", server_options, servers[server_name] or {})
 		-- 	lspconfig[server_name].setup(opts)
 		-- end,
-		-- ["pyright"] = function()
-		-- 	local opts = vim.tbl_deep_extend("force", server_options, servers["pyright"] or {})
-		-- 	lspconfig["pyright"].setup(opts)
-		-- end,
+		["pyright"] = function()
+			local opts = vim.tbl_deep_extend("force", server_options, servers["pyright"] or {})
+			lspconfig["pyright"].setup(opts)
+		end,
 		["ruff_lsp"] = function()
 			local opts = vim.tbl_deep_extend("force", server_options, servers["ruff_lsp"] or {})
 			lspconfig["ruff_lsp"].setup(opts)
