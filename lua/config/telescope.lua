@@ -12,8 +12,10 @@ function M.setup()
 
 	map("n", "<leader>t", "<cmd>lua require('telescope.builtin').find_files()<CR>", default_opts)
 	map("n", "<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<CR>", default_opts)
+	map("n", "<leader>u", "<cmd>Telescope undo<CR>", default_opts)
 
 	telescope.load_extension("harpoon")
+	telescope.load_extension("undo")
 	telescope.setup({
 		defaults = {
 			vimgrep_arguments = {

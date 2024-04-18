@@ -134,7 +134,8 @@ function M.setup()
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 				{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-				"kyazdani42/nvim-web-devicons",
+				"nvim-tree/nvim-web-devicons",
+				"debugloop/telescope-undo.nvim",
 			},
 			config = function()
 				require("config.telescope").setup()
@@ -223,7 +224,10 @@ function M.setup()
 			"gorbit99/codewindow.nvim",
 			config = function()
 				local codewindow = require("codewindow")
-				codewindow.setup({auto_enable = true})
+				codewindow.setup({
+					auto_enable = true,
+					window_border = "none",
+				})
 				codewindow.apply_default_keybinds()
 			end,
 		}
