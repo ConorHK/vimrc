@@ -114,6 +114,8 @@ function M.on_attach(client, bufnr)
 			vim.lsp.buf.semantic_tokens_full()
 		end
 	end
+	local lsp_signature_cfg = require("config.lsp.signature")
+	require("lsp_signature").on_attach(lsp_signature_cfg, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
