@@ -225,7 +225,7 @@ function M.setup()
 			config = function()
 				local codewindow = require("codewindow")
 				codewindow.setup({
-					auto_enable = true,
+					auto_enable = false,
 					window_border = "none",
 				})
 				codewindow.apply_default_keybinds()
