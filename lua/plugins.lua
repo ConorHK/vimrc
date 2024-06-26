@@ -246,7 +246,6 @@ function M.setup()
 			},
 		},
 	},
-	vim.loader.enable()
         lazy.setup(plugins, opts)
 end
 
