@@ -64,6 +64,9 @@ function M.setup()
 			config = function()
 				require("config.treesitter").setup()
 			end,
+			build = ":TSUpdate",
+			branch = "main",
+			lazy = false,
 		},
 		{
 			"nvim-treesitter/nvim-treesitter-textobjects",

@@ -5,6 +5,7 @@ function M.setup()
 		return
 	end
 
+	---@diagnostic disable-next-line: missing-fields
 	ts_config.setup({
 		ensure_installed = "all",
 		indent = {
@@ -12,7 +13,6 @@ function M.setup()
 		},
 		highlight = {
 			enable = true,
-			use_languagetree = true,
 		},
 		textobjects = {
 			select = {
