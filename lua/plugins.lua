@@ -199,7 +199,7 @@ function M.setup()
 			-- Optional dependencies
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = function()
-				require("oil").setup()
+				require("config.oil").setup()
 			end
 		},
 
@@ -230,7 +230,18 @@ function M.setup()
 				})
 				codewindow.apply_default_keybinds()
 			end,
-		}
+		},
+
+		-- oil git status
+		{
+			"refractalize/oil-git-status.nvim",
+
+			dependencies = {
+				"stevearc/oil.nvim",
+			},
+
+			config = true,
+		},
 	}
 
 	-- Init and start lazy

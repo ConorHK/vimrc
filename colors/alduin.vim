@@ -105,8 +105,12 @@ highlight DiagnosticSignWarning guifg=orange guibg=#121212
 highlight DiagnosticSignInfo guifg=lightblue guibg=#121212 
 highlight DiagnosticSignHint guifg=lightgrey guibg=#121212 
 highlight GitSignsAdd guifg=#87875f guibg=#121212
-highlight GitSignsChange guifg=#af5f00 guibg=#121212
+highlight GitSignsChange guifg=#af8110 guibg=#121212
 highlight GitSignsDelete guifg=#af5f5f guibg=#121212
+
+highlight OilGitStatusWorkingTreeAdded guifg=#87875f guibg=#121212
+highlight OilGitStatusWorkingTreeModified guifg=#af8110 guibg=#121212
+highlight OilGitStatusWorkingTreeDeleted guifg=#af5f5f guibg=#121212
 
 " VIMSCRIPT
 highlight link vimAutoCmdSfxList Type
