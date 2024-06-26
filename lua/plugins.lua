@@ -34,7 +34,6 @@ function M.setup()
 				"RRethy/vim-illuminate",
 				"nvimtools/none-ls.nvim",
 				"b0o/schemastore.nvim",
-				"David-Kunz/markid",
 				"j-hui/fidget.nvim",
 				"theHamsta/nvim-semantic-tokens",
 			},
@@ -61,29 +60,18 @@ function M.setup()
 		-- Treesitter
 		{
 			"nvim-treesitter/nvim-treesitter",
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter-textobjects",
+				"nvim-treesitter/nvim-treesitter-context",
+			},
 			config = function()
 				require("config.treesitter").setup()
 			end,
-			build = ":TSUpdate",
-			branch = "main",
-			lazy = false,
-		},
-		{
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			dependencies = {
-				"nvim-treesitter/nvim-treesitter",
-			},
-		},
-		{
-			"nvim-treesitter/nvim-treesitter-context",
-			dependencies = {
-				"nvim-treesitter/nvim-treesitter",
-			},
 		},
 
 		{
 			"lukas-reineke/indent-blankline.nvim",
-			dependencies = {
+		dependencies = {
 				"nvim-treesitter/nvim-treesitter",
 			},
 			config = function()
@@ -234,8 +222,6 @@ function M.setup()
 				codewindow.apply_default_keybinds()
 			end,
 		},
-
-		-- oil git status
 		{
 			"refractalize/oil-git-status.nvim",
 
@@ -260,6 +246,7 @@ function M.setup()
 			},
 		},
 	},
+	vim.loader.enable()
         lazy.setup(plugins, opts)
 end
 
