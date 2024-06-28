@@ -53,7 +53,7 @@ opt.undofile = true
 cmd("syntax on")
 
 -- colourscheme
-cmd("colorscheme alduin")
+cmd("colorscheme kanagawa-dragon")
 opt.termguicolors = true
 
 -- don't write to the ShaDa file on startup
