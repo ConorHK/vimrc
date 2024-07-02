@@ -66,17 +66,7 @@ opt.updatetime = 200
 opt.number = true
 opt.relativenumber = true
 
-opt.formatoptions = "tcrqnj"
--- o.formatoptions = o.formatoptions
---                    + 't'    -- auto-wrap text using textwidth
---                    + 'c'    -- auto-wrap comments using textwidth
---                    + 'r'    -- auto insert comment leader on pressing enter
---                    - 'o'    -- don't insert comment leader on pressing o
---                    + 'q'    -- format comments with gq
---                    - 'a'    -- don't autoformat the paragraphs (use some formatter instead)
---                    + 'n'    -- autoformat numbered list
---                    - '2'    -- I am a programmer and not a writer
---                    + 'j'    -- Join comments smartly
+opt.formatoptions:remove("o")
 
 -- highlight line with cursor
 opt.cursorline = true
