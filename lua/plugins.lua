@@ -27,35 +27,35 @@ function M.setup()
 		{
 			"neovim/nvim-lspconfig",
 			dependencies = {
+				"folke/neodev.nvim",
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
-				"folke/neodev.nvim",
-				"RRethy/vim-illuminate",
-				"nvimtools/none-ls.nvim",
+				-- "RRethy/vim-illuminate",
+				"stevearc/conform.nvim",
 				"b0o/schemastore.nvim",
 				"j-hui/fidget.nvim",
-				"theHamsta/nvim-semantic-tokens",
+				-- "theHamsta/nvim-semantic-tokens",
 			},
 			config = function()
 				require("config.lsp").setup()
 			end,
 		},
-		{
-			"j-hui/fidget.nvim",
-			config = true,
-			tag = "legacy",
-		},
-		{
-			"theHamsta/nvim-semantic-tokens",
-			config = function()
-				require("config.lsp.semantictokens").setup()
-			end,
-		},
-		{
-			"ray-x/lsp_signature.nvim",
-			event = "VeryLazy",
-		},
+		-- {
+		-- 	"j-hui/fidget.nvim",
+		-- 	config = true,
+		-- 	tag = "legacy",
+		-- },
+		-- {
+		-- 	"theHamsta/nvim-semantic-tokens",
+		-- 	config = function()
+		-- 		require("config.lsp.semantictokens").setup()
+		-- 	end,
+		-- },
+		-- {
+		-- 	"ray-x/lsp_signature.nvim",
+		-- 	event = "VeryLazy",
+		-- },
 
 		-- Treesitter
 		{
