@@ -13,12 +13,11 @@ function M.setup()
 		capabilities = require("cmp_nvim_lsp").default_capabilities()
 	end
 
-	function find_root_dir()
-		local root_files = {".git"}
-		local paths = vim.fs.find(root_files, {stop = vim.env.HOME})
+	local function find_root_dir()
+		local root_files = { ".git" }
+		local paths = vim.fs.find(root_files, { stop = vim.env.HOME })
 		return vim.fs.dirname(paths[1])
 	end
-
 
 	local servers = {
 		bashls = true,
@@ -48,12 +47,11 @@ function M.setup()
 		ruff_lsp = {
 			init_options = {
 				settings = {
-					args = {"--config=/home/knoconor/pyproject.toml"}
+					args = { "--config=/home/knoconor/pyproject.toml" },
 				},
 			},
-			root_dir = find_root_dir
+			root_dir = find_root_dir,
 		},
-
 	}
 
 	local servers_to_install = vim.tbl_filter(function(key)
@@ -70,11 +68,11 @@ function M.setup()
 		"stylua",
 		"lua_ls",
 		"pyright",
-		"ruff_lsp"
+		"ruff_lsp",
 	}
 
 	vim.list_extend(ensure_installed, servers_to_install)
-	require("mason-tool-installer").setup { ensure_installed = ensure_installed }
+	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 	for name, config in pairs(servers) do
 		if config == true then
@@ -143,7 +141,7 @@ function M.setup()
 				amazon.bemol()
 			end
 
-			local builtin = require "telescope.builtin"
+			local builtin = require("telescope.builtin")
 
 			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 			vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0 })
@@ -175,19 +173,19 @@ function M.setup()
 	})
 
 	-- Autoformatting Setup
-	require("conform").setup {
+	require("conform").setup({
 		formatters_by_ft = {
 			lua = { "stylua" },
 		},
-	}
+	})
 
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		callback = function(args)
-			require("conform").format {
+			require("conform").format({
 				bufnr = args.buf,
 				lsp_fallback = true,
 				quiet = true,
-			}
+			})
 		end,
 	})
 end
