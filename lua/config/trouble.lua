@@ -7,14 +7,12 @@ function M.setup()
 	end
 
 	local map = vim.keymap.set
-	local default_opts = { noremap = true, silent = true }
 
-	map("n", "<leader>xx", "<cmd>TroubleToggle<CR>", default_opts)
-	map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<CR>", default_opts)
-	map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>", default_opts)
-	map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<CR>", default_opts)
-	map("n", "<leader>xl", "<cmd>TroubleToggle loclist<CR>", default_opts)
-	map("n", "gR", "<cmd>TroubleToggle lsp_references<CR>", default_opts)
+	map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
+	map("n", "<leader>xq", "<cmd>Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
+	map("n", "<leader>xl", "<cmd>Trouble loclist toggle<CR>", { desc = "Local List (Trouble)" })
+	map("n", "gr", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", { desc = "LSP Definitions / references / ... (Trouble)" })
+	trouble.setup({})
 end
 
 return M

@@ -13,7 +13,7 @@ local function keymappings(client, bufnr)
 	map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 	map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+	-- map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 end
 
 function M.setup(client, bufnr)

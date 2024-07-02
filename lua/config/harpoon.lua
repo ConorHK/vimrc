@@ -6,19 +6,46 @@ function M.setup()
 		return
 	end
 
-	local map = vim.api.nvim_set_keymap
-	local default_opts = { noremap = true, silent = true }
+	harpoon.setup()
+	local telescope_config = require("telescope.config").values
+	local map = vim.keymap.set
+	map(
+		"n", "<leader>a",
+		function()
+		      harpoon:list():add()
+		end
+	)
+	map(
+		"n", "<leader>s",
+		function()
+			harpoon.ui:toggle_quick_menu(harpoon:list())
+		end
+	)
+	map(
+		"n", "<leader>n",
+		function()
+			harpoon:list():select(1)
+		end
+	)
+	map(
+		"n", "<leader>e",
+		function()
+			harpoon:list():select(2)
+		end
+	)
+	map(
+		"n", "<leader>i",
+		function()
+			harpoon:list():select(3)
+		end
+	)
+	map(
+		"n", "<leader>o",
+		function()
+			harpoon:list():select(4)
+		end
+	)
 
-	map("n", "<leader>a", ":lua require('harpoon.mark').add_file()<CR>", default_opts)
-	map("n", "<leader>s", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_opts)
-	map("n", "<leader>n", ":lua require('harpoon.ui').nav_file(1)<CR>", default_opts)
-	map("n", "<leader>e", ":lua require('harpoon.ui').nav_file(2)<CR>", default_opts)
-	map("n", "<leader>i", ":lua require('harpoon.ui').nav_file(3)<CR>", default_opts)
-	map("n", "<leader>o", ":lua require('harpoon.ui').nav_file(4)<CR>", default_opts)
-
-	harpoon.setup({
-		nav_first_in_list = true,
-	})
 end
 
 return M

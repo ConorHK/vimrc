@@ -75,6 +75,9 @@ function M.setup()
 			live_grep = {
 				theme = "ivy",
 			},
+			harpoon = {
+				theme = "ivy",
+			},
 		},
 		extensions = {
 			fzf = {
