@@ -7,6 +7,9 @@ function M.setup()
 	end
 
 	require("neodev").setup({})
+	require("fidget").setup({})
+	require("lsp_signature").setup({})
+
 	local capabilities = nil
 
 	if pcall(require, "cmp_nvim_lsp") then
@@ -38,11 +41,12 @@ function M.setup()
 			},
 		},
 		pyright = {
-			analysis = {
-				typeCheckingMode = "on",
-				diagnosticMode = "openFilesOnly",
+			python = {
+				analysis = {
+					typeCheckingMode = "on",
+					diagnosticMode = "off",
+				},
 			},
-			disableLanguageServices = true,
 		},
 		ruff_lsp = {
 			init_options = {
@@ -173,21 +177,21 @@ function M.setup()
 	})
 
 	-- Autoformatting Setup
-	require("conform").setup({
-		formatters_by_ft = {
-			lua = { "stylua" },
-		},
-	})
-
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		callback = function(args)
-			require("conform").format({
-				bufnr = args.buf,
-				lsp_fallback = true,
-				quiet = true,
-			})
-		end,
-	})
+	-- require("conform").setup {
+	-- 	formatters_by_ft = {
+	-- 		lua = { "stylua" },
+	-- 	},
+	-- }
+	--
+	-- vim.api.nvim_create_autocmd("BufWritePre", {
+	-- 	callback = function(args)
+	-- 		require("conform").format {
+	-- 			bufnr = args.buf,
+	-- 			lsp_fallback = true,
+	-- 			quiet = true,
+	-- 		}
+	-- 	end,
+	-- })
 end
 
 return M

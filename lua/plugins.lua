@@ -31,31 +31,16 @@ function M.setup()
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
-				-- "RRethy/vim-illuminate",
+				"RRethy/vim-illuminate",
 				"stevearc/conform.nvim",
 				"b0o/schemastore.nvim",
 				"j-hui/fidget.nvim",
-				-- "theHamsta/nvim-semantic-tokens",
+				"ray-x/lsp_signature.nvim",
 			},
 			config = function()
 				require("config.lsp").setup()
 			end,
 		},
-		-- {
-		-- 	"j-hui/fidget.nvim",
-		-- 	config = true,
-		-- 	tag = "legacy",
-		-- },
-		-- {
-		-- 	"theHamsta/nvim-semantic-tokens",
-		-- 	config = function()
-		-- 		require("config.lsp.semantictokens").setup()
-		-- 	end,
-		-- },
-		-- {
-		-- 	"ray-x/lsp_signature.nvim",
-		-- 	event = "VeryLazy",
-		-- },
 
 		-- Treesitter
 		{
