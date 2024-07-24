@@ -31,6 +31,7 @@ function M.setup()
 				"williamboman/mason.nvim",
 				"williamboman/mason-lspconfig.nvim",
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
+				"mfussenegger/nvim-lint",
 				"RRethy/vim-illuminate",
 				"stevearc/conform.nvim",
 				"b0o/schemastore.nvim",
