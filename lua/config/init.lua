@@ -27,10 +27,12 @@ local plugin_modules = {
 
 for _, plugin in ipairs(plugin_modules) do
 	if nixCats(plugin) then
-		local success, module = pcall(require, string.format("config.%s", plugin))
+		local import = string.format("config.%s", plugin)
+		print("Loading:", import)
+		local success, module = pcall(require, import)
 		if success then
-			print("Successfully loaded:", plugin)
 			module.setup()
+			print("Successfully loaded:", plugin)
 		else
 			print("Failed to load:", plugin, "Error:", module)
 		end
