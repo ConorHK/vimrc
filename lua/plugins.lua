@@ -67,24 +67,19 @@ function M.setup()
 
 		-- Completion
 		{
-			"hrsh7th/nvim-cmp",
-			event = "InsertEnter",
-			dependencies = {
-				"hrsh7th/cmp-cmdline",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-path",
-				"hrsh7th/cmp-nvim-lua",
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-nvim-lsp-document-symbol",
-				"tamago324/cmp-zsh",
-				"L3MON4D3/LuaSnip",
-				"saadparwaiz1/cmp_luasnip",
-				"onsails/lspkind-nvim",
+			"saghen/blink.cmp",
+			lazy = false,
+			version = "v0.*",
+			opts = {
+				highlight = {
+					use_nvim_cmp_as_default = true,
+				}
 			},
-			config = function()
-				require("config.cmp").setup()
-			end,
 		},
+
+		-- Snippets
+		{ "L3MON4D3/LuaSnip" },
+
 
 		-- Gutter git signs
 		{
