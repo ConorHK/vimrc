@@ -5,4 +5,4 @@ require("nixCatsUtils").setup {
 
 
 require("config")
-require("plugins").setup()
+-- require("plugins").setup()

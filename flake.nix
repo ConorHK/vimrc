@@ -143,7 +143,61 @@
         ];
 
         treesitter = with pkgs.vimPlugins; [
-          nvim-treesitter
+          (nvim-treesitter.withPlugins (
+            plugins: with plugins; [
+              bash
+              c
+              cmake
+              comment
+              csv
+              diff
+              dockerfile
+              editorconfig
+              gitattributes
+              gitcommit
+              git_config
+              gitignore
+              git_rebase
+              gpg
+              html
+              http
+              java
+              javascript
+              jq
+              json
+              json5
+              latex
+              lua
+              luadoc
+              luap
+              make
+              markdown
+              markdown-inline
+              nginx
+              nix
+              passwd
+              powershell
+              printf
+              properties
+              puppet
+              python
+              requirements
+              ruby
+              sql
+              ssh-config
+              sxhkdrc
+              tmux
+              toml
+              typescript
+              unison
+              vim
+              vimdoc
+              xml
+              yaml
+              yang
+              zathurarc
+            ]
+          ))
           nvim-treesitter-context # shows function context
           nvim-treesitter-textobjects # adds additional textobjects such as function
         ];

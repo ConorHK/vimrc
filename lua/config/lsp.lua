@@ -29,17 +29,6 @@ function M.setup()
 				semanticTokensProvider = vim.NIL,
 			},
 		},
-		yamlls = {
-			settings = {
-				yaml = {
-					schemaStore = {
-						enable = false,
-						url = "",
-					},
-					schemas = require("schemastore").yaml.schemas(),
-				},
-			},
-		},
 		pyright = {
 			-- settings = {
 			-- 	pyright = {
@@ -98,17 +87,6 @@ function M.setup()
 			return t
 		end
 	end, vim.tbl_keys(servers))
-
-	require("mason").setup()
-	local ensure_installed = {
-		"stylua",
-		"lua_ls",
-		"pyright",
-		"ruff_lsp",
-	}
-
-	vim.list_extend(ensure_installed, servers_to_install)
-	require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 	for name, config in pairs(servers) do
 		if config == true then
