@@ -1,5 +1,5 @@
 .netrwhist
 plugin/packer_compiled.lua
 .luarc.json
-amazon.lua
+**/amazon.lua
 result
