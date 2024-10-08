@@ -30,7 +30,7 @@
 
     plugins-blink = {
       url = "github:saghen/blink.cmp";
-      flake = false;
+      flake = true;
     };
     plugins-oil-git-status = {
       url = "github:refractalize/oil-git-status.nvim";
@@ -172,10 +172,6 @@
           telescope-undo-nvim
         ];
 
-        harpoon = with pkgs.vimPlugins; [
-          harpoon2
-        ];
-
         tmux = with pkgs.vimPlugins; [
           tmuxNavigator
         ];
@@ -192,13 +188,11 @@
           smartyank-nvim  # yanks to osc52
         ];
 
-        project = with pkgs.vimPlugins; [
-          project-nvim # discovers root directory of project and auto cds
-        ];
-
         filesystem = {
           nixPlugins = with pkgs.vimPlugins; [
             oil-nvim # work with filesystem in buffer
+            harpoon2 # file pinning
+            project-nvim # discovers root directory of project and auto cds
           ];
           gitPlugins = with pkgs.neovimPlugins; [ 
             oil-git-status
@@ -304,12 +298,10 @@
           git = true;
           commenting = true;
           telescope = true;
-          harpoon = true;
           tmux = true;
           startup = true;
           surround = true;
           yank = true;
-          project = true;
           filesystem = true;
           diagnostics = true;
           colorscheme = true;
