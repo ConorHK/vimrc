@@ -1,10 +1,10 @@
 local M = {}
-function M.setup()
+function M.kanagawa()
 	local present, kanagawa = pcall(require, "kanagawa")
 	if not present then
 		return
 	end
-	require("kanagawa").setup({
+	kanagawa.setup({
 		colors = {
 			theme = {
 				all = {
@@ -15,5 +15,22 @@ function M.setup()
 			}
 		}
 	})
+end
+function M.alduin()
+	local present, alduin = pcall(require, "alduin")
+	if not present then
+		return
+	end
+	alduin.setup({
+		colors = {
+			terminal_colors = true,
+			inverse = true,
+		}
+	})
+end
+function M.setup()
+	M.alduin()
+	vim.opt.termguicolors = true
+	vim.cmd("colorscheme alduin")
 end
 return M

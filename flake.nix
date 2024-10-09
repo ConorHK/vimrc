@@ -36,6 +36,10 @@
       url = "github:refractalize/oil-git-status.nvim";
       flake = false;
     };
+    plugins-alduin = {
+      url = "github:bakageddy/alduin.nvim";
+      flake = false;
+    };
 
     # see :help nixCats.flake.inputs
     # If you want your plugin to be loaded by the standard overlay,
@@ -257,9 +261,14 @@
           trouble-nvim # populate quickfix list
         ];
 
-        colorscheme = with pkgs.vimPlugins; [
-          kanagawa-nvim
-        ];
+        colorscheme = {
+	  nixPlugins = with pkgs.vimPlugins; [
+            kanagawa-nvim
+	  ];
+	  gitPlugins = with pkgs.neovimPlugins; [
+            alduin
+	  ];
+        };
 
         movement = with pkgs.vimPlugins; [
           flash-nvim
@@ -337,7 +346,7 @@
           wrapRc = true;
           # IMPORTANT:
           # your alias may not conflict with your other packages.
-          # aliases = [ "vim" ];
+          aliases = [ "nixvim" ];
           # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
         };
         # and a set of categories that you want

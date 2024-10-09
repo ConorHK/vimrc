@@ -842,6 +842,22 @@
         "type": "github"
       }
     },
+    "plugins-alduin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706363260,
+        "narHash": "sha256-dtSXlgD7bMdRoq5N7LTuAZV5dnQVZNcUhia/IRiZ3VQ=",
+        "owner": "bakageddy",
+        "repo": "alduin.nvim",
+        "rev": "7fb0a2f425123565783c9cc7eed49f510e62c255",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bakageddy",
+        "repo": "alduin.nvim",
+        "type": "github"
+      }
+    },
     "plugins-blink": {
       "inputs": {
         "devenv": "devenv",
@@ -981,6 +997,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_2",
+        "plugins-alduin": "plugins-alduin",
         "plugins-blink": "plugins-blink",
         "plugins-oil-git-status": "plugins-oil-git-status"
       }
