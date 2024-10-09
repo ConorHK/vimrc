@@ -346,7 +346,7 @@
           wrapRc = true;
           # IMPORTANT:
           # your alias may not conflict with your other packages.
-          aliases = [ "nixvim" ];
+          aliases = [ "vim" ];
           # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
         };
         # and a set of categories that you want
