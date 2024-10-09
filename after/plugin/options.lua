@@ -52,10 +52,6 @@ opt.undofile = true
 -- switch syntax highlighting on
 cmd("syntax on")
 
--- colourscheme
-cmd("colorscheme kanagawa-dragon")
-opt.termguicolors = true
-
 -- don't write to the ShaDa file on startup
 opt.shadafile = "NONE"
 
