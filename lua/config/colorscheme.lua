@@ -29,8 +29,8 @@ function M.alduin()
 	})
 end
 function M.setup()
-	M.alduin()
+	M.kanagawa()
 	vim.opt.termguicolors = true
-	vim.cmd("colorscheme alduin")
+	vim.cmd("colorscheme kanagawa-dragon")
 end
 return M

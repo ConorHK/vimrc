@@ -32,12 +32,11 @@ function M.setup()
 		},
 	}
 
-	if require('nixCatsUtils').isNixCats then
+	if not require('nixCatsUtils').isNixCats then
 		opts["ensure_installed"] = "all" -- bit overzealous but i dont want to maintain parity between flake list and here
 	end
 	vim.defer_fn(function()
-		ts_config.setup({
-		})
+		ts_config.setup(opts)
 	end, 0)
 end
 

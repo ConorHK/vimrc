@@ -12,10 +12,6 @@ function M.setup()
 
 	local capabilities = nil
 
-	if pcall(require, "cmp_nvim_lsp") then
-		capabilities = require("cmp_nvim_lsp").default_capabilities()
-	end
-
 	local function find_root_dir()
 		local root_files = { ".git" }
 		local paths = vim.fs.find(root_files, { stop = vim.env.HOME })
@@ -77,6 +73,7 @@ function M.setup()
 			},
 			root_dir = find_root_dir,
 		},
+		nixd = true,
 	}
 
 	local servers_to_install = vim.tbl_filter(function(key)
