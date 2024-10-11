@@ -28,8 +28,9 @@
       url = "github:nix-community/neovim-nightly-overlay";
     };
 
-    plugins-blink = {
+    blink-cmp = {
       url = "github:saghen/blink.cmp";
+      inputs.nixpkgs.follows = "nixpkgs";
       flake = true;
     };
     plugins-oil-git-status = {
@@ -133,10 +134,10 @@
       startupPlugins = {
 
         autocomplete = {
-          gitPlugins = with pkgs.neovimPlugins; [ 
-            blink
-          ];
-        };
+	  gitPlugins = with pkgs.neovimPlugins; [
+            inputs.blink-cmp.packages.${pkgs.system}.default
+	  ];
+	};
 
         lsp = with pkgs.vimPlugins; [
           nvim-lspconfig # provides basic, default Nvim LSP client configurations
