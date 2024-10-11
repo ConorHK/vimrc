@@ -4,12 +4,6 @@ function M.setup()
 	if not present then
 		return
 	end
-	blink.setup({
-		fuzzy = {
-			prebuiltBinaries = {
-				download = false
-			}
-		}
-	})
+	blink.setup({})
 end
 return M

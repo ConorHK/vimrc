@@ -3,5 +3,7 @@ require("nixCatsUtils").setup {
 }
 
 
+if not require("nixCatsUtils").isNixCats then
+	require("plugins").setup()
+end
 require("config")
--- require("plugins").setup()
