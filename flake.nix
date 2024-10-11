@@ -127,6 +127,7 @@
           nixd
           pyright
           ruff-lsp
+	  bash-language-server
         ];
       };
 
