@@ -38,9 +38,6 @@ function M.setup()
 				"j-hui/fidget.nvim",
 				"ray-x/lsp_signature.nvim",
 			},
-			config = function()
-				require("config.lsp").setup()
-			end,
 		},
 
 		-- Treesitter
@@ -50,9 +47,6 @@ function M.setup()
 				"nvim-treesitter/nvim-treesitter-textobjects",
 				"nvim-treesitter/nvim-treesitter-context",
 			},
-			config = function()
-				require("config.treesitter").setup()
-			end,
 		},
 
 		{
@@ -60,9 +54,6 @@ function M.setup()
 		dependencies = {
 				"nvim-treesitter/nvim-treesitter",
 			},
-			config = function()
-				require("config.indent").setup()
-			end,
 		},
 
 		-- Completion
@@ -70,11 +61,6 @@ function M.setup()
 			"saghen/blink.cmp",
 			lazy = false,
 			version = "v0.*",
-			opts = {
-				highlight = {
-					use_nvim_cmp_as_default = true,
-				}
-			},
 		},
 
 		-- Snippets
@@ -87,15 +73,11 @@ function M.setup()
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 			},
-			config = function()
-				require("config.gitsigns").setup()
-			end,
 		},
 
 		-- Commenting
 		{
 			"numToStr/Comment.nvim",
-			config = true,
 		},
 
 		-- Telescope
@@ -110,9 +92,6 @@ function M.setup()
 				"nvim-tree/nvim-web-devicons",
 				"debugloop/telescope-undo.nvim",
 			},
-			config = function()
-				require("config.telescope").setup()
-			end,
 		},
 
 		-- Harpoon file pinning
@@ -124,17 +103,11 @@ function M.setup()
 				"nvim-lua/plenary.nvim" ,
 				"nvim-telescope/telescope.nvim",
 			},
-			config = function()
-				require("config.harpoon").setup()
-			end,
 		},
 
 		-- Seamless pane swapping
 		{
 			"numToStr/Navigator.nvim",
-			config = function()
-				require("config.tmux").setup()
-			end
 		},
 
 		-- Heuristically set buffer options
@@ -145,29 +118,21 @@ function M.setup()
 		-- Startup screen
 		{
 			"goolord/alpha-nvim",
-			config = function()
-				require("config.alpha").setup()
-			end,
 		},
 
 		-- surround
 		{
 			"kylechui/nvim-surround",
-			config = true,
 		},
 
 		-- Smartyank
 		{
 			"ibhagwan/smartyank.nvim",
-			config = true,
 		},
 
 		-- Project working directory discovery
 		{
 			"ahmedkhalf/project.nvim",
-			config = function()
-				require("project_nvim").setup()
-			end
 		},
 
 		-- Filesystem interaction
@@ -176,9 +141,6 @@ function M.setup()
 			opts = {},
 			-- Optional dependencies
 			dependencies = { "nvim-tree/nvim-web-devicons" },
-			config = function()
-				require("config.oil").setup()
-			end
 		},
 
 		-- Trouble diagnostics
@@ -186,9 +148,6 @@ function M.setup()
 			"folke/trouble.nvim",
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			opts = {},
-			config = function()
-				require("config.trouble").setup()
-			end
 		},
 
 		-- Git
@@ -197,44 +156,24 @@ function M.setup()
 		},
 
 
-		-- codewindow
-		{
-			"gorbit99/codewindow.nvim",
-			config = function()
-				local codewindow = require("codewindow")
-				codewindow.setup({
-					auto_enable = false,
-					window_border = "none",
-				})
-				codewindow.apply_default_keybinds()
-			end,
-		},
 		{
 			"refractalize/oil-git-status.nvim",
 
 			dependencies = {
 				"stevearc/oil.nvim",
 			},
-
-			config = true,
 		},
 
 
 		-- kanagawa colorscheme
 		{
 			"rebelot/kanagawa.nvim",
-			config = function()
-				require("config.autocomplete").setup()
-			end
 		},
 
 		-- flash movement
 		{
 			"folke/flash.nvim",
 			event = "VeryLazy",
-			config = function() 
-				require("config.flash").setup()
-			end,
 		},
 
 	}
