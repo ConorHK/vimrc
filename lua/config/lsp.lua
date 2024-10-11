@@ -85,6 +85,25 @@ function M.setup()
 		end
 	end, vim.tbl_keys(servers))
 
+
+	if not require("nixCatsUtils").isNixCats then
+		require("mason").setup()
+		local ensure_installed = {
+			"stylua",
+			"lua_ls",
+			"pyright",
+			"ruff_lsp",
+		}
+		vim.list_extend(ensure_installed, servers_to_install)
+		for i = 1, #ensure_installed do
+			if ensure_installed[i] == "nixd" then
+				table.remove(ensure_installed, i)
+				break
+			end
+		end
+		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+	end
+
 	for name, config in pairs(servers) do
 		if config == true then
 			config = {}
