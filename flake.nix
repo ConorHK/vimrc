@@ -364,7 +364,7 @@
           commenting = true;
           telescope = true;
           tmux = true;
-          startup = true;
+          startup = false;
           surround = true;
           yank = true;
           filesystem = true;

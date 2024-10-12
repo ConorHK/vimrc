@@ -17,7 +17,6 @@ local plugin_modules = {
         "lsp",
         "movement",
         "snippets",
-        "startup",
         "surround",
         "telescope",
         "tmux",
