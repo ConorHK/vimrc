@@ -17,6 +17,15 @@ function M.setup()
 		local paths = vim.fs.find(root_files, { stop = vim.env.HOME })
 		return vim.fs.dirname(paths[1])
 	end
+	local function file_exists(filepath)
+		local stat = vim.loop.fs_stat(filepath)
+		return stat and stat.type == "file"
+	end
+
+	local ruff_file = find_root_dir() .. "/ruff.toml"
+	if not file_exists(ruff_file) then
+		ruff_file =  vim.fn.getenv("DEFAULT_RUFF_TOML_PATH")
+	end
 
 	local servers = {
 		bashls = true,
@@ -44,7 +53,7 @@ function M.setup()
 		ruff_lsp = {
 			init_options = {
 				settings = {
-					args = { "--config=/home/knoconor/pyproject.toml" },
+					args = { "--config=" .. ruff_file },
 				},
 			},
 			commands = {
