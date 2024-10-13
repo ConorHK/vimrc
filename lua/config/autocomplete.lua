@@ -4,6 +4,20 @@ function M.setup()
 	if not present then
 		return
 	end
-	blink.setup({})
+	blink.setup(
+		{
+			keymap = {
+				accept = "<Enter>",
+				select_prev = { "<Up>", "<S-Tab>" },
+				select_next = { "<Down>", "<Tab>" },
+			},
+			signature_help = {
+				enabled = true,
+			},
+			highlight = {
+				use_nvim_cmp_as_default = true,
+			},
+		}
+	)
 end
 return M
