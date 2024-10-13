@@ -12,23 +12,30 @@ function M.setup()
 
 	local capabilities = nil
 
-	local function find_root_dir()
-		local root_files = { ".git" }
-		local paths = vim.fs.find(root_files, { stop = vim.env.HOME })
-		return vim.fs.dirname(paths[1])
-	end
-	local function file_exists(filepath)
-		local stat = vim.loop.fs_stat(filepath)
-		return stat and stat.type == "file"
-	end
+	-- Broken at the moment and I don't work with any packages with ruff.toml defined as of today
 
-	local ruff_file = find_root_dir() .. "/ruff.toml"
-	if not file_exists(ruff_file) then
-		if not require("nixCatsUtils").isNixCats then
-			ruff_file = "./lspconfigs/default_ruff.toml"
-		else
-			ruff_file =  require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
-		end
+	-- local function find_root_dir()
+	-- 	local root_files = { ".git" }
+	-- 	local paths = vim.fs.find(root_files, { stop = vim.env.HOME })
+	-- 	return vim.fs.dirname(paths[1])
+	-- end
+	-- local function file_exists(filepath)
+	-- 	local stat = vim.loop.fs_stat(filepath)
+	-- 	return stat and stat.type == "file"
+	-- end
+	--
+	-- local ruff_file = find_root_dir() .. "/ruff.toml"
+	-- if not file_exists(ruff_file) then
+	-- 	if not require("nixCatsUtils").isNixCats then
+	-- 		ruff_file = "./lspconfigs/default_ruff.toml"
+	-- 	else
+	-- 		ruff_file =  require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
+	-- 	end
+	-- end
+	if not require("nixCatsUtils").isNixCats then
+		ruff_file = "./lspconfigs/default_ruff.toml"
+	else
+		ruff_file =  require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
 	end
 
 	local servers = {
