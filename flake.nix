@@ -327,8 +327,9 @@
           # environmentVariables:
           # this section is for environmentVariables that should be available
           # at RUN TIME for plugins. Will be available to path within neovim terminal
-          environmentVariables = {
-          };
+          environmentVariables =
+            {
+            };
 
           # If you know what these are, you can provide custom ones by category here.
           # If you dont, check this link out:
