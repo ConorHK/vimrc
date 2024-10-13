@@ -24,7 +24,7 @@ function M.setup()
 
 	local ruff_file = find_root_dir() .. "/ruff.toml"
 	if not file_exists(ruff_file) then
-		ruff_file =  vim.fn.getenv("DEFAULT_RUFF_TOML_PATH")
+		ruff_file =  require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
 	end
 
 	local servers = {
