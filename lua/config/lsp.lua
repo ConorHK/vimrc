@@ -6,7 +6,7 @@ function M.setup()
 		return
 	end
 
-	require("neodev").setup({})
+	require("lazydev").setup({})
 	require("fidget").setup({})
 	require("lsp_signature").setup({})
 

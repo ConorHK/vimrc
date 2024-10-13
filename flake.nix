@@ -170,7 +170,7 @@
 
             lsp = with pkgs.vimPlugins; [
               nvim-lspconfig # provides basic, default Nvim LSP client configurations
-              neodev-nvim
+              lazydev-nvim
               vim-illuminate # highlights other occurances of variable under cursor
               fidget-nvim
               lsp_signature-nvim
