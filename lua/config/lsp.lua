@@ -24,6 +24,9 @@ function M.setup()
 
 	local ruff_file = find_root_dir() .. "/ruff.toml"
 	if not file_exists(ruff_file) then
+	if not require("nixCatsUtils").isNixCats then
+		ruff_file = "./lspconfigs/default_ruff.toml"
+	else
 		ruff_file =  require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
 	end
 
