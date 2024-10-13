@@ -261,7 +261,7 @@
             ];
 
             tmux = with pkgs.vimPlugins; [
-              vim-tmux-navigator
+              tmuxNavigator
             ];
 
             startup = with pkgs.vimPlugins; [
