@@ -5,11 +5,13 @@ function M.setup()
 		return
 	end
 
-	-- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
 	---@diagnostic disable-next-line: missing-fields
 	opts = {
 		indent = {
 			enable = true,
+			disable = {
+				"nix",
+			},
 		},
 		highlight = {
 			enable = true,
@@ -35,6 +37,8 @@ function M.setup()
 	if not require('nixCatsUtils').isNixCats then
 		opts["ensure_installed"] = "all" -- bit overzealous but i dont want to maintain parity between flake list and here
 	end
+
+	-- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
 	vim.defer_fn(function()
 		ts_config.setup(opts)
 	end, 0)
