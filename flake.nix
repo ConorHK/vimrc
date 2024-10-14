@@ -156,6 +156,8 @@
               pyright
               ruff-lsp
               bash-language-server
+              haskell-language-server
+              ghc
             ];
           };
 
