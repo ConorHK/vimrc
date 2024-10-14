@@ -193,6 +193,7 @@
                   gitignore
                   git_rebase
                   gpg
+                  haskell
                   html
                   http
                   java
