@@ -30,7 +30,6 @@
 
     blink-cmp = {
       url = "github:saghen/blink.cmp";
-      inputs.nixpkgs.follows = "nixpkgs";
       flake = true;
     };
     plugins-oil-git-status = {
@@ -387,7 +386,7 @@
               lsp = true;
               autocomplete = true;
               treesitter = true;
-              indent = true;
+              indent = false;
               snippets = true;
               git = true;
               commenting = true;
