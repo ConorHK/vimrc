@@ -4,7 +4,9 @@ function M.setup()
 	if not present then
 		return
 	end
-	indent.setup()
+	indent.setup({
+		exclude = { filetypes = { "alpha", "telescopeprompt" }},
+	})
 end
 
 return M
