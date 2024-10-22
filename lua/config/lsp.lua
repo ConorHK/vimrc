@@ -38,6 +38,11 @@ function M.setup()
 		ruff_file =  require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
 	end
 
+	local capabilities = nil
+	if pcall(require, "cmp_nvim_lsp") then
+		capabilities = require("cmp_nvim_lsp").default_capabilities()
+	end
+
 	local servers = {
 		bashls = true,
 		lua_ls = {

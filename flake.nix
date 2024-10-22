@@ -28,11 +28,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
     };
 
-    blink-cmp = {
-      url = "github:saghen/blink.cmp";
-      inputs.nixpkgs.follows = "nixpkgs";
-      flake = true;
-    };
     plugins-oil-git-status = {
       url = "github:refractalize/oil-git-status.nvim";
       flake = false;
@@ -166,7 +161,20 @@
 
             autocomplete = {
               gitPlugins = with pkgs.neovimPlugins; [
-                inputs.blink-cmp.packages.${pkgs.system}.default
+                 # inputs.blink-cmp.packages.${pkgs.system}.default
+              ];
+              standard = with pkgs.vimPlugins; [
+                nvim-cmp
+                lspkind-nvim
+                cmp_luasnip
+                cmp-cmdline
+                cmp-buffer
+                cmp-path
+                cmp-nvim-lua
+                cmp-nvim-lsp-document-symbol
+                cmp-zsh
+                cmp-git
+                cmp-nvim-lsp
               ];
             };
 

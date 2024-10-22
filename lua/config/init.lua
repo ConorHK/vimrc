@@ -6,6 +6,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local plugin_modules = {
+        "snippets",
         "autocomplete",
         "colorscheme",
         "commenting",
@@ -16,7 +17,6 @@ local plugin_modules = {
         "indent",
         "lsp",
         "movement",
-        "snippets",
         "surround",
         "telescope",
         "tmux",

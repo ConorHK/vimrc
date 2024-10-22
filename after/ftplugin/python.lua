@@ -36,21 +36,64 @@ ls.add_snippets("python", {
 		{ trig = "main", name = "python (main) file" },
 		fmt(
 			[[
-				"""
-				{}
-				"""
+				"""{}"""
+				from __future__ import annotations
+
 				import logging
 				logger = logging.getLogger(__name__)
-				def main():
-				  """
-				  {}
-				  """
-				  {}
+
+
+				def main() -> None:
+				    """Driver"""
+				    {}
 
 				if __name__ == "__main__":
 				    main()
+
 			]],
-			{ insertnode(1), insertnode(2), insertnode(0) }
+			{ insertnode(1), insertnode(0) }
+		)
+	),
+	snippet(
+		{ trig = "testboil", name = "Testing boilerplate" },
+		fmt(
+		"test_cases = [\n" ..
+		"    {}\n" ..
+		"]\n" ..
+		[[
+
+for test_case in test_cases:
+    result = {}(test_case.input)
+    print(f"Output  : {{result}}")
+    print(f"Expected: {{test_case.output}}")
+    print(f"Result matches expected: {{result == test_case.output }}")
+    print("-------------------------------")
+		]],
+			{ insertnode(1), insertnode(0) }
+		)
+	),
+	snippet(
+		{ trig = "tcc", name = "Test case boilerplate class" },
+		fmt(
+			[[
+				from dataclasses import dataclass
+
+				@dataclass
+				class TestCase:
+				    input: {}
+				    output: {}
+					
+			]],
+			{ insertnode(1), insertnode(0) }
+		)
+	),
+	snippet(
+		{ trig = "tc", name = "Test case boilerplate" },
+		fmt(
+			[[
+				TestCase(input={}, output={}),
+			]],
+			{ insertnode(1), insertnode(0)}
 		)
 	),
 	snippet(
