@@ -10,16 +10,6 @@ ls.add_snippets("python", {
 	snippet({ trig = "#!" }, {
 		textnode("#!/usr/bin/env python"),
 	}),
-	snippet({ trig = "importf", name = "module: from import" }, {
-		textnode("from "),
-		insertnode(1, "<module>"),
-		textnode(" import "),
-		insertnode(0, "<object>"),
-	}),
-	snippet({ trig = "import", name = "module: import" }, {
-		textnode("import "),
-		insertnode(0, "<object>"),
-	}),
 	snippet(
 		{ trig = "doc", name = "comment: docstring" },
 		fmt(
@@ -55,11 +45,24 @@ ls.add_snippets("python", {
 		)
 	),
 	snippet(
-		{ trig = "testboil", name = "Testing boilerplate" },
+		{ trig = "fann", name = "Future annotations" },
 		fmt(
-		"test_cases = [\n" ..
-		"    {}\n" ..
-		"]\n" ..
+			[[
+			from __future__ import annotations
+			]],
+			{}
+		)
+	),
+	snippet(
+		{ trig = "tbp", name = "Testing boilerplate" },
+		fmt( [[
+"""
+{}
+"""
+]] ..
+"test_cases = [\n" ..
+"\n" ..
+"]\n" ..
 		[[
 
 for test_case in test_cases:
@@ -69,7 +72,7 @@ for test_case in test_cases:
     print(f"Result matches expected: {{result == test_case.output }}")
     print("-------------------------------")
 		]],
-			{ insertnode(1), insertnode(0) }
+			{ insertnode(0), insertnode(1) }
 		)
 	),
 	snippet(
@@ -97,7 +100,7 @@ for test_case in test_cases:
 		)
 	),
 	snippet(
-		{ trig = "func", name = "function definition" },
+		{ trig = "fc", name = "function definition" },
 		fmt("def {}({}) -> {}:\n    pass", { insertnode(1), insertnode(2), insertnode(0)})
 	),
 	snippet({
@@ -108,10 +111,6 @@ for test_case in test_cases:
 		trig = "pdb",
 		name = "debug: pdb breakpoint",
 	}, textnode("import pdb; pdb.set_trace()  # TODO: remove")),
-	snippet(
-		{ trig = "class", name = "type class" },
-		fmt("class {}:\n    {}\n\n{}", { insertnode(1), insertnode(2), insertnode(0) })
-	),
 })
 
 -- colourcolumn for black formatting

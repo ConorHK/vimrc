@@ -36,7 +36,6 @@ function M.setup()
 				"stevearc/conform.nvim",
 				"b0o/schemastore.nvim",
 				"j-hui/fidget.nvim",
-				"ray-x/lsp_signature.nvim",
 			},
 		},
 

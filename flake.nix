@@ -183,7 +183,6 @@
               lazydev-nvim
               vim-illuminate # highlights other occurances of variable under cursor
               fidget-nvim
-              lsp_signature-nvim
             ];
 
             treesitter = with pkgs.vimPlugins; [
