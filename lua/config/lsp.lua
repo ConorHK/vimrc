@@ -147,7 +147,7 @@ function M.setup()
 	-- LSP handlers configuration
 	local config = {
 		float = {
-			focusable = true,
+			focusable = false,
 			style = "minimal",
 			border = "rounded",
 		},
@@ -158,7 +158,7 @@ function M.setup()
 			update_in_insert = false,
 			severity_sort = true,
 			float = {
-				focusable = true,
+				focusable = false,
 				style = "minimal",
 				border = "rounded",
 				source = "always",
@@ -176,7 +176,15 @@ function M.setup()
 
 	-- Signature help configuration
 	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, config.float)
-	vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float({focusable=false})]])
+
+	local function show_diagnostics_float()
+		vim.diagnostic.open_float({ focusable = false })
+	end
+
+	-- Create autocommands for CursorHold and CursorHoldI events
+	vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {
+		callback = show_diagnostics_float,
+	})
 
 	vim.api.nvim_create_autocmd("LspAttach", {
 		callback = function(args)
@@ -223,6 +231,13 @@ function M.setup()
 			end
 		end,
 	})
+
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics, {
+			update_in_insert = false,
+		}
+	)
+
 
 	-- require("lint").linters_by_ft = {
 	-- 	python = {"mypy"},

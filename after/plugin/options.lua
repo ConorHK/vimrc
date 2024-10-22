@@ -56,7 +56,7 @@ cmd("syntax on")
 opt.shadafile = "NONE"
 
 -- updatetime for cursorhold
-opt.updatetime = 200
+opt.updatetime = 500
 
 -- hybrid relative line numbers
 opt.number = true
