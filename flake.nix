@@ -182,7 +182,6 @@
               nvim-lspconfig # provides basic, default Nvim LSP client configurations
               lazydev-nvim
               vim-illuminate # highlights other occurances of variable under cursor
-              fidget-nvim
             ];
 
             treesitter = with pkgs.vimPlugins; [
@@ -225,6 +224,7 @@
                   properties
                   puppet
                   python
+                  regex
                   requirements
                   ruby
                   sql
@@ -314,6 +314,10 @@
               flash-nvim
             ];
 
+            display = with pkgs.vimPlugins; [
+              noice-nvim
+              nui-nvim
+            ];
             python = with pkgs.vimPlugins; [
               vim-python-pep8-indent
             ];
@@ -395,6 +399,7 @@
             # (and other information to pass to lua)
             categories = {
               general = true;
+              display = true;
               python= true;
               lsp = true;
               autocomplete = true;

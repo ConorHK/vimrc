@@ -7,7 +7,6 @@ function M.setup()
 	end
 
 	require("lazydev").setup({})
-	require("fidget").setup({})
 
 	local capabilities = nil
 

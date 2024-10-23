@@ -8,6 +8,7 @@ vim.g.maplocalleader = " "
 local plugin_modules = {
         "snippets",
         "autocomplete",
+        "display",
         "colorscheme",
         "commenting",
         "diagnostics",
