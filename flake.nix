@@ -182,6 +182,7 @@
               nvim-lspconfig # provides basic, default Nvim LSP client configurations
               lazydev-nvim
               vim-illuminate # highlights other occurances of variable under cursor
+              inc-rename-nvim
             ];
 
             treesitter = with pkgs.vimPlugins; [

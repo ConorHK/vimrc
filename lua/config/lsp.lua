@@ -201,6 +201,7 @@ function M.setup()
 			end
 
 			local builtin = require("telescope.builtin")
+			require("inc_rename").setup({})
 
 			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 			vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0 })
@@ -208,6 +209,7 @@ function M.setup()
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
 			vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+			vim.keymap.set("n", "rn", function () return ":IncRename " .. vim.fn.expand("<cword>") end, { expr = true })
 
 			vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = 0 })
 			vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
