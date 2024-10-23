@@ -11,6 +11,7 @@ function M.setup()
 			enable = true,
 			disable = {
 				"nix",
+				"python",
 			},
 		},
 		highlight = {

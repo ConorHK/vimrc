@@ -314,6 +314,10 @@
               flash-nvim
             ];
 
+            python = with pkgs.vimPlugins; [
+              vim-python-pep8-indent
+            ];
+
             general = with pkgs.vimPlugins; [
               plenary-nvim
             ];
@@ -391,6 +395,7 @@
             # (and other information to pass to lua)
             categories = {
               general = true;
+              python= true;
               lsp = true;
               autocomplete = true;
               treesitter = true;
