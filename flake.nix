@@ -144,6 +144,7 @@
               universal-ctags
               ripgrep
               fd
+              sqlite
             ];
             lsp = with pkgs; [
               lua-language-server
@@ -269,6 +270,8 @@
               telescope-fzf-native-nvim
               nvim-web-devicons
               telescope-undo-nvim
+              sqlite-lua
+              smart-open-nvim
             ];
 
             tmux = with pkgs.vimPlugins; [

@@ -10,7 +10,8 @@ function M.setup()
 	local default_opts = { noremap = true, silent = true }
 	local actions = require("telescope.actions")
 
-	map("n", "<leader>t", "<cmd>lua require('telescope.builtin').find_files()<CR>", default_opts)
+	telescope.load_extension("smart_open")
+	map("n", "<leader>t", "<cmd>Telescope smart_open<CR>", default_opts)
 	map("n", "<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<CR>", default_opts)
 	map("n", "<leader>u", "<cmd>Telescope undo<CR>", default_opts)
 
