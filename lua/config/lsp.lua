@@ -64,7 +64,7 @@ function M.setup()
 			-- 	},
 			-- },
 		},
-		ruff_lsp = {
+		ruff = {
 			init_options = {
 				settings = {
 					args = { "--config=" .. ruff_file },
@@ -116,7 +116,7 @@ function M.setup()
 			"stylua",
 			"lua_ls",
 			"pyright",
-			"ruff_lsp",
+			"ruff",
 		}
 		vim.list_extend(ensure_installed, servers_to_install)
 		for i = 1, #ensure_installed do

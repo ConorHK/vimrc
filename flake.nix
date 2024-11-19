@@ -150,7 +150,7 @@
               lua-language-server
               nixd
               pyright
-              ruff-lsp
+              ruff
               bash-language-server
               haskell-language-server
               ghc

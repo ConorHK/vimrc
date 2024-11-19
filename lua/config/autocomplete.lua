@@ -107,7 +107,7 @@ function M.setup()
 	require('lspconfig')['pyright'].setup {
 		capabilities = capabilities
 	}
-	require('lspconfig')['ruff_lsp'].setup {
+	require('lspconfig')['ruff'].setup {
 		capabilities = capabilities
 	}
 end
