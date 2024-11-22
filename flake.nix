@@ -316,6 +316,9 @@
 
             movement = with pkgs.vimPlugins; [
               flash-nvim
+              mini-ai
+              mini-surround
+              mini-operators
             ];
 
             display = with pkgs.vimPlugins; [
