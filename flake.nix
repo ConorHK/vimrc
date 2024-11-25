@@ -36,6 +36,10 @@
       url = "github:bakageddy/alduin.nvim";
       flake = false;
     };
+    plugins-smear-cursor = {
+      url = "github:sphamba/smear-cursor.nvim";
+      flake = false;
+    };
 
     # see :help nixCats.flake.inputs
     # If you want your plugin to be loaded by the standard overlay,
@@ -314,12 +318,17 @@
               ];
             };
 
-            movement = with pkgs.vimPlugins; [
-              flash-nvim
-              mini-ai
-              mini-surround
-              mini-operators
-            ];
+            movement = {
+              gitPlugins = with pkgs.neovimPlugins; [
+                smear-cursor
+              ];
+              standard = with pkgs.vimPlugins; [
+                flash-nvim
+                mini-ai
+                mini-surround
+                mini-operators
+              ];
+            };
 
             display = with pkgs.vimPlugins; [
               noice-nvim

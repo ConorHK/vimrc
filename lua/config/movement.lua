@@ -39,6 +39,11 @@ function M.setup()
 	end
 	operators.setup()
 
+	local present, smear = pcall(require, "smear_cursor")
+	if not present then
+		return
+	end
+	smear.setup()
 end
 
 return M
