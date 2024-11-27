@@ -72,3 +72,8 @@ opt.signcolumn = "number"
 
 -- Disable smartindent
 opt.smartindent = false
+
+-- list chars
+opt.list = true
+opt.listchars = { tab = "»\\" ,extends = "›", precedes = "‹", nbsp = "·", trail = "·", space = "·" }
+opt.showbreak="↪\\"
