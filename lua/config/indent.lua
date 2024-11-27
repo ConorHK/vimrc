@@ -13,7 +13,7 @@ function M.setup()
 	-- every time the colorscheme changes
 	hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 		vim.api.nvim_set_hl(0, "FirstIndent", { bg = "#121212" })
-		vim.api.nvim_set_hl(0, "SecondIndent", { bg = "#181818" })
+		vim.api.nvim_set_hl(0, "SecondIndent", { bg = "#212121" })
 	end)
 	indent.setup({
 		exclude = { filetypes = { "alpha", "telescopeprompt" }},
