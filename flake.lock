@@ -234,11 +234,11 @@
     "plugins-alduin": {
       "flake": false,
       "locked": {
-        "lastModified": 1732749567,
-        "narHash": "sha256-Sk/udl4F1PV8UV1ZoWEFk9GwneGlzPAUsi8DSZJBnlk=",
+        "lastModified": 1732751141,
+        "narHash": "sha256-FOxFQ1B8hHjC9GkaOz3qSYgTONvGlOosyqCEOySwH28=",
         "owner": "conorhk",
         "repo": "alduin.nvim",
-        "rev": "47057c1fa2dec0784b077441bfdb977ffb9181d4",
+        "rev": "0bed876d9edccec41fefa7b36a2f083677a5eb01",
         "type": "github"
       },
       "original": {
@@ -266,11 +266,11 @@
     "plugins-smear-cursor": {
       "flake": false,
       "locked": {
-        "lastModified": 1732700429,
-        "narHash": "sha256-up6b5tfpQhDzDBS88gbTPnpeOyzbf9qqhoXQiy1fins=",
+        "lastModified": 1732750778,
+        "narHash": "sha256-uBAj3WxOGtrrLuKst5AfwarBGPUxklD0sT7lwlbRQI4=",
         "owner": "sphamba",
         "repo": "smear-cursor.nvim",
-        "rev": "0a487dc4924a2acd843eef96994f3285e3d71328",
+        "rev": "5e31ab1c47e464b17e685ec6f6210d78bb73c3e7",
         "type": "github"
       },
       "original": {
