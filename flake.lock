@@ -234,11 +234,11 @@
     "plugins-alduin": {
       "flake": false,
       "locked": {
-        "lastModified": 1732751141,
-        "narHash": "sha256-FOxFQ1B8hHjC9GkaOz3qSYgTONvGlOosyqCEOySwH28=",
+        "lastModified": 1732751661,
+        "narHash": "sha256-pY+n6WGPO/WL8Q8kMb3ulAEIAODbzHE4lXRLH8DPIcw=",
         "owner": "conorhk",
         "repo": "alduin.nvim",
-        "rev": "0bed876d9edccec41fefa7b36a2f083677a5eb01",
+        "rev": "46ee09056a0013c0ecc32a61f9c450c57ad98c29",
         "type": "github"
       },
       "original": {
