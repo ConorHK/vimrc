@@ -16,6 +16,9 @@ function M.setup()
 		},
 		highlight = {
 			enable = true,
+			disable = {
+				"nix",
+			},
 		},
 		textobjects = {
 			select = {
