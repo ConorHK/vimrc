@@ -33,7 +33,7 @@
       flake = false;
     };
     plugins-alduin = {
-      url = "github:bakageddy/alduin.nvim";
+      url = "github:conorhk/alduin.nvim";
       flake = false;
     };
     plugins-smear-cursor = {
