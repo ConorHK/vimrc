@@ -10,8 +10,7 @@ function M.setup()
 	local default_opts = { noremap = true, silent = true }
 	local actions = require("telescope.actions")
 
-	telescope.load_extension("smart_open")
-	map("n", "<leader>t", "<cmd>Telescope smart_open theme=ivy<CR>", default_opts)
+	map("n", "<leader>t", "<cmd>Telescope find_files<CR>", default_opts)
 	map("n", "<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<CR>", default_opts)
 	map("n", "<leader>u", "<cmd>Telescope undo<CR>", default_opts)
 
@@ -86,9 +85,6 @@ function M.setup()
 				override_generic_sorter = true, -- override the generic sorter
 				override_file_sorter = true, -- override the file sorter
 				case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-			},
-			smart_open = {
-				match_algorithm = "fzf",
 			},
 		},
 	})

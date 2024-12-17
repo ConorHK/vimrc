@@ -275,7 +275,6 @@
               nvim-web-devicons
               telescope-undo-nvim
               sqlite-lua
-              smart-open-nvim
             ];
 
             tmux = with pkgs.vimPlugins; [
