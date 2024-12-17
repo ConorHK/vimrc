@@ -399,7 +399,7 @@
       packageDefinitions = {
         # These are the names of your packages
         # you can include as many as you wish.
-        nvim =
+        cnvim =
           { pkgs, ... }:
           {
             # they contain a settings set defined above
