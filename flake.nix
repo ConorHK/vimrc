@@ -28,10 +28,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
     };
 
-    plugins-oil-git-status = {
-      url = "github:refractalize/oil-git-status.nvim";
-      flake = false;
-    };
     plugins-alduin = {
       url = "github:conorhk/alduin.nvim";
       flake = false;
@@ -300,7 +296,6 @@
                 project-nvim # discovers root directory of project and auto cds
               ];
               gitPlugins = with pkgs.neovimPlugins; [
-                oil-git-status
               ];
             };
 
