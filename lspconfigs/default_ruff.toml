@@ -31,64 +31,11 @@ exclude = [
 line-length = 120
 indent-width = 4
 
-# Assume Python 3.8
-target-version = "py38"
 
 [lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
-select = [
-	"ERA001", # commented-out-code
-	"YTT", 
-	"ANN",
-	"S",
-	"F",
-	"W",
-	"E",
-	"C90",
-	"I",
-	"N",
-	"D",
-	"UP",
-	"ASYNC",
-	"TRIO",
-	"BLE",
-	"FBT",
-	"B",
-	"A",
-	"COM",
-	"C4",
-	"DTZ",
-	"EM",
-	"EXE",
-	"FA",
-	"ISC",
-	"ICN",
-	"G",
-	"INP",
-	"PIE",
-	"T20",
-	"PYI",
-	"PT",
-	"Q",
-	"RSE",
-	"SLF",
-	"SLOT",
-	"SIM",
-	"TID",
-	"INT",
-	"ARG",
-	"PTH",
-	"TD",
-	"FIX",
-	"ERA",
-	"PD",
-	"PL",
-	"PERF",
-	"FURB",
-	"LOG",
-	"RUF"
+select = [ "ALL" ]
 
-]
 ignore = [
     "S101",
     "I001",
