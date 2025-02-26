@@ -47,22 +47,9 @@
 
           startupPlugins = {
             autocomplete = {
-              gitPlugins = with pkgs.neovimPlugins;
-                [
-                  # inputs.blink-cmp.packages.${pkgs.system}.default
-                ];
               standard = with pkgs.vimPlugins; [
-                nvim-cmp
-                lspkind-nvim
-                cmp_luasnip
-                cmp-cmdline
-                cmp-buffer
-                cmp-path
-                cmp-nvim-lua
-                cmp-nvim-lsp-document-symbol
-                cmp-zsh
-                cmp-git
-                cmp-nvim-lsp
+                blink-cmp
+                blink-cmp-spell
               ];
             };
 
