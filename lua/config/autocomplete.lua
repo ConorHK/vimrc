@@ -13,14 +13,10 @@ function M.setup()
 	blink.setup({
 		keymap = {
 			preset = "enter",
-			["<Tab>"] = { 'show_and_insert', 'select_next' },
-			['<S-Tab>'] = { 'show_and_insert', 'select_prev' },
 		},
 		cmdline = {
 			keymap = {
 				preset = "enter",
-				["<Tab>"] = { 'show_and_insert', 'select_next' },
-				['<S-Tab>'] = { 'show_and_insert', 'select_prev' },
 			},
 		},
 		snippets = { preset = "luasnip" },
