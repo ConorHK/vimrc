@@ -25,6 +25,10 @@ function M.setup()
 				selection = { 
 					preselect = false 
 				},
+			},
+			ghost_text = {
+				enabled = false,
+				show_without_menu = false,
 			}
 		}
 	})
