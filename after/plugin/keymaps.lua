@@ -5,7 +5,7 @@ local function cnoreabbrev(command)
 	vim.api.nvim_command("cnoreabbrev " .. command)
 end
 
-local present, _ = pcall(require, "Navigator")
+local present, _ = pcall(require, "zellij-nav")
 if not present then
 	-- split sane bindings
 	map("n", "<c-Left>", "<c-w>h", default_opts)
