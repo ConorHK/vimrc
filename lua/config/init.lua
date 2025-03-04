@@ -23,6 +23,7 @@ local plugin_modules = {
         "tmux",
         "treesitter",
         "yank",
+	"zellij",
 }
 
 for _, plugin in ipairs(plugin_modules) do

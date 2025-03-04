@@ -142,6 +142,8 @@
 
             tmux = with pkgs.vimPlugins; [ Navigator-nvim ];
 
+            zellij = with pkgs.vimPlugins; [ zellij-nav-nvim ];
+
             startup = with pkgs.vimPlugins; [ alpha-nvim ];
 
             surround = with pkgs.vimPlugins;
@@ -205,7 +207,7 @@
             git = true;
             commenting = true;
             telescope = true;
-            tmux = true;
+            # tmux = true;
             startup = false;
             surround = true;
             yank = true;
@@ -213,7 +215,7 @@
             diagnostics = true;
             colorscheme = true;
             movement = true;
-            test = true;
+            zellij = true;
           };
         };
       };
