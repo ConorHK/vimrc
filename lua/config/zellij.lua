@@ -1,12 +1,12 @@
 local M = {}
 
 function M.setup()
-	-- local present, zellij = pcall(require, "zellij-nav")
-	-- if not present then
-	-- 	return
-	-- end
+	local present, zellij = pcall(require, "zellij-nav")
+	if not present then
+		return
+	end
 	vim.g.zellij_nav_default_mappings = false
-	require("zellij-nav").setup({})
+	zellij.setup({})
 	vim.keymap.set('n', "<c-h>", '<CMD>ZellijNavigateLeft<CR>')
 	vim.keymap.set('n', "<c-l>", '<CMD>ZellijNavigateRight<CR>')
 	vim.keymap.set('n', "<c-k>", '<CMD>ZellijNavigateUp<CR>')
