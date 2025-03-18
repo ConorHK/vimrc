@@ -42,6 +42,8 @@
               pyright
               ruff
               bash-language-server
+              jdt-language-server
+              jdk21_headless
             ];
           };
 
@@ -58,6 +60,10 @@
               lazydev-nvim
               vim-illuminate # highlights other occurances of variable under cursor
               inc-rename-nvim
+            ];
+
+            java = with pkgs.vimPlugins; [
+              nvim-jdtls
             ];
 
             treesitter = with pkgs.vimPlugins; [
@@ -196,25 +202,26 @@
               inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
           };
           categories = {
-            general = true;
-            display = true;
-            python = true;
-            lsp = true;
             autocomplete = true;
-            treesitter = true;
-            indent = true;
-            snippets = true;
-            git = true;
+            colorscheme = true;
             commenting = true;
-            telescope = true;
-            # tmux = true;
+            diagnostics = true;
+            display = true;
+            filesystem = true;
+            general = true;
+            git = true;
+            indent = true;
+            java = true;
+            lsp = true;
+            movement = true;
+            python = true;
+            snippets = true;
             startup = false;
             surround = true;
+            telescope = true;
+            # tmux = true;
+            treesitter = true;
             yank = true;
-            filesystem = true;
-            diagnostics = true;
-            colorscheme = true;
-            movement = true;
             zellij = true;
           };
         };
