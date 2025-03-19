@@ -52,6 +52,9 @@
               jdt-language-server
               jdk21_headless
             ];
+            typescript = with pkgs; [
+              typescript-language-server
+            ];
           };
 
           startupPlugins = {
@@ -230,6 +233,7 @@
             surround = true;
             telescope = true;
             treesitter = true;
+            typescript = true;
             yank = true;
             zellij = true;
           };

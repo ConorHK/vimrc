@@ -97,6 +97,7 @@ function M.setup()
 			root_dir = find_root_dir,
 		},
 		nixd = true,
+		ts_ls = {},
 	}
 
 	local servers_to_install = vim.tbl_filter(function(key)
