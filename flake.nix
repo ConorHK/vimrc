@@ -7,9 +7,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-    };
+    # neovim-nightly-overlay = {
+    #   url = "github:nix-community/neovim-nightly-overlay";
+    # };
 
     plugins-alduin = {
       url = "github:conorhk/alduin.nvim";
@@ -208,8 +208,7 @@
         cnvim = { pkgs, ... }: {
           settings = {
             wrapRc = true;
-            neovim-unwrapped =
-              inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+            # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
           };
           categories = {
             autocomplete = true;
