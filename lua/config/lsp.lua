@@ -9,6 +9,35 @@ function M.setup()
 	require("lazydev").setup({})
 
 	local capabilities = nil
+	
+	local function contains(table, value)
+	    for _, table_value in ipairs(table) do
+		if table_value == value then
+		    return true
+		end
+	    end
+
+	    return false
+	end
+	local function bemol()
+	    local bemol_dir = vim.fs.find({ ".bemol" }, { upward = true, type = "directory" })[1]
+	    local ws_folders_lsp = {}
+	    if bemol_dir then
+		local file = io.open(bemol_dir .. "/ws_root_folders", "r")
+		if file then
+		    for line in file:lines() do
+			table.insert(ws_folders_lsp, line)
+		    end
+		    file:close()
+		end
+
+		for _, line in ipairs(ws_folders_lsp) do
+		    if not contains(vim.lsp.buf.list_workspace_folders(), line) then
+			vim.lsp.buf.add_workspace_folder(line)
+		    end
+		end
+	    end
+	end
 
 	-- Broken at the moment and I don't work with any packages with ruff.toml defined as of today
 
@@ -97,7 +126,18 @@ function M.setup()
 			root_dir = find_root_dir,
 		},
 		nixd = true,
-		ts_ls = {},
+		ts_ls = {
+			typescript = {
+				inlayHints = {
+					includeInlayParameterNameHints = 'all',
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayVariableTypeHints = true,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayEnumMemberValueHints = true,
+				},
+			},
+		},
 	}
 
 	local servers_to_install = vim.tbl_filter(function(key)
@@ -146,6 +186,14 @@ function M.setup()
 				header = "",
 				prefix = "",
 			},
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = 'E',
+					[vim.diagnostic.severity.WARN] = 'W',
+					[vim.diagnostic.severity.INFO] = 'I',
+					[vim.diagnostic.severity.HINT] = 'H',
+				},
+			},
 		},
 	}
 
@@ -177,10 +225,7 @@ function M.setup()
 				settings = {}
 			end
 
-			local present_amazon, amazon = pcall(require, "amazon")
-			if present_amazon then
-				amazon.bemol()
-			end
+			bemol()
 
 			local builtin = require("telescope.builtin")
 			require("inc_rename").setup({})
