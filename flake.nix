@@ -36,12 +36,20 @@
         { pkgs, settings, categories, name, ... }@packageDef: {
           lspsAndRuntimeDeps = {
             general = with pkgs; [ universal-ctags ripgrep fd sqlite ];
-            lsp = with pkgs; [
+            lua = with pkgs; [
               lua-language-server
+            ];
+            nix = with pkgs; [
               nixd
+            ];
+            python = with pkgs; [
               pyright
               ruff
+            ];
+            bash = with pkgs; [
               bash-language-server
+            ];
+            java = with pkgs; [
               jdt-language-server
               jdk21_headless
             ];
@@ -203,6 +211,7 @@
           };
           categories = {
             autocomplete = true;
+            bash = true;
             colorscheme = true;
             commenting = true;
             diagnostics = true;
@@ -213,13 +222,14 @@
             indent = true;
             java = true;
             lsp = true;
+            lua = true;
             movement = true;
+            nix = true;
             python = true;
             snippets = true;
             startup = false;
             surround = true;
             telescope = true;
-            # tmux = true;
             treesitter = true;
             yank = true;
             zellij = true;
