@@ -65,6 +65,10 @@
               ];
             };
 
+            obsidian = with pkgs.vimPlugins; [
+              obsidian-nvim
+            ];
+
             lsp = with pkgs.vimPlugins; [
               nvim-lspconfig # provides basic, default Nvim LSP client configurations
               lazydev-nvim
@@ -237,6 +241,30 @@
             zellij = true;
           };
         };
+        nobsidian = {  ... }: {
+          settings = {
+            wrapRc = true;
+            # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+          };
+          categories = {
+            autocomplete = true;
+            bash = true;
+            colorscheme = true;
+            commenting = true;
+            display = true;
+            filesystem = true;
+            general = true;
+            indent = true;
+            movement = true;
+            obsidian = true;
+            startup = false;
+            surround = true;
+            telescope = true;
+            treesitter = true;
+            yank = true;
+            zellij = true;
+          };
+        };
       };
       defaultPackageName = "cnvim";
 
@@ -246,6 +274,7 @@
       inherit nixpkgs system dependencyOverlays extra_pkg_config;
     } categoryDefinitions packageDefinitions;
     defaultPackage = nixCatsBuilder defaultPackageName;
+    nobsidianPackage = nixCatsBuilder "nobsidian";
     # this is just for using utils such as pkgs.mkShell
     # The one used to build neovim is resolved inside the builder
     # and is passed to our categoryDefinitions and packageDefinitions
@@ -264,6 +293,13 @@
       default = pkgs.mkShell {
         name = defaultPackageName;
         packages = [ defaultPackage ];
+        inputsFrom = [ ];
+        shellHook = ''
+        '';
+      };
+      nobsidian = pkgs.mkShell {
+        name = "nobsidian";
+        packages = [ nobsidianPackage ];
         inputsFrom = [ ];
         shellHook = ''
         '';
