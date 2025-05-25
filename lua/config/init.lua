@@ -6,19 +6,18 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local plugin_modules = {
+        "snippets",
         "autocomplete",
+        "display",
         "colorscheme",
         "commenting",
         "diagnostics",
-        "display",
         "filesystem",
         "general",
         "git",
         "indent",
         "lsp",
         "movement",
-	"obsidian",
-        "snippets",
         "surround",
         "telescope",
         "tmux",
