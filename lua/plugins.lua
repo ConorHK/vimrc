@@ -58,7 +58,6 @@ function M.setup()
 		-- Snippets
 		{ "L3MON4D3/LuaSnip" },
 
-
 		-- Gutter git signs
 		{
 			"lewis6991/gitsigns.nvim",
@@ -89,10 +88,10 @@ function M.setup()
 		-- Harpoon file pinning
 		{
 			"ThePrimeagen/harpoon",
-			branch="harpoon2",
+			branch = "harpoon2",
 			priority = 2000,
 			dependencies = {
-				"nvim-lua/plenary.nvim" ,
+				"nvim-lua/plenary.nvim",
 				"nvim-telescope/telescope.nvim",
 			},
 		},
@@ -147,7 +146,6 @@ function M.setup()
 			"tpope/vim-fugitive",
 		},
 
-
 		{
 			"refractalize/oil-git-status.nvim",
 
@@ -155,7 +153,6 @@ function M.setup()
 				"stevearc/oil.nvim",
 			},
 		},
-
 
 		-- kanagawa colorscheme
 		{
@@ -167,23 +164,22 @@ function M.setup()
 			"folke/flash.nvim",
 			event = "VeryLazy",
 		},
-
 	}
 
 	-- Init and start lazy
 	lazy_init()
 	local lazy = require("lazy")
-	local opts = {
-		defaults = {
-			lazy = true,
-		},
-		performance = {
-			cache = {
-				enabled = true,
+	local opts =
+		{
+			defaults = {
+				lazy = true,
 			},
-		},
-	},
-        lazy.setup(plugins, opts)
+			performance = {
+				cache = {
+					enabled = true,
+				},
+			},
+		}, lazy.setup(plugins, opts)
 end
 
 return M

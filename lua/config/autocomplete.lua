@@ -22,15 +22,15 @@ function M.setup()
 		snippets = { preset = "luasnip" },
 		completion = {
 			list = {
-				selection = { 
-					preselect = false 
+				selection = {
+					preselect = false,
 				},
 			},
 			ghost_text = {
 				enabled = false,
 				show_without_menu = false,
-			}
-		}
+			},
+		},
 	})
 end
 

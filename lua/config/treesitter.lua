@@ -38,7 +38,7 @@ function M.setup()
 		},
 	}
 
-	if not require('nixCatsUtils').isNixCats then
+	if not require("nixCatsUtils").isNixCats then
 		opts["ensure_installed"] = "all" -- bit overzealous but i dont want to maintain parity between flake list and here
 	end
 

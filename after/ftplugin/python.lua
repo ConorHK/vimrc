@@ -55,15 +55,11 @@ ls.add_snippets("python", {
 	),
 	snippet(
 		{ trig = "tbp", name = "Testing boilerplate" },
-		fmt( [[
+		fmt([[
 """
 {}
 """
-]] ..
-"test_cases = [\n" ..
-"\n" ..
-"]\n" ..
-		[[
+]] .. "test_cases = [\n" .. "\n" .. "]\n" .. [[
 
 for test_case in test_cases:
     result = {}(test_case.input)
@@ -71,9 +67,7 @@ for test_case in test_cases:
     print(f"Expected: {{test_case.output}}")
     print(f"Result matches expected: {{result == test_case.output }}")
     print("-------------------------------")
-		]],
-			{ insertnode(0), insertnode(1) }
-		)
+		]], { insertnode(0), insertnode(1) })
 	),
 	snippet(
 		{ trig = "tcc", name = "Test case boilerplate class" },
@@ -96,12 +90,12 @@ for test_case in test_cases:
 			[[
 				TestCase(input={}, output={}),
 			]],
-			{ insertnode(1), insertnode(0)}
+			{ insertnode(1), insertnode(0) }
 		)
 	),
 	snippet(
 		{ trig = "fc", name = "function definition" },
-		fmt("def {}({}) -> {}:\n    pass", { insertnode(1), insertnode(2), insertnode(0)})
+		fmt("def {}({}) -> {}:\n    pass", { insertnode(1), insertnode(2), insertnode(0) })
 	),
 	snippet({
 		trig = "ipdb",

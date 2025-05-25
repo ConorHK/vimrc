@@ -1,0 +1,13 @@
+excludes = ["flake.lock", ".gitignore", "README.md"]
+
+[formatter.stylua]
+command = "stylua"
+excludes = []
+includes = ["*.lua"]
+options = []
+
+[formatter.nixfmt-rfc-style]
+command = "nixfmt"
+excludes = []
+includes = ["*.nix"]
+options = []

@@ -75,5 +75,5 @@ opt.smartindent = false
 
 -- list chars
 opt.list = true
-opt.listchars = { tab = "» " ,extends = "›", precedes = "‹", nbsp = "·", trail = "·", space = "·", eol = "↲"}
-opt.showbreak="↪"
+opt.listchars = { tab = "» ", extends = "›", precedes = "‹", nbsp = "·", trail = "·", space = "·", eol = "↲" }
+opt.showbreak = "↪"

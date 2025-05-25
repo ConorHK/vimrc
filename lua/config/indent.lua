@@ -8,7 +8,7 @@ function M.setup()
 		"FirstIndent",
 		"SecondIndent",
 	}
-	local hooks = require "ibl.hooks"
+	local hooks = require("ibl.hooks")
 	-- create the highlight groups in the highlight setup hook, so they are reset
 	-- every time the colorscheme changes
 	hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
@@ -16,7 +16,7 @@ function M.setup()
 		vim.api.nvim_set_hl(0, "SecondIndent", { bg = "#212121" })
 	end)
 	indent.setup({
-		exclude = { filetypes = { "alpha", "telescopeprompt" }},
+		exclude = { filetypes = { "alpha", "telescopeprompt" } },
 		indent = { highlight = highlight, char = "" },
 		whitespace = {
 			highlight = highlight,

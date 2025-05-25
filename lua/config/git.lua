@@ -7,12 +7,12 @@ function M.setup()
 
 	gitsigns.setup({
 		signs = {
-			add          = { text = '┃' },
-			change       = { text = '┃' },
-			delete       = { text = '_' },
-			topdelete    = { text = '‾' },
-			changedelete = { text = '~' },
-			untracked    = { text = '┆' },
+			add = { text = "┃" },
+			change = { text = "┃" },
+			delete = { text = "_" },
+			topdelete = { text = "‾" },
+			changedelete = { text = "~" },
+			untracked = { text = "┆" },
 		},
 		signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
 		numhl = true, -- Toggle with `:Gitsigns toggle_numhl`

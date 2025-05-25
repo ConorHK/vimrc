@@ -9,11 +9,11 @@ function M.kanagawa()
 			theme = {
 				all = {
 					ui = {
-						bg_gutter = "none"
-					}
-				}
-			}
-		}
+						bg_gutter = "none",
+					},
+				},
+			},
+		},
 	})
 end
 function M.alduin()
@@ -25,7 +25,7 @@ function M.alduin()
 		colors = {
 			terminal_colors = true,
 			inverse = true,
-		}
+		},
 	})
 end
 function M.setup()

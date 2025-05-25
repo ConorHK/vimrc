@@ -13,20 +13,40 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixCats, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixCats,
+      ...
+    }@inputs:
     let
       inherit (nixCats) utils;
       luaPath = "${./.}";
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
-      extra_pkg_config = { allowUnfree = true; };
+      extra_pkg_config = {
+        allowUnfree = true;
+      };
       dependencyOverlays = [
         (utils.standardPluginOverlay inputs)
       ];
 
       categoryDefinitions =
-        { pkgs, settings, categories, name, ... }@packageDef: {
+        {
+          pkgs,
+          settings,
+          categories,
+          name,
+          ...
+        }@packageDef:
+        {
           lspsAndRuntimeDeps = {
-            general = with pkgs; [ universal-ctags ripgrep fd sqlite ];
+            general = with pkgs; [
+              universal-ctags
+              ripgrep
+              fd
+              sqlite
+            ];
             lua = with pkgs; [
               lua-language-server
             ];
@@ -69,8 +89,8 @@
             ];
 
             treesitter = with pkgs.vimPlugins; [
-              (nvim-treesitter.withPlugins (plugins:
-                with plugins; [
+              (nvim-treesitter.withPlugins (
+                plugins: with plugins; [
                   bash
                   c
                   cmake
@@ -124,19 +144,22 @@
                   yaml
                   yang
                   zathurarc
-                ]))
+                ]
+              ))
               nvim-treesitter-context # shows function context
               nvim-treesitter-textobjects # adds additional textobjects such as function
             ];
 
-            indent = with pkgs.vimPlugins;
-              [
-                indent-blankline-nvim # shows visible indentation
-              ];
+            indent = with pkgs.vimPlugins; [
+              indent-blankline-nvim # shows visible indentation
+            ];
 
             snippets = with pkgs.vimPlugins; [ luasnip ];
 
-            git = with pkgs.vimPlugins; [ gitsigns-nvim fugitive ];
+            git = with pkgs.vimPlugins; [
+              gitsigns-nvim
+              fugitive
+            ];
 
             commenting = with pkgs.vimPlugins; [ comment-nvim ];
 
@@ -154,15 +177,13 @@
 
             startup = with pkgs.vimPlugins; [ alpha-nvim ];
 
-            surround = with pkgs.vimPlugins;
-              [
-                surround-nvim # enables the surround key functionality
-              ];
+            surround = with pkgs.vimPlugins; [
+              surround-nvim # enables the surround key functionality
+            ];
 
-            yank = with pkgs.vimPlugins;
-              [
-                smartyank-nvim # yanks to osc52
-              ];
+            yank = with pkgs.vimPlugins; [
+              smartyank-nvim # yanks to osc52
+            ];
 
             filesystem = {
               nixPlugins = with pkgs.vimPlugins; [
@@ -172,12 +193,13 @@
               ];
             };
 
-            diagnostics = with pkgs.vimPlugins;
-              [
-                trouble-nvim # populate quickfix list
-              ];
+            diagnostics = with pkgs.vimPlugins; [
+              trouble-nvim # populate quickfix list
+            ];
 
-            colorscheme = { gitPlugins = with pkgs.neovimPlugins; [ alduin ]; };
+            colorscheme = {
+              gitPlugins = with pkgs.neovimPlugins; [ alduin ];
+            };
 
             movement = {
               standard = with pkgs.vimPlugins; [
@@ -189,7 +211,10 @@
               ];
             };
 
-            display = with pkgs.vimPlugins; [ noice-nvim nui-nvim ];
+            display = with pkgs.vimPlugins; [
+              noice-nvim
+              nui-nvim
+            ];
             python = with pkgs.vimPlugins; [ vim-python-pep8-indent ];
 
             general = with pkgs.vimPlugins; [ plenary-nvim ];
@@ -197,98 +222,131 @@
         };
 
       packageDefinitions = {
-        cnvim = { pkgs, ... }: {
-          settings = {
-            wrapRc = true;
-            # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+        cnvim =
+          { pkgs, ... }:
+          {
+            settings = {
+              wrapRc = true;
+              # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+            };
+            categories = {
+              autocomplete = true;
+              bash = true;
+              colorscheme = true;
+              commenting = true;
+              diagnostics = true;
+              display = true;
+              filesystem = true;
+              general = true;
+              git = true;
+              indent = true;
+              java = true;
+              lsp = true;
+              lua = true;
+              movement = true;
+              nix = true;
+              python = true;
+              snippets = true;
+              startup = false;
+              surround = true;
+              telescope = true;
+              treesitter = true;
+              typescript = true;
+              yank = true;
+              zellij = true;
+            };
           };
-          categories = {
-            autocomplete = true;
-            bash = true;
-            colorscheme = true;
-            commenting = true;
-            diagnostics = true;
-            display = true;
-            filesystem = true;
-            general = true;
-            git = true;
-            indent = true;
-            java = true;
-            lsp = true;
-            lua = true;
-            movement = true;
-            nix = true;
-            python = true;
-            snippets = true;
-            startup = false;
-            surround = true;
-            telescope = true;
-            treesitter = true;
-            typescript = true;
-            yank = true;
-            zellij = true;
-          };
-        };
       };
       defaultPackageName = "cnvim";
 
     in
-    forEachSystem (system: let
-    nixCatsBuilder = utils.baseBuilder luaPath {
-      inherit nixpkgs system dependencyOverlays extra_pkg_config;
-    } categoryDefinitions packageDefinitions;
-    defaultPackage = nixCatsBuilder defaultPackageName;
-    # this is just for using utils such as pkgs.mkShell
-    # The one used to build neovim is resolved inside the builder
-    # and is passed to our categoryDefinitions and packageDefinitions
-    pkgs = import nixpkgs { inherit system; };
-  in
-  {
-    # these outputs will be wrapped with ${system} by utils.eachSystem
+    forEachSystem (
+      system:
+      let
+        nixCatsBuilder = utils.baseBuilder luaPath {
+          inherit
+            nixpkgs
+            system
+            dependencyOverlays
+            extra_pkg_config
+            ;
+        } categoryDefinitions packageDefinitions;
+        defaultPackage = nixCatsBuilder defaultPackageName;
+        # this is just for using utils such as pkgs.mkShell
+        # The one used to build neovim is resolved inside the builder
+        # and is passed to our categoryDefinitions and packageDefinitions
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        # these outputs will be wrapped with ${system} by utils.eachSystem
 
-    # this will make a package out of each of the packageDefinitions defined above
-    # and set the default package to the one passed in here.
-    packages = utils.mkAllWithDefault defaultPackage;
+        # this will make a package out of each of the packageDefinitions defined above
+        # and set the default package to the one passed in here.
+        packages = utils.mkAllWithDefault defaultPackage;
 
-    # choose your package for devShell
-    # and add whatever else you want in it.
-    devShells = {
-      default = pkgs.mkShell {
-        name = defaultPackageName;
-        packages = [ defaultPackage ];
-        inputsFrom = [ ];
-        shellHook = ''
-        '';
-      };
-    };
+        # choose your package for devShell
+        # and add whatever else you want in it.
+        devShells = {
+          default = pkgs.mkShell {
+            name = defaultPackageName;
+            packages =
+              [ defaultPackage ]
+              ++ (with pkgs; [
+                lua-language-server
+                nixfmt-rfc-style
+                stylua
+              ]);
+          };
+        };
 
-  }) // (let
-    # we also export a nixos module to allow reconfiguration from configuration.nix
-    nixosModule = utils.mkNixosModules {
-      moduleNamespace = [ defaultPackageName ];
-      inherit defaultPackageName dependencyOverlays luaPath
-        categoryDefinitions packageDefinitions extra_pkg_config nixpkgs;
-    };
-    # and the same for home manager
-    homeModule = utils.mkHomeModules {
-      moduleNamespace = [ defaultPackageName ];
-      inherit defaultPackageName dependencyOverlays luaPath
-        categoryDefinitions packageDefinitions extra_pkg_config nixpkgs;
-    };
-  in {
+        formatter = pkgs.treefmt;
 
-    # these outputs will be NOT wrapped with ${system}
+      }
+    )
+    // (
+      let
+        # we also export a nixos module to allow reconfiguration from configuration.nix
+        nixosModule = utils.mkNixosModules {
+          moduleNamespace = [ defaultPackageName ];
+          inherit
+            defaultPackageName
+            dependencyOverlays
+            luaPath
+            categoryDefinitions
+            packageDefinitions
+            extra_pkg_config
+            nixpkgs
+            ;
+        };
+        # and the same for home manager
+        homeModule = utils.mkHomeModules {
+          moduleNamespace = [ defaultPackageName ];
+          inherit
+            defaultPackageName
+            dependencyOverlays
+            luaPath
+            categoryDefinitions
+            packageDefinitions
+            extra_pkg_config
+            nixpkgs
+            ;
+        };
+      in
+      {
 
-    # this will make an overlay out of each of the packageDefinitions defined above
-    # and set the default overlay to the one named here.
-    overlays = utils.makeOverlays luaPath {
-      inherit nixpkgs dependencyOverlays extra_pkg_config;
-    } categoryDefinitions packageDefinitions defaultPackageName;
+        # these outputs will be NOT wrapped with ${system}
 
-    nixosModules.default = nixosModule;
-    homeModules.default = homeModule;
+        # this will make an overlay out of each of the packageDefinitions defined above
+        # and set the default overlay to the one named here.
+        overlays = utils.makeOverlays luaPath {
+          inherit nixpkgs dependencyOverlays extra_pkg_config;
+        } categoryDefinitions packageDefinitions defaultPackageName;
 
-    inherit utils nixosModule homeModule;
-    inherit (utils) templates;
-  });
+        nixosModules.default = nixosModule;
+        homeModules.default = homeModule;
+
+        inherit utils nixosModule homeModule;
+        inherit (utils) templates;
+      }
+    );
 }
