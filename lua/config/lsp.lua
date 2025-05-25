@@ -1,309 +1,243 @@
 local M = {}
 
+-- Helper function to execute Ruff commands using modern Client:exec_cmd
+local function ruff_command(cmd_name)
+    return function()
+        local ruff_clients = vim.lsp.get_clients({ name = "ruff" })
+        if #ruff_clients == 0 then
+            vim.notify("Ruff client not attached", vim.log.levels.WARN)
+            return
+        end
+
+        ruff_clients[1]:exec_cmd("ruff.apply" .. cmd_name, {
+            arguments = { { uri = vim.uri_from_bufnr(0) } },
+            bufnr = vim.api.nvim_get_current_buf(),
+        })
+    end
+end
+
 function M.setup()
-	local present, lspconfig = pcall(require, "lspconfig")
-	if not present then
-		return
-	end
+    if not vim.lsp.config then
+        print("Warning: vim.lsp.config not available. Please update to Neovim 0.11+")
+        return
+    end
 
-	require("lazydev").setup({})
+    require("lazydev").setup({})
 
-	local capabilities = nil
+    local function contains(table, value)
+        for _, table_value in ipairs(table) do
+            if table_value == value then
+                return true
+            end
+        end
+        return false
+    end
 
-	local function contains(table, value)
-		for _, table_value in ipairs(table) do
-			if table_value == value then
-				return true
-			end
-		end
+    local function bemol()
+        local bemol_dir = vim.fs.find({ ".bemol" }, { upward = true, type = "directory" })[1]
+        local ws_folders_lsp = {}
+        if bemol_dir then
+            local file = io.open(bemol_dir .. "/ws_root_folders", "r")
+            if file then
+                for line in file:lines() do
+                    table.insert(ws_folders_lsp, line)
+                end
+                file:close()
+            end
 
-		return false
-	end
-	local function bemol()
-		local bemol_dir = vim.fs.find({ ".bemol" }, { upward = true, type = "directory" })[1]
-		local ws_folders_lsp = {}
-		if bemol_dir then
-			local file = io.open(bemol_dir .. "/ws_root_folders", "r")
-			if file then
-				for line in file:lines() do
-					table.insert(ws_folders_lsp, line)
-				end
-				file:close()
-			end
+            for _, line in ipairs(ws_folders_lsp) do
+                if not contains(vim.lsp.buf.list_workspace_folders(), line) then
+                    vim.lsp.buf.add_workspace_folder(line)
+                end
+            end
+        end
+    end
 
-			for _, line in ipairs(ws_folders_lsp) do
-				if not contains(vim.lsp.buf.list_workspace_folders(), line) then
-					vim.lsp.buf.add_workspace_folder(line)
-				end
-			end
-		end
-	end
+    -- Ruff configuration path
+    local ruff_file
+    if not require("nixCatsUtils").isNixCats then
+        ruff_file = "./lspconfigs/default_ruff.toml"
+    else
+        ruff_file = require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
+    end
 
-	-- Broken at the moment and I don't work with any packages with ruff.toml defined as of today
+    -- Get capabilities from completion engines
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    if pcall(require, "cmp_nvim_lsp") then
+        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    end
+    if pcall(require, "blink.cmp") then
+        capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+    end
 
-	-- local function find_root_dir()
-	-- 	local root_files = { ".git" }
-	-- 	local paths = vim.fs.find(root_files, { stop = vim.env.HOME })
-	-- 	return vim.fs.dirname(paths[1])
-	-- end
-	-- local function file_exists(filepath)
-	-- 	local stat = vim.loop.fs_stat(filepath)
-	-- 	return stat and stat.type == "file"
-	-- end
-	--
-	-- local ruff_file = find_root_dir() .. "/ruff.toml"
-	-- if not file_exists(ruff_file) then
-	-- 	if not require("nixCatsUtils").isNixCats then
-	-- 		ruff_file = "./lspconfigs/default_ruff.toml"
-	-- 	else
-	-- 		ruff_file =  require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
-	-- 	end
-	-- end
-	if not require("nixCatsUtils").isNixCats then
-		ruff_file = "./lspconfigs/default_ruff.toml"
-	else
-		ruff_file = require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
-	end
+    -- Global LSP configuration (applies to all servers unless overridden)
+    vim.lsp.config("*", {
+        capabilities = capabilities,
+        root_markers = { ".git" },
+    })
 
-	local capabilities = nil
-	if pcall(require, "cmp_nvim_lsp") then
-		capabilities = require("cmp_nvim_lsp").default_capabilities()
-	end
+    -- Server-specific configurations
+    local servers = {
+        bashls = {},
 
-	local servers = {
-		bashls = true,
-		lua_ls = {
-			server_capabilities = {
-				semanticTokensProvider = vim.NIL,
-			},
-		},
-		pyright = {
-			settings = {
-				pyright = {
-					disableOrganizeImports = true,
-				},
-				python = {
-					analysis = {
-						ignore = { "*" },
-						typeCheckingMode = "off",
-						autoSearchPaths = true,
-						useLibraryCodeForTypes = true,
-					},
-					disableLanguageServices = false,
-				},
-			},
-		},
-		ruff = {
-			init_options = {
-				settings = {
-					configuration = ruff_file,
-				},
-			},
-			commands = {
-				RuffAutofix = {
-					function()
-						vim.lsp.buf.execute_command({
-							command = "ruff.applyAutofix",
-							arguments = {
-								{ uri = vim.uri_from_bufnr(0) },
-							},
-						})
-					end,
-					description = "Ruff: Fix all auto-fixable problems",
-				},
-				RuffOrganizeImports = {
-					function()
-						vim.lsp.buf.execute_command({
-							command = "ruff.applyOrganizeImports",
-							arguments = {
-								{ uri = vim.uri_from_bufnr(0) },
-							},
-						})
-					end,
-					description = "Ruff: Format imports",
-				},
-			},
-			root_dir = find_root_dir,
-		},
-		nixd = true,
-		ts_ls = {
-			typescript = {
-				inlayHints = {
-					includeInlayParameterNameHints = "all",
-					includeInlayFunctionParameterTypeHints = true,
-					includeInlayVariableTypeHints = true,
-					includeInlayPropertyDeclarationTypeHints = true,
-					includeInlayFunctionLikeReturnTypeHints = true,
-					includeInlayEnumMemberValueHints = true,
-				},
-			},
-		},
-	}
+        lua_ls = {
+            server_capabilities = {
+                semanticTokensProvider = vim.NIL,
+            },
+        },
 
-	local servers_to_install = vim.tbl_filter(function(key)
-		local t = servers[key]
-		if type(t) == "table" then
-			return not t.manual_install
-		else
-			return t
-		end
-	end, vim.tbl_keys(servers))
+        pyright = {
+            settings = {
+                pyright = {
+                    disableOrganizeImports = true,
+                },
+                python = {
+                    analysis = {
+                        ignore = { "*" },
+                        typeCheckingMode = "off",
+                        autoSearchPaths = true,
+                        useLibraryCodeForTypes = true,
+                    },
+                    disableLanguageServices = false,
+                },
+            },
+        },
 
-	for name, config in pairs(servers) do
-		if config == true then
-			config = {}
-		end
-		config = vim.tbl_deep_extend("force", {}, {
-			capabilities = capabilities,
-		}, config)
-		config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+        ruff = {
+            init_options = {
+                settings = {
+                    configuration = ruff_file,
+                },
+            },
+            commands = {
+                RuffAutofix = {
+                    ruff_command("Autofix"),
+                    description = "Ruff: Fix all auto-fixable problems",
+                },
+                RuffOrganizeImports = {
+                    ruff_command("OrganizeImports"),
+                    description = "Ruff: Format imports",
+                },
+            },
+            root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
+        },
 
-		lspconfig[name].setup(config)
-	end
+        nixd = {},
 
-	local disable_semantic_tokens = {
-		lua = true,
-	}
+        ts_ls = {
+            settings = {
+                typescript = {
+                    inlayHints = {
+                        includeInlayParameterNameHints = "all",
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = true,
+                    },
+                },
+            },
+        },
+    }
 
-	-- LSP handlers configuration
-	local config = {
-		float = {
-			focusable = false,
-			style = "minimal",
-			border = "rounded",
-		},
+    -- Configure and enable each server
+    for name, config in pairs(servers) do
+        vim.lsp.config(name, config)
+        vim.lsp.enable(name)
+    end
 
-		diagnostic = {
-			virtual_text = false,
-			underline = false,
-			update_in_insert = false,
-			severity_sort = true,
-			float = {
-				focusable = false,
-				style = "minimal",
-				border = "rounded",
-				source = "always",
-				header = "",
-				prefix = "",
-			},
-			signs = {
-				text = {
-					[vim.diagnostic.severity.ERROR] = "E",
-					[vim.diagnostic.severity.WARN] = "W",
-					[vim.diagnostic.severity.INFO] = "I",
-					[vim.diagnostic.severity.HINT] = "H",
-				},
-			},
-		},
-	}
+    local disable_semantic_tokens = {
+        lua = true,
+    }
 
-	-- Diagnostic configuration
-	vim.diagnostic.config(config.diagnostic)
+    -- Diagnostic configuration
+    vim.diagnostic.config({
+        virtual_text = false,
+        underline = false,
+        update_in_insert = false,
+        severity_sort = true,
+        float = {
+            focusable = false,
+            style = "minimal",
+            border = "rounded",
+            source = true,
+            header = "",
+            prefix = "",
+        },
+        signs = {
+            text = {
+                [vim.diagnostic.severity.ERROR] = "E",
+                [vim.diagnostic.severity.WARN] = "W",
+                [vim.diagnostic.severity.INFO] = "I",
+                [vim.diagnostic.severity.HINT] = "H",
+            },
+        },
+    })
 
-	-- Hover configuration
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, config.float)
+    -- Configure LSP float windows globally
+    local function show_diagnostics_float()
+        vim.diagnostic.open_float({ focusable = false })
+    end
 
-	-- Signature help configuration
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, config.float)
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        callback = show_diagnostics_float,
+    })
 
-	local function show_diagnostics_float()
-		vim.diagnostic.open_float({ focusable = false })
-	end
+    -- LspAttach autocmd for keymaps and custom behavior
+    vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+            local bufnr = args.buf
+            local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
 
-	-- Create autocommands for CursorHold and CursorHoldI events
-	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-		callback = show_diagnostics_float,
-	})
+            local settings = servers[client.name] or {}
 
-	vim.api.nvim_create_autocmd("LspAttach", {
-		callback = function(args)
-			local bufnr = args.buf
-			local client = assert(vim.lsp.get_client_by_id(args.data.client_id), "must have valid client")
+            bemol()
 
-			local settings = servers[client.name]
-			if type(settings) ~= "table" then
-				settings = {}
-			end
+            local builtin = require("telescope.builtin")
+            require("inc_rename").setup({})
 
-			bemol()
+            -- Set up keymaps with buffer-local scope
+            local opts = { buffer = bufnr }
+            vim.keymap.set("n", "gd", builtin.lsp_definitions, opts)
+            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+            vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+            vim.keymap.set("n", "rn", function()
+                return ":IncRename " .. vim.fn.expand("<cword>")
+            end, { expr = true, buffer = bufnr })
 
-			local builtin = require("telescope.builtin")
-			require("inc_rename").setup({})
+            vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, opts)
+            vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
 
-			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
-			vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0 })
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
-			vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-			vim.keymap.set("n", "rn", function()
-				return ":IncRename " .. vim.fn.expand("<cword>")
-			end, { expr = true })
+            -- Disable semantic tokens for specific filetypes
+            local filetype = vim.bo[bufnr].filetype
+            if disable_semantic_tokens[filetype] then
+                client.server_capabilities.semanticTokensProvider = nil
+            end
 
-			vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = 0 })
-			vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
+            -- Override server capabilities
+            if settings.server_capabilities then
+                for k, v in pairs(settings.server_capabilities) do
+                    if v == vim.NIL then
+                        v = nil
+                    end
+                    client.server_capabilities[k] = v
+                end
+            end
+        end,
+    })
 
-			local filetype = vim.bo[bufnr].filetype
-			if disable_semantic_tokens[filetype] then
-				client.server_capabilities.semanticTokensProvider = nil
-			end
-
-			-- Override server capabilities
-			if settings.server_capabilities then
-				for k, v in pairs(settings.server_capabilities) do
-					if v == vim.NIL then
-						---@diagnostic disable-next-line: cast-local-type
-						v = nil
-					end
-
-					client.server_capabilities[k] = v
-				end
-			end
-		end,
-	})
-	vim.api.nvim_create_autocmd("LspAttach", {
-		group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
-		callback = function(args)
-			local client = vim.lsp.get_client_by_id(args.data.client_id)
-			if client == nil then
-				return
-			end
-			if client.name == "ruff" then
-				-- Disable hover in favor of Pyright
-				client.server_capabilities.hoverProvider = false
-			end
-		end,
-		desc = "LSP: Disable hover capability from Ruff",
-	})
-
-	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		update_in_insert = false,
-	})
-
-	-- require("lint").linters_by_ft = {
-	-- 	python = {"mypy"},
-	-- }
-	-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-	-- 	callback = function()
-	-- 		require("lint").try_lint()
-	-- 	end,
-	-- })
-
-	-- Autoformatting Setup
-	-- require("conform").setup {
-	-- 	formatters_by_ft = {
-	-- 		lua = { "stylua" },
-	-- 	},
-	-- }
-	--
-	-- vim.api.nvim_create_autocmd("BufWritePre", {
-	-- 	callback = function(args)
-	-- 		require("conform").format {
-	-- 			bufnr = args.buf,
-	-- 			lsp_fallback = true,
-	-- 			quiet = true,
-	-- 		}
-	-- 	end,
-	-- })
+    -- Disable Ruff hover in favor of Pyright
+    vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+        callback = function(args)
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            if client and client.name == "ruff" then
+                client.server_capabilities.hoverProvider = false
+            end
+        end,
+        desc = "LSP: Disable hover capability from Ruff",
+    })
 end
 
 return M
