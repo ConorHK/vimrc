@@ -7,16 +7,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
-    # neovim-nightly-overlay = {
-    #   url = "github:nix-community/neovim-nightly-overlay";
-    # };
-
     plugins-alduin = {
       url = "github:conorhk/alduin.nvim";
-      flake = false;
-    };
-    plugins-smear-cursor = {
-      url = "github:sphamba/smear-cursor.nvim";
       flake = false;
     };
   };
@@ -192,8 +184,8 @@
             colorscheme = { gitPlugins = with pkgs.neovimPlugins; [ alduin ]; };
 
             movement = {
-              gitPlugins = with pkgs.neovimPlugins; [ smear-cursor ];
               standard = with pkgs.vimPlugins; [
+                smear-cursor-nvim
                 flash-nvim
                 mini-ai
                 mini-surround
