@@ -22,7 +22,10 @@
     }@inputs:
     let
       inherit (nixCats) utils;
-      luaPath = "${./.}";
+      luaPath = builtins.path {
+        path = ./.;
+        name = "luaPath";
+      };
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
       extra_pkg_config = {
         allowUnfree = true;
@@ -344,9 +347,6 @@
 
         nixosModules.default = nixosModule;
         homeModules.default = homeModule;
-
-        inherit utils nixosModule homeModule;
-        inherit (utils) templates;
       }
     );
 }
