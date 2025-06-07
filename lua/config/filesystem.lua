@@ -7,7 +7,6 @@ function M.harpoon()
 	end
 
 	harpoon.setup()
-	local telescope_config = require("telescope.config").values
 	local map = vim.keymap.set
 	map("n", "<leader>a", function()
 		harpoon:list():add()

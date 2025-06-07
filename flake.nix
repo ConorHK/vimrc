@@ -180,6 +180,8 @@
 
             startup = with pkgs.vimPlugins; [ alpha-nvim ];
 
+            snacks = with pkgs.vimPlugins; [ snacks-nvim ];
+
             surround = with pkgs.vimPlugins; [
               surround-nvim # enables the surround key functionality
             ];
@@ -249,10 +251,11 @@
               movement = true;
               nix = true;
               python = true;
+              snacks = true;
               snippets = true;
               startup = false;
               surround = true;
-              telescope = true;
+              telescope = false;
               treesitter = true;
               typescript = true;
               yank = true;

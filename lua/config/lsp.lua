@@ -193,13 +193,13 @@ function M.setup()
 
 			bemol()
 
-			local builtin = require("telescope.builtin")
+			-- local builtin = require("telescope.builtin")
 			require("inc_rename").setup({})
 
 			-- Set up keymaps with buffer-local scope
 			local opts = { buffer = bufnr }
-			vim.keymap.set("n", "gd", builtin.lsp_definitions, opts)
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+			-- vim.keymap.set("n", "gd", builtin.lsp_definitions, opts)
+			vim.keymap.set("n", "gd", vim.lsp.buf.declaration, opts)
 			vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 			vim.keymap.set("n", "rn", function()
