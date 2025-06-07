@@ -17,6 +17,7 @@ local plugin_modules = {
 	"indent",
 	"lsp",
 	"movement",
+	"replace",
 	"snacks",
 	"snippets",
 	"surround",

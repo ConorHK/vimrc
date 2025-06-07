@@ -186,6 +186,10 @@
               surround-nvim # enables the surround key functionality
             ];
 
+            replace = with pkgs.vimPlugins; [
+              grug-far-nvim
+            ];
+
             yank = with pkgs.vimPlugins; [
               smartyank-nvim # yanks to osc52
             ];
@@ -228,7 +232,7 @@
 
       packageDefinitions = {
         cnvim =
-          { pkgs, ... }:
+          { ... }:
           {
             settings = {
               wrapRc = true;
@@ -251,11 +255,10 @@
               movement = true;
               nix = true;
               python = true;
+              replace = true;
               snacks = true;
               snippets = true;
-              startup = false;
               surround = true;
-              telescope = false;
               treesitter = true;
               typescript = true;
               yank = true;

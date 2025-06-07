@@ -11,8 +11,7 @@ function M.setup()
 			layout = {
 				preset = "ivy",
 			},
-		}
-
+		},
 	})
 	map("n", "<leader>t", function()
 		Snacks.picker.files()
