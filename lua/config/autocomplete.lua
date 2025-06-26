@@ -10,7 +10,8 @@ function M.setup()
 	if not present then
 		return
 	end
-	blink.setup({
+	local luasnip_present = pcall(require, "luasnip")
+	local config = {
 		keymap = {
 			preset = "enter",
 		},
@@ -19,7 +20,6 @@ function M.setup()
 				preset = "enter",
 			},
 		},
-		snippets = { preset = "luasnip" },
 		completion = {
 			list = {
 				selection = {
@@ -31,7 +31,12 @@ function M.setup()
 				show_without_menu = false,
 			},
 		},
-	})
+	}
+
+	if luasnip_present then
+		config.snippets = { preset = "luasnip" }
+	end
+	blink.setup(config)
 end
 
 return M
