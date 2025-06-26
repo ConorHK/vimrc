@@ -1,5 +1,8 @@
 local opt = vim.opt
-local ls = require("luasnip")
+local present, ls = pcall(require, "luasnip")
+if not present then
+	return
+end
 local fmt = require("luasnip.extras.fmt").fmt
 local textnode = ls.text_node
 local insertnode = ls.insert_node
