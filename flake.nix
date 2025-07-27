@@ -221,7 +221,7 @@
             };
 
             display = with pkgs.vimPlugins; [
-              noice-nvim
+              # noice-nvim
               nui-nvim
             ];
             python = with pkgs.vimPlugins; [ vim-python-pep8-indent ];
