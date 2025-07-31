@@ -213,7 +213,6 @@
             movement = {
               standard = with pkgs.vimPlugins; [
                 smear-cursor-nvim
-                flash-nvim
                 mini-ai
                 mini-surround
                 mini-operators
@@ -221,7 +220,6 @@
             };
 
             display = with pkgs.vimPlugins; [
-              # noice-nvim
               nui-nvim
             ];
             python = with pkgs.vimPlugins; [ vim-python-pep8-indent ];
@@ -285,13 +283,14 @@
         devShells = {
           default = pkgs.mkShell {
             name = defaultPackageName;
-            packages =
-              [ defaultPackage ]
-              ++ (with pkgs; [
-                lua-language-server
-                nixfmt-rfc-style
-                stylua
-              ]);
+            packages = [
+              defaultPackage
+            ]
+            ++ (with pkgs; [
+              lua-language-server
+              nixfmt-rfc-style
+              stylua
+            ]);
           };
         };
 
