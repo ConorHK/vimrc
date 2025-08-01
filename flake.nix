@@ -6,6 +6,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    neovim-nightly-overlay.url ="github:nix-community/neovim-nightly-overlay";
 
     plugins-alduin = {
       url = "github:conorhk/alduin.nvim";
@@ -213,9 +214,6 @@
             movement = {
               standard = with pkgs.vimPlugins; [
                 smear-cursor-nvim
-                mini-ai
-                mini-surround
-                mini-operators
               ];
             };
 
@@ -230,11 +228,11 @@
 
       packageDefinitions = {
         cnvim =
-          { ... }:
+          { pkgs, ... }:
           {
             settings = {
               wrapRc = true;
-              # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+                neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             categories = {
               autocomplete = true;
