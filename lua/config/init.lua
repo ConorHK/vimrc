@@ -29,16 +29,10 @@ local plugin_modules = {
 }
 
 for _, plugin in ipairs(plugin_modules) do
-	if nixCats(plugin) then
-		local import = string.format("config.%s", plugin)
-		-- vim.notify("Loading: " .. import, vim.log.levels.DEBUG)
-		local success, module = pcall(require, import)
-		if success then
-			module.setup()
-			-- vim.notify("Successfully loaded: " .. plugin, vim.log.levels.DEBUG)
-		else
-			-- vim.notify("Failed to load: " .. plugin .. ";Error:" .. module, vim.log.levels.ERROR)
-		end
+	local import = string.format("config.%s", plugin)
+	local success, module = pcall(require, import)
+	if success then
+		module.setup()
 	end
 end
 

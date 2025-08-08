@@ -22,8 +22,6 @@ function M.setup()
 		return
 	end
 
-	require("lazydev").setup({})
-
 	local function contains(table, value)
 		for _, table_value in ipairs(table) do
 			if table_value == value then
@@ -53,13 +51,8 @@ function M.setup()
 		end
 	end
 
-	-- Ruff configuration path
-	local ruff_file
-	if not require("nixCatsUtils").isNixCats then
-		ruff_file = "./lspconfigs/default_ruff.toml"
-	else
-		ruff_file = require("nixCats").configDir .. "/lspconfigs/default_ruff.toml"
-	end
+	-- Ruff configuration path  
+	local ruff_file = vim.fn.stdpath("config") .. "/lspconfigs/default_ruff.toml"
 
 	-- Get capabilities from completion engines
 	local capabilities = vim.lsp.protocol.make_client_capabilities()

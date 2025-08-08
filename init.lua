@@ -1,4 +1,3 @@
-require("nixCatsUtils").setup({
-	non_nix_value = true,
-})
 require("config")
+
+vim.cmd("runtime after/plugin/options.lua")
