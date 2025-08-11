@@ -61,6 +61,7 @@ let
     smear-cursor-nvim
     nui-nvim
     vim-python-pep8-indent
+    zellij-nav-nvim
   ]
   ++ lib.optionals (neovimPlugins ? alduin) [
     neovimPlugins.alduin
