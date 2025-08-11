@@ -6,9 +6,37 @@
   vimPlugins,
   neovimPlugins ? { },
   lib,
+
+  lua-language-server,
+  nixd,
+  pyright,
+  ruff,
+  bash-language-server,
+  jdt-language-server,
+  jdk21_headless,
+  typescript-language-server,
+
+  universal-ctags,
+  ripgrep,
+  fd,
+  sqlite,
 }:
 let
   packageName = "cnvim";
+
+  runtimeDeps = [
+    lua-language-server
+    nixd
+    pyright
+    ruff
+    bash-language-server
+    jdt-language-server
+    typescript-language-server
+    universal-ctags
+    ripgrep
+    fd
+    sqlite
+  ];
 
   startPlugins = with vimPlugins; [
     blink-cmp
@@ -71,7 +99,8 @@ symlinkJoin {
       --add-flags '${./init.lua}' \
       --add-flags '--cmd' \
       --add-flags "'set packpath^=${packpath} | set runtimepath^=${packpath} | set runtimepath+=${./.}}'" \
-      --set-default NVIM_APPNAME nvim-custom
+      --set-default NVIM_APPNAME nvim-custom \
+      --prefix PATH : ${lib.makeBinPath runtimeDeps}
   '';
 
   passthru = {
