@@ -90,7 +90,7 @@ let
   '';
 in
 symlinkJoin {
-  name = "neovim-custom";
+  name = packageName;
   paths = [ neovim-unwrapped ];
   nativeBuildInputs = [ makeWrapper ];
   postBuild = ''
