@@ -1,3 +1,5 @@
+local M = {}
+function M.setup()
 local api = vim.api
 
 local modes = {
@@ -89,3 +91,6 @@ vim.cmd(
 ]],
 	false
 )
+end
+return M
+

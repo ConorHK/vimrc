@@ -1,4 +1,7 @@
+local M = {}
+function M.setup()
 local map = vim.keymap.set
+
 local default_opts = { noremap = true, silent = true }
 
 local function cnoreabbrev(command)
@@ -42,3 +45,6 @@ cnoreabbrev("Wa wa")
 cnoreabbrev("wQ wq")
 cnoreabbrev("W w")
 cnoreabbrev("W! w!")
+
+end
+return M

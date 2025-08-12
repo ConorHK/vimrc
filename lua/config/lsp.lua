@@ -73,6 +73,11 @@ function M.setup()
 	local servers = {
 		bashls = {},
 
+		jdtls = {
+			root_markers = { ".bemol" },
+			on_attach = bemol,
+		},
+
 		lua_ls = {
 			server_capabilities = {
 				semanticTokensProvider = vim.NIL,
@@ -168,12 +173,30 @@ function M.setup()
 	})
 
 	-- Configure LSP float windows globally
+	local diagnostic_float_id = nil
+	
 	local function show_diagnostics_float()
-		vim.diagnostic.open_float({ focusable = false })
+		local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+		local diagnostics = vim.diagnostic.get(0, { lnum = line })
+		
+		if #diagnostics > 0 then
+			diagnostic_float_id = vim.diagnostic.open_float({ focusable = false })
+		end
+	end
+	
+	local function close_diagnostic_float()
+		if diagnostic_float_id then
+			pcall(vim.api.nvim_win_close, diagnostic_float_id, true)
+			diagnostic_float_id = nil
+		end
 	end
 
 	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 		callback = show_diagnostics_float,
+	})
+	
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+		callback = close_diagnostic_float,
 	})
 
 	-- LspAttach autocmd for keymaps and custom behavior

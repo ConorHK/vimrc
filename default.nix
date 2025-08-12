@@ -88,6 +88,7 @@ let
     cp -r ${./lua} $out/lua
     cp -r ${./after} $out/after
     cp -r ${./lspconfigs} $out/lspconfigs
+    cp ${./init.lua} $out/init.lua
   '';
 in
 symlinkJoin {
@@ -97,9 +98,9 @@ symlinkJoin {
   postBuild = ''
     wrapProgram $out/bin/nvim \
       --add-flags '-u' \
-      --add-flags '${./init.lua}' \
+      --add-flags '${packpath}/init.lua' \
       --add-flags '--cmd' \
-      --add-flags "'set packpath^=${packpath} | set runtimepath^=${packpath} | set runtimepath+=${./.}}'" \
+      --add-flags "'set packpath^=${packpath} | set runtimepath^=${packpath}'" \
       --set-default NVIM_APPNAME nvim-custom \
       --prefix PATH : ${lib.makeBinPath runtimeDeps}
   '';

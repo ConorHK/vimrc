@@ -6,12 +6,17 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local plugin_modules = {
+	"options",
+	"keymaps",
+	"statusline",
+
 	"autocomplete",
 	"colorscheme",
 	"commenting",
 	"diagnostics",
 	"display",
 	"filesystem",
+	"ftplugin",
 	"general",
 	"git",
 	"indent",

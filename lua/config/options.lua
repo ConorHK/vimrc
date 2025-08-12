@@ -1,8 +1,10 @@
+local M = {}
+function M.setup()
+
 local opt = vim.opt
 local cmd = vim.cmd
 
 -- splits open at bottom and right
---
 opt.splitbelow = true
 opt.splitright = true
 
@@ -77,3 +79,6 @@ opt.smartindent = false
 opt.list = true
 opt.listchars = { tab = "» ", extends = "›", precedes = "‹", nbsp = "·", trail = "·", space = "·", eol = "↲" }
 opt.showbreak = "↪"
+end
+return M
+
