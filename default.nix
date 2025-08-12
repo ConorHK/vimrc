@@ -54,14 +54,11 @@ let
       nvim-web-devicons
       snacks-nvim
       surround-nvim
-      grug-far-nvim
       smartyank-nvim
       oil-nvim
-      harpoon2
       project-nvim
       trouble-nvim
       smear-cursor-nvim
-      nui-nvim
       vim-python-pep8-indent
       zellij-nav-nvim
     ]
