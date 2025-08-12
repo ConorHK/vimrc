@@ -38,34 +38,36 @@ let
     sqlite
   ];
 
-  startPlugins = with vimPlugins; [
-    blink-cmp
-    nvim-lspconfig
-    vim-illuminate
-    inc-rename-nvim
-    nvim-treesitter.withAllGrammars
-    indent-blankline-nvim
-    luasnip
-    gitsigns-nvim
-    fugitive
-    comment-nvim
-    nvim-web-devicons
-    snacks-nvim
-    surround-nvim
-    grug-far-nvim
-    smartyank-nvim
-    oil-nvim
-    harpoon2
-    project-nvim
-    trouble-nvim
-    smear-cursor-nvim
-    nui-nvim
-    vim-python-pep8-indent
-    zellij-nav-nvim
-  ]
-  ++ lib.optionals (neovimPlugins ? alduin) [
-    neovimPlugins.alduin
-  ];
+  startPlugins =
+    with vimPlugins;
+    [
+      blink-cmp
+      nvim-lspconfig
+      vim-illuminate
+      inc-rename-nvim
+      nvim-treesitter.withAllGrammars
+      indent-blankline-nvim
+      luasnip
+      gitsigns-nvim
+      fugitive
+      comment-nvim
+      nvim-web-devicons
+      snacks-nvim
+      surround-nvim
+      grug-far-nvim
+      smartyank-nvim
+      oil-nvim
+      harpoon2
+      project-nvim
+      trouble-nvim
+      smear-cursor-nvim
+      nui-nvim
+      vim-python-pep8-indent
+      zellij-nav-nvim
+    ]
+    ++ lib.optionals (neovimPlugins ? alduin) [
+      neovimPlugins.alduin
+    ];
 
   foldPlugins = builtins.foldl' (
     acc: next:
@@ -86,7 +88,7 @@ let
     ) startPluginsWithDeps}
 
     cp -r ${./lua} $out/lua
-    cp -r ${./after} $out/after
+    cp -r ${./snippets} $out/snippets
     cp -r ${./lspconfigs} $out/lspconfigs
     cp ${./init.lua} $out/init.lua
   '';

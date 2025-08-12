@@ -5,7 +5,6 @@ function M.setup()
 	if not present then
 		return
 	end
-	local luasnip_present = pcall(require, "luasnip")
 	local config = {
 		keymap = {
 			preset = "enter",
@@ -28,9 +27,6 @@ function M.setup()
 		},
 	}
 
-	if luasnip_present then
-		config.snippets = { preset = "luasnip" }
-	end
 	blink.setup(config)
 end
 
