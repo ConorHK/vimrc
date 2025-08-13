@@ -16,20 +16,18 @@ function M.setup()
 		},
 	})
 
-	local snippets_path = vim.fn.stdpath("config") .. "/snippets/"
-	print("Loading snippets from:", snippets_path)
-	print("Path exists:", vim.fn.isdirectory(snippets_path))
-
-	require("luasnip.loaders.from_lua").load({ paths = snippets_path })
-
-	-- Debug: print loaded snippets
-	vim.defer_fn(function()
-		local snippets = ls.get_snippets("python")
-		print("Loaded python snippets:", #snippets)
-		for _, snip in ipairs(snippets) do
-			print("  - " .. snip.trigger)
+	-- Find snippets in the runtime path (works with both Nix package and local dev)
+	local snippets_paths = {}
+	for _, path in ipairs(vim.api.nvim_list_runtime_paths()) do
+		local snippets_dir = path .. "/snippets"
+		if vim.fn.isdirectory(snippets_dir) == 1 then
+			table.insert(snippets_paths, snippets_dir)
 		end
-	end, 100)
+	end
+
+	if #snippets_paths > 0 then
+		require("luasnip.loaders.from_lua").load({ paths = snippets_paths })
+	end
 
 	vim.keymap.set("i", "<C-e>", function()
 		if ls.expand_or_jumpable() then
