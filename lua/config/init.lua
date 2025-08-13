@@ -19,7 +19,6 @@ local plugin_modules = {
 	"git",
 	"indent",
 	"lsp",
-	"movement",
 	"snacks",
 	"snippets",
 	"treesitter",
