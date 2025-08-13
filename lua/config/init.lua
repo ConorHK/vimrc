@@ -12,7 +12,6 @@ local plugin_modules = {
 
 	"autocomplete",
 	"colorscheme",
-	"commenting",
 	"diagnostics",
 	"display",
 	"filesystem",
@@ -23,7 +22,6 @@ local plugin_modules = {
 	"movement",
 	"snacks",
 	"snippets",
-	"surround",
 	"treesitter",
 	"yank",
 	"zellij",

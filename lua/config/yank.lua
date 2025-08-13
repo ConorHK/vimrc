@@ -1,9 +1,7 @@
 local M = {}
 function M.setup()
-	local present, smartyank = pcall(require, "smartyank")
-	if not present then
-		return
-	end
+	local _, smartyank = pcall(require, "smartyank")
+
 	smartyank.setup({})
 	vim.api.nvim_create_user_command("CopyFilePath", function()
 		-- Create a temporary buffer

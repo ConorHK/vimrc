@@ -53,7 +53,7 @@ let
       comment-nvim
       nvim-web-devicons
       snacks-nvim
-      surround-nvim
+      mini-surround
       smartyank-nvim
       oil-nvim
       project-nvim
