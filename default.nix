@@ -99,7 +99,7 @@ symlinkJoin {
       --add-flags '${packpath}/init.lua' \
       --add-flags '--cmd' \
       --add-flags "'set packpath^=${packpath} | set runtimepath^=${packpath}'" \
-      --set-default NVIM_APPNAME nvim-custom \
+      --set-default NVIM_APPNAME ${packageName} \
       --prefix PATH : ${lib.makeBinPath runtimeDeps}
   '';
 
