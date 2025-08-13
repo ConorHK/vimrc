@@ -1,9 +1,6 @@
 local M = {}
 function M.setup()
-	local present, indent = pcall(require, "ibl")
-	if not present then
-		return
-	end
+	local indent = require("ibl")
 	local highlight = {
 		"FirstIndent",
 		"SecondIndent",

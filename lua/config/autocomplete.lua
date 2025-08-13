@@ -1,10 +1,7 @@
 local M = {}
 
 function M.setup()
-	local present, blink = pcall(require, "blink.cmp")
-	if not present then
-		return
-	end
+	local blink = require("blink.cmp")
 	local config = {
 		keymap = {
 			preset = "enter",

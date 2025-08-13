@@ -1,9 +1,6 @@
 local M = {}
 function M.setup()
-	local present, ts_config = pcall(require, "nvim-treesitter.configs")
-	if not present then
-		return
-	end
+	local ts_config = require("nvim-treesitter.configs")
 
 	---@diagnostic disable-next-line: missing-fields
 	local opts = {

@@ -1,10 +1,7 @@
 local M = {}
 
 function M.setup()
-	local present, trouble = pcall(require, "trouble")
-	if not present then
-		return
-	end
+	local trouble = require("trouble")
 
 	local map = vim.keymap.set
 

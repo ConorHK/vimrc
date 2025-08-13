@@ -28,10 +28,7 @@ local plugin_modules = {
 
 for _, plugin in ipairs(plugin_modules) do
 	local import = string.format("config.%s", plugin)
-	local success, module = pcall(require, import)
-	if success then
-		module.setup()
-	end
+	require(import).setup()
 end
 
 -- disable builtin vim plugins

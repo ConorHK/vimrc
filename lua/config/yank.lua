@@ -1,6 +1,6 @@
 local M = {}
 function M.setup()
-	local _, smartyank = pcall(require, "smartyank")
+	local smartyank = require("smartyank")
 
 	smartyank.setup({})
 	vim.api.nvim_create_user_command("CopyFilePath", function()

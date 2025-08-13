@@ -1,10 +1,7 @@
 local M = {}
 
 function M.setup()
-	local present, smear = pcall(require, "smear_cursor")
-	if not present then
-		return
-	end
+	local smear = require("smear_cursor")
 	smear.setup({
 		legacy_computing_symbols_support = true,
 	})

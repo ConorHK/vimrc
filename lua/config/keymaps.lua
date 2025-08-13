@@ -8,8 +8,8 @@ function M.setup()
 		vim.api.nvim_command("cnoreabbrev " .. command)
 	end
 
-	local present, _ = pcall(require, "zellij-nav")
-	if not present then
+	local has_zellij = pcall(require, "zellij-nav")
+	if not has_zellij then
 		-- split sane bindings
 		map("n", "<c-Left>", "<c-w>h", default_opts)
 		map("n", "<c-Down>", "<c-w>j", default_opts)

@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-	local _, zellij = pcall(require, "zellij-nav")
+	local zellij = require("zellij-nav")
 
 	vim.g.zellij_nav_default_mappings = false
 	zellij.setup({})

@@ -54,14 +54,7 @@ function M.setup()
 	-- Ruff configuration path
 	local ruff_file = vim.fn.stdpath("config") .. "/lspconfigs/default_ruff.toml"
 
-	-- Get capabilities from completion engines
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	if pcall(require, "cmp_nvim_lsp") then
-		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-	end
-	if pcall(require, "blink.cmp") then
-		capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-	end
+	local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 	-- Global LSP configuration (applies to all servers unless overridden)
 	vim.lsp.config("*", {
