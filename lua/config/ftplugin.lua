@@ -5,10 +5,10 @@ function M.setup()
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "nix",
         callback = function()
-            vim.cmd("setlocal shiftwidth=2")
-            vim.cmd("setlocal expandtab")
-            vim.cmd("setlocal tabstop=8")
-            vim.cmd("setlocal softtabstop=0")
+            vim.opt.shiftwidth=2
+            vim.opt.expandtab = true
+            vim.opt.tabstop=8
+            vim.opt.softtabstop=0
         end,
     })
 
@@ -16,10 +16,10 @@ function M.setup()
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "java",
         callback = function()
-            vim.cmd("setlocal shiftwidth=4")
-            vim.cmd("setlocal expandtab")
-            vim.cmd("setlocal tabstop=4")
-            vim.cmd("setlocal softtabstop=0")
+            vim.opt.shiftwidth=4
+            vim.opt.expandtab = true
+            vim.opt.tabstop=4
+            vim.opt.softtabstop=0
         end,
     })
 
@@ -28,6 +28,16 @@ function M.setup()
         pattern = "python",
         callback = function()
             vim.wo.colorcolumn = "120"
+        end,
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "conf",
+        callback = function()
+            vim.opt.shiftwidth=4
+            vim.opt.expandtab = true
+            vim.opt.tabstop=4
+            vim.opt.softtabstop=0
         end,
     })
 end
