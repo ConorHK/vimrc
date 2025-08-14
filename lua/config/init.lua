@@ -21,6 +21,7 @@ local plugin_modules = {
 	"lsp",
 	"snacks",
 	"snippets",
+	"statuscolumn",
 	"treesitter",
 	"yank",
 	"zellij",

@@ -42,22 +42,23 @@ let
     with vimPlugins;
     [
       blink-cmp
-      nvim-lspconfig
-      vim-illuminate
+      comment-nvim
+      fugitive
+      gitsigns-nvim
       inc-rename-nvim
-      nvim-treesitter.withAllGrammars
       indent-blankline-nvim
       luasnip
-      gitsigns-nvim
-      fugitive
-      comment-nvim
+      nvim-lspconfig
+      nvim-treesitter.withAllGrammars
       nvim-web-devicons
-      snacks-nvim
-      smartyank-nvim
       oil-nvim
       project-nvim
-      trouble-nvim
+      smartyank-nvim
       smear-cursor-nvim
+      snacks-nvim
+      statuscol-nvim
+      trouble-nvim
+      vim-illuminate
       vim-python-pep8-indent
       zellij-nav-nvim
     ]
