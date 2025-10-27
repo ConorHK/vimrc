@@ -1,0 +1,40 @@
+name: build
+on:
+  check_suite:
+    types: [completed]
+  # workflow_dispatch:
+  push:
+  # pull_request:
+jobs:
+  build-machines:
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+        output:
+          - default
+          -  nightly
+
+
+    runs-on: ${{ matrix.os }}
+    environment: production
+    steps:
+      - name: Cleanup host
+        uses: wimpysworld/nothing-but-nix@main
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+
+      - name: Sync repository
+        uses: actions/checkout@v4
+
+      - uses: cachix/cachix-action@v14
+        with:
+          name: conorhk
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          useDaemon: false
+          installCommand: nix profile install nixpkgs#cachix
+
+      - run: nix --extra-experimental-features pipe-operators build -L .${{ matrix.output }}
