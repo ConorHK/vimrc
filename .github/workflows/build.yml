@@ -38,3 +38,8 @@ jobs:
           installCommand: nix profile install nixpkgs#cachix
 
       - run: nix --extra-experimental-features pipe-operators build -L .#${{ matrix.output }}
+
+      - name: Run :checkhealth
+        uses: ColinKennedy/nvim-checkhealth-gh-action@main
+        with:
+          executable: "./result/bin/nvim"
