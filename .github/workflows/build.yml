@@ -37,4 +37,4 @@ jobs:
           useDaemon: false
           installCommand: nix profile install nixpkgs#cachix
 
-      - run: nix --extra-experimental-features pipe-operators build -L .${{ matrix.output }}
+      - run: nix --extra-experimental-features pipe-operators build -L .#${{ matrix.output }}
