@@ -51,8 +51,8 @@ function M.setup()
         end
     end
 
-    -- Ruff configuration path
-    local ruff_file = vim.fn.stdpath("config") .. "/lspconfigs/default_ruff.toml"
+    -- Ruff configuration path (find in runtime path)
+    local ruff_file = vim.api.nvim_get_runtime_file("lspconfigs/default_ruff.toml", false)[1]
 
     local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
