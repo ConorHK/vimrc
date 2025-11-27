@@ -48,6 +48,7 @@ let
       inc-rename-nvim
       indent-blankline-nvim
       luasnip
+      no-neck-pain-nvim
       nvim-lspconfig
       nvim-treesitter.withAllGrammars
       nvim-web-devicons
