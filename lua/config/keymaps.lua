@@ -1,35 +1,4 @@
 local M = {}
-
-local centering_enabled = false
-local statuscolumn_default = "  "
-local autocmd_id = nil
-
-local function toggle_centering()
-    centering_enabled = not centering_enabled
-    
-    if centering_enabled then
-        autocmd_id = vim.api.nvim_create_autocmd({
-            'BufEnter', 'BufWinEnter', 'BufWinLeave', 'WinEnter', 'WinLeave', 'WinResized', 'VimResized'
-        }, {
-            callback = function()
-                local full_screen = vim.o.columns
-                local winwidth = vim.api.nvim_win_get_width(0)
-                if winwidth > (full_screen / 2) then
-                    vim.o.statuscolumn = string.rep(" ", (full_screen - 100) / 2) .. statuscolumn_default
-                else
-                    vim.o.statuscolumn = statuscolumn_default
-                end
-            end,
-        })
-    else
-        if autocmd_id then
-            vim.api.nvim_del_autocmd(autocmd_id)
-            autocmd_id = nil
-        end
-        vim.o.statuscolumn = statuscolumn_default
-    end
-end
-
 function M.setup()
     local map = vim.keymap.set
 
@@ -58,9 +27,6 @@ function M.setup()
 
     -- clear highlight
     map("n", "<esc><esc>", ":noh<return>", default_opts)
-
-    -- toggle centering
-    map("n", "<leader>c", toggle_centering, default_opts)
 
     -- misspellings
     cnoreabbrev("Qa qa")
