@@ -9,7 +9,7 @@
 
   lua-language-server,
   nixd,
-  pyright,
+  ty,
   ruff,
   bash-language-server,
   jdt-language-server,
@@ -27,7 +27,7 @@ let
   runtimeDeps = [
     lua-language-server
     nixd
-    pyright
+    ty
     ruff
     bash-language-server
     jdt-language-server

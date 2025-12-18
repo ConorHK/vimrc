@@ -85,19 +85,9 @@ function M.setup()
             },
         },
 
-        pyright = {
+        ty = {
             settings = {
-                pyright = {
-                    disableOrganizeImports = true,
-                },
-                python = {
-                    analysis = {
-                        ignore = { "*" },
-                        typeCheckingMode = "off",
-                        autoSearchPaths = true,
-                        useLibraryCodeForTypes = true,
-                    },
-                    disableLanguageServices = false,
+                ty = {
                 },
             },
         },
