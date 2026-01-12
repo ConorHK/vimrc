@@ -1,44 +1,48 @@
 local M = {}
+
 function M.setup()
-    local ts_config = require("nvim-treesitter.configs")
+    vim.api.nvim_create_autocmd('FileType', {
+        pattern = { '*' },
+        callback = function()
+            if vim.treesitter.get_parser(nil, nil, { error = false }) then
+                vim.treesitter.start()
+            end
+        end,
+    })
 
-    ---@diagnostic disable-next-line: missing-fields
-    local opts = {
-        indent = {
-            enable = true,
-            disable = {
-                "nix",
-                "python",
-            },
-        },
-        highlight = {
-            enable = true,
-            disable = {
-                "nix",
-            },
-        },
-        textobjects = {
-            select = {
-                enable = true,
-                lookahead = true,
-                keymaps = {
-                    ["af"] = "@function.outer",
-                    ["if"] = "@function.inner",
-                    ["ac"] = "@class.outer",
-                    ["ic"] = "@class.inner",
-                    ["am"] = "@comment.outer",
-                    ["im"] = "@comment.inner",
-                    ["ao"] = "@loop.outer",
-                    ["io"] = "@loop.inner",
-                },
-            },
-        },
+    vim.api.nvim_create_autocmd('FileType', {
+        pattern = { '*' },
+        callback = function(ev)
+            local filetype = ev.match
+            if filetype ~= 'nix' or filetype ~= 'python' then
+                vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end
+        end,
+    })
+
+    vim.opt.foldmethod = 'expr'
+    vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.opt.foldlevel = 99
+
+    vim.g.textobjects_select_enable = true
+    vim.g.textobjects_select_lookahead = true
+    
+    local keymaps = {
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
+        ['ic'] = '@class.inner',
+        ['am'] = '@comment.outer',
+        ['im'] = '@comment.inner',
+        ['ao'] = '@loop.outer',
+        ['io'] = '@loop.inner',
     }
-
-    -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
-    vim.defer_fn(function()
-        ts_config.setup(opts)
-    end, 0)
+    
+    for keymap, textobject in pairs(keymaps) do
+        vim.keymap.set('x', keymap, function()
+            require('nvim-treesitter.textobjects.select').select_textobject(nil, textobject)
+        end, { noremap = true, silent = true })
+    end
 end
 
 return M
