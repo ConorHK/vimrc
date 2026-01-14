@@ -14,7 +14,7 @@ function M.setup()
 
     -- Java filetype settings
     vim.api.nvim_create_autocmd("FileType", {
-        pattern = {"java", "lua"},
+        pattern = { "java", "lua" },
         callback = function()
             vim.opt.shiftwidth = 4
             vim.opt.expandtab = true

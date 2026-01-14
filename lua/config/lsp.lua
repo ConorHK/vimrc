@@ -87,8 +87,7 @@ function M.setup()
 
         ty = {
             settings = {
-                ty = {
-                },
+                ty = {},
             },
         },
 
