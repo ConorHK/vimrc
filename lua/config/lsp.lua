@@ -197,7 +197,10 @@ function M.setup()
 
             local settings = servers[client.name] or {}
 
-            bemol()
+            local bemol_clients = { jdtls = true, ruff = true, ty = true }
+            if bemol_clients[client.name] then
+                bemol()
+            end
 
             -- local builtin = require("telescope.builtin")
             require("inc_rename").setup({})
