@@ -5,10 +5,10 @@ function M.setup()
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "nix",
         callback = function()
-            vim.opt.shiftwidth = 2
-            vim.opt.expandtab = true
-            vim.opt.tabstop = 8
-            vim.opt.softtabstop = 0
+            vim.bo.shiftwidth = 2
+            vim.bo.expandtab = true
+            vim.bo.tabstop = 8
+            vim.bo.softtabstop = 0
         end,
     })
 
@@ -16,10 +16,10 @@ function M.setup()
     vim.api.nvim_create_autocmd("FileType", {
         pattern = { "java", "lua" },
         callback = function()
-            vim.opt.shiftwidth = 4
-            vim.opt.expandtab = true
-            vim.opt.tabstop = 4
-            vim.opt.softtabstop = 0
+            vim.bo.shiftwidth = 4
+            vim.bo.expandtab = true
+            vim.bo.tabstop = 4
+            vim.bo.softtabstop = 0
         end,
     })
 
@@ -34,10 +34,10 @@ function M.setup()
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "brazil-config",
         callback = function()
-            vim.opt.shiftwidth = 4
-            vim.opt.expandtab = true
-            vim.opt.tabstop = 4
-            vim.opt.softtabstop = 0
+            vim.bo.shiftwidth = 4
+            vim.bo.expandtab = true
+            vim.bo.tabstop = 4
+            vim.bo.softtabstop = 0
         end,
     })
 end
