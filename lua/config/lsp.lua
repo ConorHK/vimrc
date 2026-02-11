@@ -22,15 +22,6 @@ function M.setup()
         return
     end
 
-    local function contains(table, value)
-        for _, table_value in ipairs(table) do
-            if table_value == value then
-                return true
-            end
-        end
-        return false
-    end
-
     local function bemol()
         local bemol_dir = vim.fs.find({ ".bemol" }, { upward = true, type = "directory" })[1]
         local ws_folders_lsp = {}
@@ -44,7 +35,7 @@ function M.setup()
             end
 
             for _, line in ipairs(ws_folders_lsp) do
-                if not contains(vim.lsp.buf.list_workspace_folders(), line) then
+                if not vim.tbl_contains(vim.lsp.buf.list_workspace_folders(), line) then
                     vim.lsp.buf.add_workspace_folder(line)
                 end
             end
@@ -233,19 +224,12 @@ function M.setup()
                     client.server_capabilities[k] = v
                 end
             end
-        end,
-    })
 
-    -- Disable Ruff hover in favor of Pyright
-    vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
-        callback = function(args)
-            local client = vim.lsp.get_client_by_id(args.data.client_id)
-            if client and client.name == "ruff" then
+            -- Disable Ruff hover in favor of other Python LSPs
+            if client.name == "ruff" then
                 client.server_capabilities.hoverProvider = false
             end
         end,
-        desc = "LSP: Disable hover capability from Ruff",
     })
 end
 

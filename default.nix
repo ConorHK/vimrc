@@ -13,7 +13,6 @@
   ruff,
   bash-language-server,
   jdt-language-server,
-  jdk21_headless,
   typescript-language-server,
 
   universal-ctags,

@@ -1,7 +1,6 @@
 local M = {}
 function M.setup()
     local opt = vim.opt
-    local cmd = vim.cmd
 
     -- splits open at bottom and right
     opt.splitbelow = true
@@ -40,17 +39,11 @@ function M.setup()
     -- matching braces/tags
     opt.showmatch = true
 
-    -- turn on detection for filetypes, indentation files and plugin files
-    cmd("filetype plugin indent on")
-
     -- enable column position with ctrl-g
     opt.ruler = false
 
     -- persistent undo
     opt.undofile = true
-
-    -- switch syntax highlighting on
-    cmd("syntax on")
 
     -- don't write to the ShaDa file on startup
     opt.shadafile = "NONE"

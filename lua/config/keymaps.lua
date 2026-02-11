@@ -22,9 +22,6 @@ function M.setup()
         map("n", "<c-l>", "<c-w>l", default_opts)
     end
 
-    -- quick yanking to the end of the line
-    map("n", "Y", "y$", default_opts)
-
     -- clear highlight
     map("n", "<esc><esc>", ":noh<return>", default_opts)
 
