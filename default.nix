@@ -68,15 +68,15 @@ let
 
   foldPlugins =
     let
-      go = seen: builtins.foldl' (
-        acc: next:
-        if builtins.elem next acc then
-          acc
-        else
-          acc
-          ++ [ next ]
-          ++ (go (seen ++ [ next ]) (next.dependencies or [ ]))
-      ) seen;
+      go =
+        seen:
+        builtins.foldl' (
+          acc: next:
+          if builtins.elem next acc then
+            acc
+          else
+            acc ++ [ next ] ++ (go (seen ++ [ next ]) (next.dependencies or [ ]))
+        ) seen;
     in
     go [ ];
 
