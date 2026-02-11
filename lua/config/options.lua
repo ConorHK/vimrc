@@ -9,7 +9,6 @@ function M.setup()
 
     -- window
     opt.hidden = true
-    opt.fillchars.vert = "│"
 
     -- remove intro
     opt.shortmess:append("sI")
