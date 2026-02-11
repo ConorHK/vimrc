@@ -5,7 +5,6 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     plugins-alduin = {
       url = "github:conorhk/alduin.nvim";
