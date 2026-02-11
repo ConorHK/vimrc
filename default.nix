@@ -66,14 +66,19 @@ let
       neovimPlugins.alduin
     ];
 
-  foldPlugins = builtins.foldl' (
-    acc: next:
-    acc
-    ++ [
-      next
-    ]
-    ++ (foldPlugins (next.dependencies or [ ]))
-  ) [ ];
+  foldPlugins =
+    let
+      go = seen: builtins.foldl' (
+        acc: next:
+        if builtins.elem next acc then
+          acc
+        else
+          acc
+          ++ [ next ]
+          ++ (go (seen ++ [ next ]) (next.dependencies or [ ]))
+      ) seen;
+    in
+    go [ ];
 
   startPluginsWithDeps = lib.unique (foldPlugins startPlugins);
 
