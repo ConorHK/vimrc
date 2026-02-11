@@ -79,17 +79,38 @@ function M.setup()
     }
 
     -- Execute statusline
-    vim.cmd(
-        [[
-  augroup Statusline
-  au!
-    au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
-    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
-    au WinEnter,BufEnter,FileType NvimTree,terminal setlocal statusline=%!v:lua.Statusline.short()
-    au WinLeave,BufLeave,FileType NvimTree,terminal setlocal statusline=%!v:lua.Statusline.short()
-  augroup END
-]],
-        false
-    )
+    local group = vim.api.nvim_create_augroup("Statusline", { clear = true })
+
+    vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+        group = group,
+        pattern = "*",
+        callback = function()
+            vim.wo.statusline = "%!v:lua.Statusline.active()"
+        end,
+    })
+
+    vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+        group = group,
+        pattern = "*",
+        callback = function()
+            vim.wo.statusline = "%!v:lua.Statusline.inactive()"
+        end,
+    })
+
+    vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "FileType" }, {
+        group = group,
+        pattern = { "NvimTree", "terminal" },
+        callback = function()
+            vim.wo.statusline = "%!v:lua.Statusline.short()"
+        end,
+    })
+
+    vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave", "FileType" }, {
+        group = group,
+        pattern = { "NvimTree", "terminal" },
+        callback = function()
+            vim.wo.statusline = "%!v:lua.Statusline.short()"
+        end,
+    })
 end
 return M

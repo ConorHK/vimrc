@@ -41,35 +41,32 @@ function M.get_path_root(path)
     return root
 end
 
-local remote_cache = setmetatable({}, { __mode = "k" })
-
-local function git_cmd(root, ...)
-    local job = vim.system({ "git", "-C", root, ... }, { text = true }):wait()
-
-    if job.code ~= 0 then
-        return nil, job.stderr
-    end
-    return vim.trim(job.stdout)
-end
+local remote_cache = {}
 
 function M.get_git_remote_name(root)
     if not root then
         return nil
     end
-    if remote_cache[root] then
+    if remote_cache[root] ~= nil then
         return remote_cache[root]
     end
 
-    local out = git_cmd(root, "config", "--get", "remote.origin.url")
-    if not out then
-        return nil
-    end
+    -- Mark as in-flight to avoid duplicate async calls
+    remote_cache[root] = false
 
-    -- normalise to short repo name
-    out = out:gsub(":", "/"):gsub("%.git$", ""):match("([^/]+/[^/]+)$")
+    vim.system({ "git", "-C", root, "config", "--get", "remote.origin.url" }, { text = true }, function(job)
+        if job.code ~= 0 then
+            return
+        end
+        local out = vim.trim(job.stdout)
+        out = out:gsub(":", "/"):gsub("%.git$", ""):match("([^/]+/[^/]+)$")
+        remote_cache[root] = out or false
+        vim.schedule(function()
+            vim.cmd.redrawstatus()
+        end)
+    end)
 
-    remote_cache[root] = out
-    return out
+    return nil
 end
 
 function M.setup()

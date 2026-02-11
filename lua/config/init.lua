@@ -48,6 +48,10 @@ local disabled_built_ins = {
     "rrhelper",
     "spellfile_plugin",
     "matchit",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
