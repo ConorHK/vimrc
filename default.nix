@@ -42,7 +42,7 @@ let
     [
       blink-cmp
       comment-nvim
-      fugitive
+      vim-fugitive
       gitsigns-nvim
       inc-rename-nvim
       indent-blankline-nvim
