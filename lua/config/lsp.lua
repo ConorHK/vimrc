@@ -65,11 +65,6 @@ function M.setup()
             filetypes = { "brazil-config" },
         },
 
-        jdtls = {
-            root_markers = { ".bemol" },
-            on_attach = bemol,
-        },
-
         lua_ls = {
             server_capabilities = {
                 semanticTokensProvider = vim.NIL,
@@ -188,7 +183,7 @@ function M.setup()
 
             local settings = servers[client.name] or {}
 
-            local bemol_clients = { jdtls = true, ruff = true, ty = true }
+            local bemol_clients = { ruff = true, ty = true }
             if bemol_clients[client.name] then
                 bemol()
             end

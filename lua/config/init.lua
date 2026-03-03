@@ -18,6 +18,7 @@ local plugin_modules = {
     "ftplugin",
     "git",
     "indent",
+    "java",
     "lsp",
     "snacks",
     "snippets",

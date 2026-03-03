@@ -49,6 +49,7 @@ let
       luasnip
       no-neck-pain-nvim
       nvim-lspconfig
+      nvim-jdtls
       nvim-treesitter.withAllGrammars
       nvim-web-devicons
       oil-nvim
