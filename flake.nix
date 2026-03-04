@@ -38,6 +38,8 @@
                 src = inputs.plugins-alduin;
               };
             };
+            vscode-java-debug = pkgs.vscode-extensions.vscjava.vscode-java-debug;
+            vscode-java-test = pkgs.vscode-extensions.vscjava.vscode-java-test;
           };
         in
         {
