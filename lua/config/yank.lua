@@ -14,7 +14,13 @@ function M.setup()
         local file = vim.fn.expand("%:p")
         local dir = vim.fn.fnamemodify(file, ":h")
         local line = vim.fn.line(".")
-        local result = vim.trim(vim.fn.system({ "git", "-C", dir, "url", file, tostring(line) }))
+        local repo_root = vim.trim(vim.fn.system({ "git", "-C", dir, "rev-parse", "--show-toplevel" }))
+        if vim.v.shell_error ~= 0 then
+            vim.notify("git-url: not in a git repo", vim.log.levels.ERROR)
+            return
+        end
+        local rel_file = file:sub(#repo_root + 2)
+        local result = vim.trim(vim.fn.system({ "git", "-C", dir, "url", rel_file, tostring(line) }))
         if vim.v.shell_error ~= 0 then
             vim.notify("git-url: " .. result, vim.log.levels.ERROR)
             return
