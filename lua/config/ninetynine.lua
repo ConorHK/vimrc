@@ -13,14 +13,20 @@ function M.setup()
         },
     })
 
-    vim.keymap.set("v", "9v", function()
+    vim.keymap.set("v", "<leader>av", function()
         _99.visual()
     end)
-    vim.keymap.set("n", "9x", function()
+    vim.keymap.set("n", "<leader>ax", function()
         _99.stop_all_requests()
     end)
-    vim.keymap.set("n", "9s", function()
+    vim.keymap.set("n", "<leader>as", function()
         _99.search()
+    end)
+    vim.keymap.set("n", "<leader>aw", function()
+        _99.Extensions.Worker.set_work()
+    end)
+    vim.keymap.set("n", "<leader>aW", function()
+        _99.Extensions.Worker.search()
     end)
 end
 
