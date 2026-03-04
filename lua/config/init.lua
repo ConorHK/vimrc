@@ -21,6 +21,7 @@ local plugin_modules = {
     "indent",
     "java",
     "lsp",
+    "ninetynine",
     "snacks",
     "snippets",
     "statuscolumn",

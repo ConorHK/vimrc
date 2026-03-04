@@ -10,6 +10,10 @@
       url = "github:conorhk/alduin.nvim";
       flake = false;
     };
+    plugins-99 = {
+      url = "github:ThePrimeagen/99";
+      flake = false;
+    };
   };
 
   outputs =
@@ -41,6 +45,13 @@
             vscode-java-debug = pkgs.vscode-extensions.vscjava.vscode-java-debug;
             vscode-java-test = pkgs.vscode-extensions.vscjava.vscode-java-test;
           };
+          ninetyninePlugin = {
+            ninetynine = pkgs.vimUtils.buildVimPlugin {
+              name = "99.nvim";
+              src = inputs.plugins-99;
+              nvimRequireCheck = "99";
+            };
+          };
         in
         {
           packages = {
@@ -50,6 +61,14 @@
               commonArgs
               // {
                 neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
+              }
+            );
+
+            work = pkgs.callPackage ./default.nix (
+              commonArgs
+              // {
+                neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
+                neovimPlugins = commonArgs.neovimPlugins // ninetyninePlugin;
               }
             );
           };

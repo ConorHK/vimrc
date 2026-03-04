@@ -44,6 +44,7 @@ let
     with vimPlugins;
     [
       blink-cmp
+      blink-compat
       comment-nvim
       vim-fugitive
       gitsigns-nvim
@@ -70,6 +71,9 @@ let
     ]
     ++ lib.optionals (neovimPlugins ? alduin) [
       neovimPlugins.alduin
+    ]
+    ++ lib.optionals (neovimPlugins ? ninetynine) [
+      neovimPlugins.ninetynine
     ];
 
   foldPlugins =
