@@ -10,5 +10,13 @@ function M.setup()
         print("File path copied: " .. path)
     end, {})
     vim.keymap.set("n", "<leader>cp", ":CopyFilePath<CR>", { silent = true, noremap = true })
+    vim.keymap.set("n", "<leader>cr", function()
+        local file = vim.fn.expand("%:p")
+        local line = vim.fn.line(".")
+        local result = vim.fn.system({ "git-url", file, tostring(line) })
+        if vim.v.shell_error ~= 0 then
+            vim.notify("git-url: " .. result, vim.log.levels.ERROR)
+        end
+    end, { silent = true, noremap = true })
 end
 return M
