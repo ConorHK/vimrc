@@ -1,4 +1,28 @@
 local M = {}
+
+local function git_url(lines_arg)
+    local file = vim.fn.expand("%:p")
+    local dir = vim.fn.fnamemodify(file, ":h")
+    local repo_root = vim.trim(vim.fn.system({ "git", "-C", dir, "rev-parse", "--show-toplevel" }))
+    if vim.v.shell_error ~= 0 then
+        vim.notify("git-url: not in a git repo", vim.log.levels.ERROR)
+        return
+    end
+    local rel_file = file:sub(#repo_root + 2)
+    local cmd = { "git", "-C", dir, "url", rel_file }
+    if lines_arg then
+        table.insert(cmd, lines_arg)
+    end
+    local result = vim.trim(vim.fn.system(cmd))
+    if vim.v.shell_error ~= 0 then
+        vim.notify("git-url: " .. result, vim.log.levels.ERROR)
+        return
+    end
+    local b64 = vim.base64.encode(result)
+    io.stdout:write(string.format("\027]52;c;%s\a", b64))
+    print(result)
+end
+
 function M.setup()
     local smartyank = require("smartyank")
 
@@ -11,23 +35,15 @@ function M.setup()
     end, {})
     vim.keymap.set("n", "<leader>cp", ":CopyFilePath<CR>", { silent = true, noremap = true })
     vim.keymap.set("n", "<leader>cu", function()
-        local file = vim.fn.expand("%:p")
-        local dir = vim.fn.fnamemodify(file, ":h")
-        local line = vim.fn.line(".")
-        local repo_root = vim.trim(vim.fn.system({ "git", "-C", dir, "rev-parse", "--show-toplevel" }))
-        if vim.v.shell_error ~= 0 then
-            vim.notify("git-url: not in a git repo", vim.log.levels.ERROR)
-            return
+        git_url(tostring(vim.fn.line(".")))
+    end, { silent = true, noremap = true })
+    vim.keymap.set("v", "<leader>cu", function()
+        local start = vim.fn.line("v")
+        local finish = vim.fn.line(".")
+        if start > finish then
+            start, finish = finish, start
         end
-        local rel_file = file:sub(#repo_root + 2)
-        local result = vim.trim(vim.fn.system({ "git", "-C", dir, "url", rel_file, tostring(line) }))
-        if vim.v.shell_error ~= 0 then
-            vim.notify("git-url: " .. result, vim.log.levels.ERROR)
-            return
-        end
-        local b64 = vim.base64.encode(result)
-        io.stdout:write(string.format("\027]52;c;%s\a", b64))
-        print(result)
+        git_url(start .. "-" .. finish)
     end, { silent = true, noremap = true })
 end
 return M
