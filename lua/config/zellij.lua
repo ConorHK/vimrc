@@ -1,6 +1,10 @@
 local M = {}
 
 function M.setup()
+    if not vim.env.ZELLIJ then
+        return
+    end
+
     local zellij = require("zellij-nav")
 
     vim.g.zellij_nav_default_mappings = false
