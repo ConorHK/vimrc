@@ -3,3 +3,4 @@ plugin/packer_compiled.lua
 .luarc.json
 **/amazon.lua
 result
+.direnv
