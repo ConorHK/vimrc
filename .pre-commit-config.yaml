@@ -1,0 +1,14 @@
+repos:
+  - repo: local
+    hooks:
+      - id: nix-flake-check
+        name: nix flake check
+        language: system
+        entry: nix flake check
+        pass_filenames: false
+
+      - id: nvim-checkhealth
+        name: nvim checkhealth
+        language: system
+        entry: bash -c 'nix build .#nightly && ./result/bin/nvim --headless -c "checkhealth" -c "qa!"'
+        pass_filenames: false

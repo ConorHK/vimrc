@@ -75,6 +75,7 @@
 
           devShells.default = pkgs.mkShell {
             packages = [
+              pkgs.pre-commit
               (pkgs.writeShellScriptBin "nvim-dev" ''
                 export NVIM_APPNAME=nvim-dev
                 exec ${self'.packages.default}/bin/nvim \
@@ -87,6 +88,7 @@
               echo "Development shell loaded!"
               echo "Use 'nvim-dev' to run neovim with live config from current directory"
               echo "Uses the same neovim build as the package but with hot-reloadable config"
+              pre-commit install --install-hooks
             '';
           };
 
