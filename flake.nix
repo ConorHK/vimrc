@@ -30,11 +30,14 @@
       perSystem =
         {
           self',
-          pkgs,
           system,
           ...
         }:
         let
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
           commonArgs = {
             neovimPlugins = {
               alduin = pkgs.vimUtils.buildVimPlugin {
