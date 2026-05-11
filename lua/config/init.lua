@@ -35,6 +35,23 @@ for _, plugin in ipairs(plugin_modules) do
     require(import).setup()
 end
 
+-- disable unused remote plugin providers
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- override legacy nvim-treesitter healthcheck (built-in treesitter is used directly,
+-- parsers come from Nix, so the install-dir/tree-sitter-cli checks are not relevant)
+package.preload["nvim-treesitter.health"] = function()
+    return {
+        check = function()
+            vim.health.start("nvim-treesitter")
+            vim.health.ok("Parsers managed by Nix; legacy install checks skipped.")
+        end,
+    }
+end
+
 -- disable builtin vim plugins
 local disabled_built_ins = {
     "gzip",

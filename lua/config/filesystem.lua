@@ -24,8 +24,13 @@ function M.oil()
     vim.keymap.set("n", "<space>-", require("oil").toggle_float)
 end
 
+function M.project()
+    require("project").setup({})
+end
+
 function M.setup()
     M.oil()
+    M.project()
 end
 
 return M

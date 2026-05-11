@@ -20,6 +20,11 @@
   fd,
   sqlite,
 
+  lazygit,
+  ghostscript,
+  mermaid-cli,
+  tectonic,
+
   vscode-java-debug,
   vscode-java-test,
 }:
@@ -38,6 +43,10 @@ let
     ripgrep
     fd
     sqlite
+    lazygit
+    ghostscript
+    mermaid-cli
+    tectonic
   ];
 
   startPlugins =
